@@ -5,9 +5,7 @@
   "title": "Reset Form",
   "author": "benqSzaw <szawracki.pl>",
   "description": "Headless UI component for reseting passowrd.",
-  "dependencies": [
-    "lucide-react"
-  ],
+  "dependencies": ["lucide-react"],
   "registryDependencies": [
     "form",
     "input",

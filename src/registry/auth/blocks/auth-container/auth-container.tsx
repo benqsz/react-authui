@@ -22,7 +22,7 @@ function AuthContainer(props: Props) {
   return (
     <section
       className={cn(
-        'mx-auto flex min-h-svh w-full max-w-lg items-center justify-center p-4',
+        'mx-auto flex size-full max-w-lg items-center justify-center p-4',
         className,
       )}
       {...rest}

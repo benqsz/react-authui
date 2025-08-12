@@ -5,9 +5,7 @@
   "title": "Auth Container",
   "author": "benqSzaw <szawracki.pl>",
   "description": "A container to wrap authentication components.",
-  "registryDependencies": [
-    "card"
-  ],
+  "registryDependencies": ["card"],
   "files": [
     {
       "path": "src/registry/auth/blocks/auth-container/auth-container.tsx",

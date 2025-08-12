@@ -4,6 +4,7 @@
     "---Introduction---",
     "index",
     "installation",
-    "---Components---"
+    "---Components---",
+    "auth-container"
   ]
 }
