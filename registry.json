@@ -11,7 +11,7 @@
       "registryDependencies": ["card"],
       "files": [
         {
-          "path": "registry/auth/blocks/auth-container/auth-container.tsx",
+          "path": "src/registry/auth/blocks/auth-container/auth-container.tsx",
           "type": "registry:component",
           "target": "components/auth/auth-container.tsx"
         }
@@ -26,7 +26,7 @@
       "registryDependencies": ["form"],
       "files": [
         {
-          "path": "registry/auth/ui/form-root-error.tsx",
+          "path": "src/registry/auth/ui/form-root-error.tsx",
           "type": "registry:ui",
           "target": "components/ui/form-root-error.tsx"
         }
@@ -42,7 +42,7 @@
       "registryDependencies": ["input", "button"],
       "files": [
         {
-          "path": "registry/auth/ui/password-input.tsx",
+          "path": "src/registry/auth/ui/password-input.tsx",
           "type": "registry:ui",
           "target": "components/ui/password-input.tsx"
         }
@@ -64,7 +64,7 @@
       ],
       "files": [
         {
-          "path": "registry/auth/blocks/register-form/register-form.tsx",
+          "path": "src/registry/auth/blocks/register-form/register-form.tsx",
           "type": "registry:component",
           "target": "components/auth/register-form.tsx"
         }
@@ -86,7 +86,7 @@
       ],
       "files": [
         {
-          "path": "registry/auth/blocks/login-form/login-form.tsx",
+          "path": "src/registry/auth/blocks/login-form/login-form.tsx",
           "type": "registry:component",
           "target": "components/auth/login-form.tsx"
         }
@@ -107,7 +107,7 @@
       ],
       "files": [
         {
-          "path": "registry/auth/blocks/forgot-form/forgot-form.tsx",
+          "path": "src/registry/auth/blocks/forgot-form/forgot-form.tsx",
           "type": "registry:component",
           "target": "components/auth/forgot-form.tsx"
         }
@@ -129,7 +129,7 @@
       ],
       "files": [
         {
-          "path": "registry/auth/blocks/reset-form/reset-form.tsx",
+          "path": "src/registry/auth/blocks/reset-form/reset-form.tsx",
           "type": "registry:component",
           "target": "components/auth/reset-form.tsx"
         }
