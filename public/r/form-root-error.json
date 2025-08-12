@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-root-error",
+  "type": "registry:ui",
+  "title": "Form Root Error",
+  "author": "benqSzaw <szawracki.pl>",
+  "description": "UI component to display form root error.",
+  "registryDependencies": ["form"],
+  "files": [
+    {
+      "path": "registry/auth/ui/form-root-error.tsx",
+      "content": "import { ComponentProps } from 'react';\r\nimport { useFormState } from 'react-hook-form';\r\nimport { cn } from '@/lib/utils';\r\n\r\nfunction FormRootError({ className, ...props }: ComponentProps<'p'>) {\r\n  const { errors } = useFormState();\r\n  const rootError = errors.root;\r\n  if (!rootError) return null;\r\n\r\n  return (\r\n    <p className={cn('text-destructive text-sm', className)} {...props}>\r\n      {rootError.message}\r\n    </p>\r\n  );\r\n}\r\n\r\nexport { FormRootError };\r\n",
+      "type": "registry:ui",
+      "target": "components/ui/form-root-error.tsx"
+    }
+  ]
+}

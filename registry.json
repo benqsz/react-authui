@@ -1,0 +1,140 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "react-auth-ui",
+  "homepage": "https://react-authui.vercel.app",
+  "items": [
+    {
+      "name": "auth-container",
+      "type": "registry:component",
+      "title": "Auth Container",
+      "description": "A container to wrap authentication components.",
+      "registryDependencies": ["card"],
+      "files": [
+        {
+          "path": "registry/auth/blocks/auth-container/auth-container.tsx",
+          "type": "registry:component",
+          "target": "components/auth/auth-container.tsx"
+        }
+      ],
+      "author": "benqSzaw <szawracki.pl>"
+    },
+    {
+      "name": "form-root-error",
+      "type": "registry:ui",
+      "title": "Form Root Error",
+      "description": "UI component to display form root error.",
+      "registryDependencies": ["form"],
+      "files": [
+        {
+          "path": "registry/auth/ui/form-root-error.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/form-root-error.tsx"
+        }
+      ],
+      "author": "benqSzaw <szawracki.pl>"
+    },
+    {
+      "name": "password-input",
+      "type": "registry:ui",
+      "title": "Password Input",
+      "description": "A password input component with visibility toggle.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["input", "button"],
+      "files": [
+        {
+          "path": "registry/auth/ui/password-input.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/password-input.tsx"
+        }
+      ],
+      "author": "benqSzaw <szawracki.pl>"
+    },
+    {
+      "name": "register-form",
+      "type": "registry:block",
+      "title": "Register Form",
+      "description": "Headless UI component for user registration.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "form",
+        "input",
+        "button",
+        "/r/form-root-error.json",
+        "/r/password-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/auth/blocks/register-form/register-form.tsx",
+          "type": "registry:component",
+          "target": "components/auth/register-form.tsx"
+        }
+      ],
+      "author": "benqSzaw <szawracki.pl>"
+    },
+    {
+      "name": "login-form",
+      "type": "registry:block",
+      "title": "Login Form",
+      "description": "Headless UI component for user login.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "form",
+        "input",
+        "button",
+        "/r/form-root-error.json",
+        "/r/password-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/auth/blocks/login-form/login-form.tsx",
+          "type": "registry:component",
+          "target": "components/auth/login-form.tsx"
+        }
+      ],
+      "author": "benqSzaw <szawracki.pl>"
+    },
+    {
+      "name": "forgot-form",
+      "type": "registry:block",
+      "title": "Forgot Form",
+      "description": "Headless UI component for forgotting passowrd.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "form",
+        "input",
+        "button",
+        "/r/form-root-error.json"
+      ],
+      "files": [
+        {
+          "path": "registry/auth/blocks/forgot-form/forgot-form.tsx",
+          "type": "registry:component",
+          "target": "components/auth/forgot-form.tsx"
+        }
+      ],
+      "author": "benqSzaw <szawracki.pl>"
+    },
+    {
+      "name": "reset-form",
+      "type": "registry:block",
+      "title": "Reset Form",
+      "description": "Headless UI component for reseting passowrd.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "form",
+        "input",
+        "button",
+        "/r/form-root-error.json",
+        "/r/password-input.json"
+      ],
+      "files": [
+        {
+          "path": "registry/auth/blocks/reset-form/reset-form.tsx",
+          "type": "registry:component",
+          "target": "components/auth/reset-form.tsx"
+        }
+      ],
+      "author": "benqSzaw <szawracki.pl>"
+    }
+  ]
+}
