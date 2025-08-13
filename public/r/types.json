@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "types",
+  "type": "registry:lib",
+  "title": "Types",
+  "author": "benqSzaw <szawracki.pl>",
+  "description": "Types for react-authui",
+  "files": [
+    {
+      "path": "src/registry/auth/lib/types.ts",
+      "content": "type ActionReturnType = true | string;\n\ntype FormProps<T> = {\n  onSubmitAction: (values: T) => Promise<ActionReturnType>;\n  onSuccess: () => void;\n};\n\nexport { type FormProps };\n",
+      "type": "registry:ui",
+      "target": "lib/auth/types.ts"
+    }
+  ]
+}

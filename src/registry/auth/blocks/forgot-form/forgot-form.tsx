@@ -14,19 +14,16 @@ import {
 import { Input } from '@/components/ui/input';
 import { Loader2 } from 'lucide-react';
 import { FormRootError } from '@/registry/auth/ui/form-root-error';
+import { FormProps } from '../../lib/types';
 
 const forgotSchema = z.object({
   email: z.email(),
 });
 
-type Props = {
-  onSubmitAction: (
-    values: z.infer<typeof forgotSchema>,
-  ) => Promise<{ success: boolean; message?: string }>;
-  onSuccess: () => void;
-};
-
-function ForgotForm({ onSubmitAction, onSuccess }: Props) {
+function ForgotForm({
+  onSubmitAction,
+  onSuccess,
+}: FormProps<z.infer<typeof forgotSchema>>) {
   const form = useForm<z.infer<typeof forgotSchema>>({
     resolver: zodResolver(forgotSchema),
     defaultValues: {
@@ -35,15 +32,15 @@ function ForgotForm({ onSubmitAction, onSuccess }: Props) {
   });
 
   async function onSubmit(values: z.infer<typeof forgotSchema>) {
-    const { success, message } = await onSubmitAction(values);
-    if (success) {
-      onSuccess();
-    } else {
+    const response = await onSubmitAction(values);
+    if (response === typeof 'string') {
       form.setError('root', {
         type: 'manual',
-        message: message || 'An error unknown error occured',
+        message: response,
       });
     }
+
+    onSuccess();
   }
 
   return (

@@ -50,6 +50,20 @@
       "author": "benqSzaw <szawracki.pl>"
     },
     {
+      "name": "types",
+      "type": "registry:lib",
+      "title": "Types",
+      "description": "Types for react-authui",
+      "files": [
+        {
+          "path": "src/registry/auth/lib/types.ts",
+          "type": "registry:ui",
+          "target": "lib/auth/types.ts"
+        }
+      ],
+      "author": "benqSzaw <szawracki.pl>"
+    },
+    {
       "name": "register-form",
       "type": "registry:block",
       "title": "Register Form",
@@ -60,7 +74,8 @@
         "input",
         "button",
         "/r/form-root-error.json",
-        "/r/password-input.json"
+        "/r/password-input.json",
+        "/r/types.json"
       ],
       "files": [
         {
@@ -82,7 +97,8 @@
         "input",
         "button",
         "/r/form-root-error.json",
-        "/r/password-input.json"
+        "/r/password-input.json",
+        "/r/types.json"
       ],
       "files": [
         {
@@ -103,7 +119,8 @@
         "form",
         "input",
         "button",
-        "/r/form-root-error.json"
+        "/r/form-root-error.json",
+        "/r/types.json"
       ],
       "files": [
         {
@@ -125,7 +142,8 @@
         "input",
         "button",
         "/r/form-root-error.json",
-        "/r/password-input.json"
+        "/r/password-input.json",
+        "/r/types.json"
       ],
       "files": [
         {

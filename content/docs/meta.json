@@ -6,6 +6,7 @@
     "installation",
     "---Components---",
     "components/index",
-    "components/auth-container"
+    "components/auth-container",
+    "components/login-form"
   ]
 }

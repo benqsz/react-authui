@@ -5,11 +5,13 @@
   "title": "Form Root Error",
   "author": "benqSzaw <szawracki.pl>",
   "description": "UI component to display form root error.",
-  "registryDependencies": ["form"],
+  "registryDependencies": [
+    "form"
+  ],
   "files": [
     {
       "path": "src/registry/auth/ui/form-root-error.tsx",
-      "content": "import { ComponentProps } from 'react';\r\nimport { useFormState } from 'react-hook-form';\r\nimport { cn } from '@/lib/utils';\r\n\r\nfunction FormRootError({ className, ...props }: ComponentProps<'p'>) {\r\n  const { errors } = useFormState();\r\n  const rootError = errors.root;\r\n  if (!rootError) return null;\r\n\r\n  return (\r\n    <p className={cn('text-destructive text-sm', className)} {...props}>\r\n      {rootError.message}\r\n    </p>\r\n  );\r\n}\r\n\r\nexport { FormRootError };\r\n",
+      "content": "import { ComponentProps } from 'react';\nimport { useFormState } from 'react-hook-form';\nimport { cn } from '@/lib/utils';\n\nfunction FormRootError({ className, ...props }: ComponentProps<'p'>) {\n  const { errors } = useFormState();\n  const rootError = errors.root;\n  if (!rootError) return null;\n\n  return (\n    <p className={cn('text-destructive text-sm', className)} {...props}>\n      {rootError.message}\n    </p>\n  );\n}\n\nexport { FormRootError };\n",
       "type": "registry:ui",
       "target": "components/ui/form-root-error.tsx"
     }

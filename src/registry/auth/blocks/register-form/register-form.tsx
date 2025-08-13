@@ -16,6 +16,7 @@ import { Input } from '@/components/ui/input';
 import { Loader2 } from 'lucide-react';
 import { FormRootError } from '@/registry/auth/ui/form-root-error';
 import { PasswordInput } from '@/registry/auth/ui/password-input';
+import { FormProps } from '../../lib/types';
 
 const registerSchema = z
   .object({
@@ -28,14 +29,10 @@ const registerSchema = z
     message: 'Passwords do not match',
   });
 
-type Props = {
-  onSubmitAction: (
-    values: z.infer<typeof registerSchema>,
-  ) => Promise<{ success: boolean; message?: string }>;
-  onSuccess: () => void;
-};
-
-function RegisterForm({ onSubmitAction, onSuccess }: Props) {
+function RegisterForm({
+  onSubmitAction,
+  onSuccess,
+}: FormProps<z.infer<typeof registerSchema>>) {
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -47,15 +44,15 @@ function RegisterForm({ onSubmitAction, onSuccess }: Props) {
   });
 
   async function onSubmit(values: z.infer<typeof registerSchema>) {
-    const { success, message } = await onSubmitAction(values);
-    if (success) {
-      onSuccess();
-    } else {
+    const response = await onSubmitAction(values);
+    if (response === typeof 'string') {
       form.setError('root', {
         type: 'manual',
-        message: message || 'An error occurred during login',
+        message: response,
       });
     }
+
+    onSuccess();
   }
 
   return (

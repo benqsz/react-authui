@@ -14,6 +14,7 @@ import {
 import { Loader2 } from 'lucide-react';
 import { FormRootError } from '@/registry/auth/ui/form-root-error';
 import { PasswordInput } from '@/registry/auth/ui/password-input';
+import { FormProps } from '../../lib/types';
 
 const resetSchema = z
   .object({
@@ -24,14 +25,10 @@ const resetSchema = z
     message: 'Passwords do not match',
   });
 
-type Props = {
-  onSubmitAction: (
-    values: z.infer<typeof resetSchema>,
-  ) => Promise<{ success: boolean; message?: string }>;
-  onSuccess: () => void;
-};
-
-function ResetForm({ onSubmitAction, onSuccess }: Props) {
+function ResetForm({
+  onSubmitAction,
+  onSuccess,
+}: FormProps<z.infer<typeof resetSchema>>) {
   const form = useForm<z.infer<typeof resetSchema>>({
     resolver: zodResolver(resetSchema),
     defaultValues: {
@@ -41,15 +38,15 @@ function ResetForm({ onSubmitAction, onSuccess }: Props) {
   });
 
   async function onSubmit(values: z.infer<typeof resetSchema>) {
-    const { success, message } = await onSubmitAction(values);
-    if (success) {
-      onSuccess();
-    } else {
+    const response = await onSubmitAction(values);
+    if (response === typeof 'string') {
       form.setError('root', {
         type: 'manual',
-        message: message || 'An error unknown error occured',
+        message: response,
       });
     }
+
+    onSuccess();
   }
 
   return (

@@ -1,0 +1,26 @@
+---
+title: Login Form
+description: TODO
+---
+
+import { AuthContainer } from '@/registry/auth/blocks/auth-container/auth-container';
+import { LoginForm } from '@/registry/auth/blocks/login-form/login-form';
+
+<AuthContainer header="Login form" description="Login to your account" className="not-prose">
+  <LoginForm
+    onSubmitAction={async (values) => {
+        "use server"
+      return new Promise(resolve =>
+        setTimeout(() => {
+          console.log(values);
+          resolve();
+        }, 2000),
+      );
+    }}
+    onSuccess={async () => {
+        "use server"
+    console.log('success')}}
+
+/>
+
+</AuthContainer>
