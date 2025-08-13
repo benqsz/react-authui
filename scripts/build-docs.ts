@@ -1,14 +1,21 @@
 import { promises as fs } from 'fs';
+import { fileURLToPath } from 'url';
 import path from 'path';
-import registry from './registry.json' assert { type: 'json' };
+import registry from '../registry.json' assert { type: 'json' };
 
-const outputDir = './content/docs/components';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const outputDir = path.join(__dirname, '../content/docs/components');
+const rootMetaPath = path.join(__dirname, '../content/docs/meta.json');
+
 const generatedPages: string[] = [];
 
 async function generateComponentsDocs() {
   await fs.mkdir(outputDir, { recursive: true });
 
   for (const item of registry.items) {
+    if (item.type !== 'registry:component') continue;
     const mdxContent = `---
 title: ${item.title}
 description: ${item.description}
@@ -40,8 +47,6 @@ description: ${item.description}
 }
 
 async function updateMeta() {
-  const rootMetaPath = './content/docs/meta.json';
-
   const metaRaw = await fs.readFile(rootMetaPath, 'utf8');
   const meta: { pages: string[] } = JSON.parse(metaRaw);
 
@@ -75,7 +80,7 @@ generateComponentsDocs()
     console.error('❌Failed to generate docs:', err);
     process.exit(1);
   })
-  .finally(() => {
+  .then(() => {
     updateMeta().catch(err => {
       console.error('❌Failed to update meta:', err);
       process.exit(1);

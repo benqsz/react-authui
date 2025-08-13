@@ -7,9 +7,9 @@
   "description": "Types for react-authui",
   "files": [
     {
-      "path": "src/registry/auth/lib/types.ts",
+      "path": "registry/auth/lib/types.ts",
       "content": "type ActionReturnType = true | string;\n\ntype FormProps<T> = {\n  onSubmitAction: (values: T) => Promise<ActionReturnType>;\n  onSuccess: () => void;\n};\n\nexport { type FormProps };\n",
-      "type": "registry:ui",
+      "type": "registry:lib",
       "target": "lib/auth/types.ts"
     }
   ]

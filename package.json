@@ -14,7 +14,7 @@
     "lint": "next lint",
     "format": "prettier --write .",
     "registry:build": "shadcn build",
-    "docs:build": "tsx build-docs.ts"
+    "docs:build": "tsx scripts/build-docs.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",

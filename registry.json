@@ -11,7 +11,7 @@
       "registryDependencies": ["card"],
       "files": [
         {
-          "path": "src/registry/auth/blocks/auth-container/auth-container.tsx",
+          "path": "registry/auth/components/auth-container/auth-container.tsx",
           "type": "registry:component",
           "target": "components/auth/auth-container.tsx"
         }
@@ -26,7 +26,7 @@
       "registryDependencies": ["form"],
       "files": [
         {
-          "path": "src/registry/auth/ui/form-root-error.tsx",
+          "path": "registry/auth/ui/form-root-error.tsx",
           "type": "registry:ui",
           "target": "components/ui/form-root-error.tsx"
         }
@@ -42,7 +42,7 @@
       "registryDependencies": ["input", "button"],
       "files": [
         {
-          "path": "src/registry/auth/ui/password-input.tsx",
+          "path": "registry/auth/ui/password-input.tsx",
           "type": "registry:ui",
           "target": "components/ui/password-input.tsx"
         }
@@ -56,8 +56,8 @@
       "description": "Types for react-authui",
       "files": [
         {
-          "path": "src/registry/auth/lib/types.ts",
-          "type": "registry:ui",
+          "path": "registry/auth/lib/types.ts",
+          "type": "registry:lib",
           "target": "lib/auth/types.ts"
         }
       ],
@@ -79,7 +79,7 @@
       ],
       "files": [
         {
-          "path": "src/registry/auth/blocks/register-form/register-form.tsx",
+          "path": "registry/auth/components/register-form/register-form.tsx",
           "type": "registry:component",
           "target": "components/auth/register-form.tsx"
         }
@@ -102,7 +102,7 @@
       ],
       "files": [
         {
-          "path": "src/registry/auth/blocks/login-form/login-form.tsx",
+          "path": "registry/auth/components/login-form/login-form.tsx",
           "type": "registry:component",
           "target": "components/auth/login-form.tsx"
         }
@@ -124,7 +124,7 @@
       ],
       "files": [
         {
-          "path": "src/registry/auth/blocks/forgot-form/forgot-form.tsx",
+          "path": "registry/auth/components/forgot-form/forgot-form.tsx",
           "type": "registry:component",
           "target": "components/auth/forgot-form.tsx"
         }
@@ -147,7 +147,7 @@
       ],
       "files": [
         {
-          "path": "src/registry/auth/blocks/reset-form/reset-form.tsx",
+          "path": "registry/auth/components/reset-form/reset-form.tsx",
           "type": "registry:component",
           "target": "components/auth/reset-form.tsx"
         }
