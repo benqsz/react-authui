@@ -1,15 +1,1 @@
-{
-  "root": true,
-  "pages": [
-    "---Introduction---",
-    "index",
-    "installation",
-    "---Components---",
-    "components/index",
-    "components/auth-container",
-    "components/register-form",
-    "components/login-form",
-    "components/forgot-form",
-    "components/reset-form"
-  ]
-}
+{"root":true,"pages":["---Introduction---","index","installation","---Components---","components/auth-container","components/register-form","components/login-form","components/forgot-form","components/reset-form"]}
