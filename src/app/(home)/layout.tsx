@@ -13,11 +13,9 @@ export default function Layout({ children }: { children: ReactNode }) {
           secondary: false,
         },
         {
-          text: 'GitHub',
-          label: 'See project on GitHub',
-          url: 'https://github.com/benqSzaw/react-auth-ui',
-          secondary: true,
-          external: true,
+          text: 'Components',
+          url: '/docs/components',
+          secondary: false,
         },
       ]}
     >

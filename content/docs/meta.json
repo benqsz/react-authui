@@ -5,6 +5,7 @@
     "index",
     "installation",
     "---Components---",
-    "auth-container"
+    "components/index",
+    "components/auth-container"
   ]
 }
