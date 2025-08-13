@@ -65,7 +65,7 @@
     },
     {
       "name": "register-form",
-      "type": "registry:block",
+      "type": "registry:component",
       "title": "Register Form",
       "description": "Headless UI component for user registration.",
       "dependencies": ["lucide-react"],
@@ -88,7 +88,7 @@
     },
     {
       "name": "login-form",
-      "type": "registry:block",
+      "type": "registry:component",
       "title": "Login Form",
       "description": "Headless UI component for user login.",
       "dependencies": ["lucide-react"],
@@ -111,7 +111,7 @@
     },
     {
       "name": "forgot-form",
-      "type": "registry:block",
+      "type": "registry:component",
       "title": "Forgot Form",
       "description": "Headless UI component for forgotting passowrd.",
       "dependencies": ["lucide-react"],
@@ -133,7 +133,7 @@
     },
     {
       "name": "reset-form",
-      "type": "registry:block",
+      "type": "registry:component",
       "title": "Reset Form",
       "description": "Headless UI component for reseting passowrd.",
       "dependencies": ["lucide-react"],
