@@ -10,14 +10,14 @@ import {
 } from '@/components/ui/card';
 
 type Props = {
-  header: string;
+  title: string;
   description: string;
   footer?: ReactNode;
   children: ReactNode;
 } & ComponentProps<'section'>;
 
 function AuthContainer(props: Props) {
-  const { className, header, description, footer, children, ...rest } = props;
+  const { className, title, description, footer, children, ...rest } = props;
 
   return (
     <section
@@ -30,7 +30,7 @@ function AuthContainer(props: Props) {
       <Card className="w-full">
         <CardHeader>
           <CardTitle>
-            <h1>{header}</h1>
+            <h1>{title}</h1>
           </CardTitle>
           <CardDescription>
             <p>{description}</p>

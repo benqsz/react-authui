@@ -12,8 +12,8 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Loader2 } from 'lucide-react';
-import { FormRootError } from '@/registry/auth/ui/form-root-error';
-import { PasswordInput } from '@/registry/auth/ui/password-input';
+import { FormRootError } from '@/../registry/auth/ui/form-root-error';
+import { PasswordInput } from '@/../registry/auth/ui/password-input';
 import { FormProps } from '../../lib/types';
 
 const resetSchema = z

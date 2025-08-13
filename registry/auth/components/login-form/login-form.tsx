@@ -2,6 +2,7 @@
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -12,9 +13,8 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { FormRootError } from '@/registry/auth/ui/form-root-error';
-import { Loader2 } from 'lucide-react';
-import { PasswordInput } from '@/registry/auth/ui/password-input';
+import { PasswordInput } from '@/../registry/auth/ui/password-input';
+import { FormRootError } from '@/../registry/auth/ui/form-root-error';
 import { FormProps } from '../../lib/types';
 
 const loginSchema = z.object({

@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Loader2 } from 'lucide-react';
-import { FormRootError } from '@/registry/auth/ui/form-root-error';
+import { FormRootError } from '@/../registry/auth/ui/form-root-error';
 import { FormProps } from '../../lib/types';
 
 const forgotSchema = z.object({

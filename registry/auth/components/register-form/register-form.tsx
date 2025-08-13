@@ -14,8 +14,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Loader2 } from 'lucide-react';
-import { FormRootError } from '@/registry/auth/ui/form-root-error';
-import { PasswordInput } from '@/registry/auth/ui/password-input';
+import { FormRootError } from '@/../registry/auth/ui/form-root-error';
+import { PasswordInput } from '@/../registry/auth/ui/password-input';
 import { FormProps } from '../../lib/types';
 
 const registerSchema = z
