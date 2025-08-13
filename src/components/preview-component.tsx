@@ -1,12 +1,12 @@
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
-import { examples } from '../../examples';
-import { ReactNode } from 'react';
+import { examples } from '@/lib/examples';
 
 type Props = {
   name: string;
 };
 
 async function PreviewComponent({ name }: Props) {
+  // @ts-ignore
   const Component = examples[name] || (() => <>Component not found</>);
 
   return (
