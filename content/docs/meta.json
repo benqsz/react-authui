@@ -1,16 +1,1 @@
-{
-  "root": true,
-  "pages": [
-    "---Introduction---",
-    "index",
-    "installation",
-    "---Blocks---",
-    "blocks/index",
-    "blocks/auth-container",
-    "blocks/register-form",
-    "blocks/login-form",
-    "blocks/forgot-form",
-    "blocks/reset-form",
-    "blocks/otp-form"
-  ]
-}
+{"root":true,"pages":["---Introduction---","index","installation","---Blocks---","blocks/index","blocks/auth-container","blocks/register-form","blocks/login-form","blocks/forgot-form","blocks/reset-form","blocks/otp-form"]}

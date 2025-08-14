@@ -3,8 +3,7 @@ import dynamic from 'next/dynamic';
 export const examples = {
   'auth-container': {
     component: dynamic(() => import('../../examples/auth-container/auth-container')),
-    code: `
-export default function AuthContainerDemo() {
+    code: `export default function AuthContainerDemo() {
   return (
     <AuthContainer
       title="Auth Container"
@@ -20,9 +19,7 @@ export { AuthContainerDemo };
   },
   'forgot-form': {
     component: dynamic(() => import('../../examples/forgot-form/forgot-form')),
-    code: `'use client';
-
-export default function ForgotFormDemo() {
+    code: `export default function ForgotFormDemo() {
   return (
     <AuthContainer
       title="Forgot password?"
@@ -44,9 +41,7 @@ export default function ForgotFormDemo() {
   },
   'login-form': {
     component: dynamic(() => import('../../examples/login-form/login-form')),
-    code: `'use client';
-
-export default function LoginFormDemo() {
+    code: `export default function LoginFormDemo() {
   return (
     <AuthContainer
       title="Login into your account"
@@ -68,9 +63,7 @@ export default function LoginFormDemo() {
   },
   'otp-form': {
     component: dynamic(() => import('../../examples/otp-form/otp-form')),
-    code: `'use client';
-
-export default function OtpFormDemo() {
+    code: `export default function OtpFormDemo() {
   return (
     <AuthContainer
       title="We sended to you one time password on phone number"
@@ -93,22 +86,11 @@ export default function OtpFormDemo() {
   },
   'register-form': {
     component: dynamic(() => import('../../examples/register-form/register-form')),
-    code: `'use client';
-  SocialButton,
-  SocialButtonsGroup,
-} from '../../registry/auth/ui/social-buttons';
-
-export default function RegisterFormDemo() {
+    code: `export default function RegisterFormDemo() {
   return (
     <AuthContainer
       title="Register"
       description="Create new account in Acme.inc"
-      footer={
-        <SocialButtonsGroup display="list" withSeparator>
-          <SocialButton name="FaGoogle" />
-          <SocialButton name="FaFacebook" />
-        </SocialButtonsGroup>
-      }
     >
       <RegisterForm
         onSubmitAction={async values => {
@@ -119,6 +101,10 @@ export default function RegisterFormDemo() {
           console.log('Register form success');
         }}
       />
+      <SocialButtonsGroup display="list" withSeparator>
+        <SocialButton name="FaGoogle" />
+        <SocialButton name="FaFacebook" />
+      </SocialButtonsGroup>
     </AuthContainer>
   );
 }
@@ -126,9 +112,7 @@ export default function RegisterFormDemo() {
   },
   'reset-form': {
     component: dynamic(() => import('../../examples/reset-form/reset-form')),
-    code: `'use client';
-
-export default function RegisterFormDemo() {
+    code: `export default function RegisterFormDemo() {
   return (
     <AuthContainer
       title="Reset your password"

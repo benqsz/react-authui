@@ -2,6 +2,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import registry from '../registry.json' assert { type: 'json' };
 
+const URL = 'https://react-authui.vercel.app';
 const outputDir = path.join(__dirname, '../content/docs/blocks');
 const generatedPages: string[] = [];
 
@@ -32,7 +33,7 @@ description: ${item.description}
   </TabsList>
   <TabsContent value="CLI">
     \`\`\`npm
-    npx shadcn@latest add https://react-authui.vercel.app/r/${item.name}.json
+    npx shadcn@latest add ${URL}/r/${item.name}.json
     \`\`\`
   </TabsContent>
   <TabsContent value="Manual">

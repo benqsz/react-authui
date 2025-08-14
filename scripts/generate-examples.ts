@@ -22,11 +22,10 @@ const generateExamples = async () => {
 
       if (await fs.stat(exampleFilePath).catch(() => false)) {
         code = await fs.readFile(exampleFilePath, 'utf8');
-
-        code = code
-          .split('\n')
-          .filter(line => !line.trim().startsWith('import'))
-          .join('\n');
+        code = code.replace(
+          /^.*?(export default function)/s,
+          (_, match) => match,
+        );
       }
 
       examples[folder] = {

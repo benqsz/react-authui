@@ -11,12 +11,6 @@ export default function RegisterFormDemo() {
     <AuthContainer
       title="Register"
       description="Create new account in Acme.inc"
-      footer={
-        <SocialButtonsGroup display="list" withSeparator>
-          <SocialButton name="FaGoogle" />
-          <SocialButton name="FaFacebook" />
-        </SocialButtonsGroup>
-      }
     >
       <RegisterForm
         onSubmitAction={async values => {
@@ -27,6 +21,10 @@ export default function RegisterFormDemo() {
           console.log('Register form success');
         }}
       />
+      <SocialButtonsGroup display="list" withSeparator>
+        <SocialButton name="FaGoogle" />
+        <SocialButton name="FaFacebook" />
+      </SocialButtonsGroup>
     </AuthContainer>
   );
 }
