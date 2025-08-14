@@ -17,7 +17,7 @@ async function PreviewComponent({ name }: Props) {
     <Tabs items={['Preview', 'Code']}>
       <Tab
         value="Preview"
-        className="not-prose flex h-[500px] w-full items-center justify-center rounded-md border"
+        className="not-prose flex min-h-[500px] w-full items-center justify-center rounded-md border"
       >
         <Component />
       </Tab>
