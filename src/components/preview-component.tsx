@@ -8,10 +8,9 @@ type Props = {
 
 async function PreviewComponent({ name }: Props) {
   // @ts-ignore
-  const { component: Component, code } = examples[name] || {
-    component: () => <>Component not found</>,
-    code: '',
-  };
+  if (!examples[name]) return null;
+  // @ts-ignore
+  const { component: Component, code } = examples[name];
 
   return (
     <Tabs defaultValue="Preview" className="min-h-[500px] w-full">

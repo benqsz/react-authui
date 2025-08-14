@@ -84,6 +84,13 @@ export { AuthContainerDemo };
 }
 `
   },
+  'password-input': {
+    component: dynamic(() => import('../../examples/password-input/password-input')),
+    code: `export default function PasswordInputDemo() {
+  return <PasswordInput />;
+}
+`
+  },
   'register-form': {
     component: dynamic(() => import('../../examples/register-form/register-form')),
     code: `export default function RegisterFormDemo() {
@@ -128,6 +135,24 @@ export { AuthContainerDemo };
         }}
       />
     </AuthContainer>
+  );
+}
+`
+  },
+  'social-buttons': {
+    component: dynamic(() => import('../../examples/social-buttons/social-buttons')),
+    code: `export default function SocialButtonsDemo() {
+  return (
+    <div className="space-y-8">
+      <SocialButtonsGroup display="list" withSeparator>
+        <SocialButton name="FaGoogle" />
+        <SocialButton name="FaFacebook" />
+      </SocialButtonsGroup>
+      <SocialButtonsGroup display="grid">
+        <SocialButton name="FaMicrosoft" />
+        <SocialButton name="FaInstagram" />
+      </SocialButtonsGroup>
+    </div>
   );
 }
 `

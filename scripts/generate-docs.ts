@@ -68,9 +68,9 @@ ${file}
 }
 
 async function generateAllDocs() {
-  const docs = await generateDocs(blocksOutputDir, 'block');
-  const docs2 = await generateDocs(uiOutputDir, 'component');
-  return [...docs, '---Components---', ...docs2];
+  const blocks = await generateDocs(blocksOutputDir, 'block');
+  const components = await generateDocs(uiOutputDir, 'component');
+  return [...blocks, '---Components---', ...components];
 }
 
 export { generateAllDocs };
