@@ -1,10 +1,6 @@
 import { promises as fs } from 'fs';
-import { fileURLToPath } from 'url';
 import path from 'path';
 import registry from '../registry.json' assert { type: 'json' };
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const outputDir = path.join(__dirname, '../content/docs/components');
 const generatedPages: string[] = [];
@@ -14,7 +10,7 @@ async function generateDocs() {
 
   for (const item of registry.items) {
     if (item.type !== 'registry:component') continue;
-    const mdxContent = `---
+    const content = `---
 title: ${item.title}
 description: ${item.description}
 ---
@@ -43,7 +39,7 @@ description: ${item.description}
 `;
 
     const filePath = path.join(outputDir, `${item.name}.mdx`);
-    await fs.writeFile(filePath, mdxContent, 'utf8');
+    await fs.writeFile(filePath, content, 'utf8');
     generatedPages.push(`components/${item.name}`);
     console.log(`✅  Generated ${filePath}`);
   }

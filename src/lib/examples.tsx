@@ -66,6 +66,31 @@ export default function LoginFormDemo() {
 }
 `
   },
+  'otp-form': {
+    component: dynamic(() => import('../../examples/otp-form/otp-form')),
+    code: `'use client';
+
+export default function OtpFormDemo() {
+  return (
+    <AuthContainer
+      title="We sended to you one time password on phone number"
+      description="Enter it below"
+    >
+      <OtpForm
+        onSubmitAction={async values => {
+          await new Promise(resolve => setTimeout(resolve, 3000));
+          console.log('Password correct values:', values);
+          return true;
+        }}
+        onSuccess={async () => {
+          console.log('Success');
+        }}
+      />
+    </AuthContainer>
+  );
+}
+`
+  },
   'register-form': {
     component: dynamic(() => import('../../examples/register-form/register-form')),
     code: `'use client';

@@ -153,6 +153,29 @@
         }
       ],
       "author": "benqSzaw <szawracki.pl>"
+    },
+    {
+      "name": "otp-form",
+      "type": "registry:component",
+      "title": "OTP Form",
+      "description": "Headless UI component for one time passowrd.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "form",
+        "input",
+        "button",
+        "input-otp",
+        "/r/form-root-error.json",
+        "/r/types.json"
+      ],
+      "files": [
+        {
+          "path": "registry/auth/components/otp-form/otp-form.tsx",
+          "type": "registry:component",
+          "target": "components/auth/otp-form.tsx"
+        }
+      ],
+      "author": "benqSzaw <szawracki.pl>"
     }
   ]
 }

@@ -11,7 +11,7 @@ import {
 
 type Props = {
   title: string;
-  description: string;
+  description?: string;
   footer?: ReactNode;
   children: ReactNode;
 } & ComponentProps<'section'>;
@@ -32,9 +32,11 @@ function AuthContainer(props: Props) {
           <CardTitle>
             <h1>{title}</h1>
           </CardTitle>
-          <CardDescription>
-            <p>{description}</p>
-          </CardDescription>
+          {description && (
+            <CardDescription>
+              <p>{description}</p>
+            </CardDescription>
+          )}
         </CardHeader>
         <CardContent>{children}</CardContent>
         {footer && (
