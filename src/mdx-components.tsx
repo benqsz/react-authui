@@ -1,6 +1,6 @@
 import type { MDXComponents } from 'mdx/types';
 import defaultMdxComponents from 'fumadocs-ui/mdx';
-import * as TabsComponents from 'fumadocs-ui/components/tabs';
+import * as TabsComponents from '@/components/ui/tabs';
 import { createGenerator } from 'fumadocs-typescript';
 import { AutoTypeTable } from 'fumadocs-typescript/ui';
 import { PreviewComponent } from '@/components/preview-component';

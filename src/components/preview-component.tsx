@@ -1,6 +1,6 @@
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { examples } from '@/lib/examples';
-import { CodeBlock } from './code-block';
+import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock';
 
 type Props = {
   name: string;
@@ -26,7 +26,7 @@ async function PreviewComponent({ name }: Props) {
         <Component />
       </TabsContent>
       <TabsContent value="Code">
-        <CodeBlock lang="tsx" code={code} />
+        <DynamicCodeBlock lang="tsx" code={code} />
       </TabsContent>
     </Tabs>
   );

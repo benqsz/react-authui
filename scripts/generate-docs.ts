@@ -22,14 +22,19 @@ description: ${item.description}
 <PreviewComponent name="${item.name}" />
 
 ## Installation
-
-<Tabs items={['CLI', 'Manual']}>
-  <Tab value="CLI">
-    \`\`\`npm
-    npx shadcn@latest add https://react-authui.vercel.app/r/${item.name}.json
-    \`\`\`
-  </Tab>
-  <Tab value="Manual">TODO</Tab>
+<Tabs defaultValue="CLI">
+      <TabsList>
+        <TabsTrigger value="CLI">CLI</TabsTrigger>
+        <TabsTrigger value="Manual">Manual</TabsTrigger>
+      </TabsList>
+      <TabsContent value="CLI">
+        \`\`\`npm
+        npx shadcn@latest add https://react-authui.vercel.app/r/${item.name}.json
+        \`\`\`
+      </TabsContent>
+      <TabsContent value="Manual">
+        TODO
+      </TabsContent>
 </Tabs>
 
 ## Props
