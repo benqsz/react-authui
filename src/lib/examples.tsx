@@ -110,6 +110,10 @@ export default function RegisterFormDemo() {
           console.log('Register form success');
         }}
       />
+      <SocialGroup display="list">
+        <SocialButton name="FaGoogle" />
+        <SocialButton name="FaFacebook" />
+      </SocialGroup>
     </AuthContainer>
   );
 }
