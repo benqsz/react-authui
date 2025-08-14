@@ -1,11 +1,13 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "form-root-error",
-  "type": "registry:ui",
+  "type": "registry:component",
   "title": "Form Root Error",
   "author": "benqSzaw <szawracki.pl>",
   "description": "UI component to display form root error.",
-  "registryDependencies": ["form"],
+  "registryDependencies": [
+    "form"
+  ],
   "files": [
     {
       "path": "registry/auth/ui/form-root-error.tsx",

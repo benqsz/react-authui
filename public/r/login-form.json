@@ -1,11 +1,13 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "login-form",
-  "type": "registry:component",
+  "type": "registry:block",
   "title": "Login Form",
   "author": "benqSzaw <szawracki.pl>",
   "description": "Headless UI component for user login.",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "registryDependencies": [
     "form",
     "input",

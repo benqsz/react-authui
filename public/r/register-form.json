@@ -1,11 +1,13 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "register-form",
-  "type": "registry:component",
+  "type": "registry:block",
   "title": "Register Form",
   "author": "benqSzaw <szawracki.pl>",
   "description": "Headless UI component for user registration.",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "registryDependencies": [
     "form",
     "input",

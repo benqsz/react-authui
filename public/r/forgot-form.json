@@ -1,11 +1,13 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "forgot-form",
-  "type": "registry:component",
+  "type": "registry:block",
   "title": "Forgot Form",
   "author": "benqSzaw <szawracki.pl>",
   "description": "Headless UI component for forgotting passowrd.",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "registryDependencies": [
     "form",
     "input",

@@ -1,11 +1,13 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "reset-form",
-  "type": "registry:component",
+  "type": "registry:block",
   "title": "Reset Form",
   "author": "benqSzaw <szawracki.pl>",
   "description": "Headless UI component for reseting passowrd.",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "registryDependencies": [
     "form",
     "input",

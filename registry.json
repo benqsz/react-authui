@@ -20,7 +20,7 @@
     },
     {
       "name": "form-root-error",
-      "type": "registry:ui",
+      "type": "registry:component",
       "title": "Form Root Error",
       "description": "UI component to display form root error.",
       "registryDependencies": ["form"],
@@ -35,7 +35,7 @@
     },
     {
       "name": "password-input",
-      "type": "registry:ui",
+      "type": "registry:component",
       "title": "Password Input",
       "description": "A password input component with visibility toggle.",
       "dependencies": ["lucide-react"],
@@ -179,7 +179,7 @@
     },
     {
       "name": "social-buttons",
-      "type": "registry:ui",
+      "type": "registry:component",
       "title": "Social Buttons",
       "description": "A set of social login buttons.",
       "dependencies": ["react-icons"],

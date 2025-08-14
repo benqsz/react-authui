@@ -12,16 +12,10 @@ async function updateMeta(generatedDocs: string[]) {
     throw new Error('Not found "---Blocks---" in meta.json');
   }
 
-  let nextSectionIndex = meta.pages.findIndex(
-    (p, i) => i > componentsIndex && p.startsWith('---'),
-  );
-  if (nextSectionIndex === -1) nextSectionIndex = meta.pages.length;
-
   const newPages = [
     ...meta.pages.slice(0, componentsIndex + 1),
     'blocks/index',
     ...generatedDocs,
-    ...meta.pages.slice(nextSectionIndex),
   ];
 
   const updatedMeta = {
@@ -30,9 +24,7 @@ async function updateMeta(generatedDocs: string[]) {
   };
 
   await fs.writeFile(rootMetaPath, JSON.stringify(updatedMeta), 'utf8');
-  console.log(
-    `✅  Updated root meta.json: ${generatedDocs.length} blocks added`,
-  );
+  console.log(`✅  Updated root meta.json: ${generatedDocs.length} docs added`);
 }
 
 export { updateMeta };

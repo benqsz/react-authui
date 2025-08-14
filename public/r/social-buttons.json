@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "social-buttons",
+  "type": "registry:component",
+  "title": "Social Buttons",
+  "author": "benqSzaw <szawracki.pl>",
+  "description": "A set of social login buttons.",
+  "dependencies": [
+    "react-icons"
+  ],
+  "registryDependencies": [
+    "separator",
+    "button"
+  ],
+  "files": [
+    {
+      "path": "registry/auth/ui/social-buttons.tsx",
+      "content": "import { ReactNode } from 'react';\nimport { ComponentProps } from 'react';\nimport * as Icons from 'react-icons/fa';\nimport { Button } from '@/components/ui/button';\nimport { Separator } from '@/components/ui/separator';\nimport { cn } from '@/lib/utils';\n\ntype GroupProps = {\n  children: ReactNode;\n  display: 'grid' | 'list';\n  withSeparator?: boolean;\n};\n\nfunction SocialButtonsGroup({\n  children,\n  display = 'grid',\n  withSeparator = false,\n}: GroupProps) {\n  return (\n    <div className=\"mt-2 space-y-2\">\n      {withSeparator && (\n        <div className=\"grid auto-cols-max grid-cols-[1fr_max-content_1fr] items-center gap-1\">\n          <Separator />\n          <span>OR</span>\n          <Separator />\n        </div>\n      )}\n      <div\n        className={cn(\n          'w-full gap-2',\n          display == 'grid' && 'grid grid-cols-2',\n          display == 'list' && 'flex flex-col',\n        )}\n      >\n        {children}\n      </div>\n    </div>\n  );\n}\n\ntype ButtonProps = {\n  name: keyof typeof Icons;\n  text?: string;\n} & ComponentProps<typeof Button>;\n\nfunction SocialButton({\n  name,\n  text = 'Sign in with',\n  size = 'sm',\n  variant = 'outline',\n  ...rest\n}: ButtonProps) {\n  const Icon = Icons[name];\n\n  return (\n    <Button size={size} variant={variant} {...rest}>\n      {Icon && <Icon style={{ marginRight: 8 }} />}\n      {text} {name.replace(/^Fa/, '')}\n    </Button>\n  );\n}\n\nexport { SocialButtonsGroup, SocialButton };\n",
+      "type": "registry:ui",
+      "target": "components/ui/social-buttons.tsx"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+---
+title: Form Root Error
+description: UI component to display form root error.
+---
+
+<PreviewComponent name="form-root-error" />
+
+## Installation
+<Tabs defaultValue="CLI">
+  <TabsList>
+    <TabsTrigger value="CLI">CLI</TabsTrigger>
+    <TabsTrigger value="Manual">Manual</TabsTrigger>
+  </TabsList>
+  <TabsContent value="CLI">
+    ```npm
+    npx shadcn@latest add https://react-authui.vercel.app/r/form-root-error.json
+    ```
+  </TabsContent>
+  <TabsContent value="Manual">
+    Copy and paste the following code into your project.
+
+```tsx title="form-root-error.tsx"
+import { ComponentProps } from 'react';
+import { useFormState } from 'react-hook-form';
+import { cn } from '@/lib/utils';
+
+function FormRootError({ className, ...props }: ComponentProps<'p'>) {
+  const { errors } = useFormState();
+  const rootError = errors.root;
+  if (!rootError) return null;
+
+  return (
+    <p className={cn('text-destructive text-sm', className)} {...props}>
+      {rootError.message}
+    </p>
+  );
+}
+
+export { FormRootError };
+
+```
+
+    Update the import paths to match your project setup.
+  </TabsContent>
+</Tabs>
+
+## Props
+
+<AutoTypeTable type="{ prop1: string }" />

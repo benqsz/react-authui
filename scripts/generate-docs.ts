@@ -3,14 +3,17 @@ import path from 'path';
 import registry from '../registry.json' assert { type: 'json' };
 
 const URL = 'https://react-authui.vercel.app';
-const outputDir = path.join(__dirname, '../content/docs/blocks');
-const generatedPages: string[] = [];
 
-async function generateDocs() {
-  await fs.mkdir(outputDir, { recursive: true });
+const blocksOutputDir = path.join(__dirname, '../content/docs/blocks');
+const uiOutputDir = path.join(__dirname, '../content/docs/components');
+
+async function generateDocs(output: string, type: string) {
+  await fs.mkdir(output, { recursive: true });
+  const generatedDocs: string[] = [];
+  console.log('Generating docs for type:', type);
 
   for (const item of registry.items) {
-    if (item.type !== 'registry:block') continue;
+    if (item.type !== `registry:${type}`) continue;
 
     const files = await Promise.all(
       item.files.map(async file => {
@@ -55,13 +58,19 @@ ${file}
 <AutoTypeTable type="{ prop1: string }" />
 `;
 
-    const filePath = path.join(outputDir, `${item.name}.mdx`);
+    const filePath = path.join(output, `${item.name}.mdx`);
     await fs.writeFile(filePath, content, 'utf8');
-    generatedPages.push(`blocks/${item.name}`);
+    generatedDocs.push(`${type}s/${item.name}`);
     console.log(`✅  Generated ${filePath}`);
   }
 
-  return generatedPages;
+  return generatedDocs;
 }
 
-export { generateDocs };
+async function generateAllDocs() {
+  const docs = await generateDocs(blocksOutputDir, 'block');
+  const docs2 = await generateDocs(uiOutputDir, 'component');
+  return [...docs, '---Components---', ...docs2];
+}
+
+export { generateAllDocs };
