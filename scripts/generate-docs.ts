@@ -2,14 +2,14 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import registry from '../registry.json' assert { type: 'json' };
 
-const outputDir = path.join(__dirname, '../content/docs/components');
+const outputDir = path.join(__dirname, '../content/docs/blocks');
 const generatedPages: string[] = [];
 
 async function generateDocs() {
   await fs.mkdir(outputDir, { recursive: true });
 
   for (const item of registry.items) {
-    if (item.type !== 'registry:component') continue;
+    if (item.type !== 'registry:block') continue;
 
     const files = await Promise.all(
       item.files.map(async file => {
@@ -56,7 +56,7 @@ ${file}
 
     const filePath = path.join(outputDir, `${item.name}.mdx`);
     await fs.writeFile(filePath, content, 'utf8');
-    generatedPages.push(`components/${item.name}`);
+    generatedPages.push(`blocks/${item.name}`);
     console.log(`✅  Generated ${filePath}`);
   }
 

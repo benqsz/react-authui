@@ -7,9 +7,9 @@ async function updateMeta(generatedDocs: string[]) {
   const metaRaw = await fs.readFile(rootMetaPath, 'utf8');
   const meta: { pages: string[] } = JSON.parse(metaRaw);
 
-  const componentsIndex = meta.pages.findIndex(p => p === '---Components---');
+  const componentsIndex = meta.pages.findIndex(p => p === '---Blocks---');
   if (componentsIndex === -1) {
-    throw new Error('Not found "---Components---" in meta.json');
+    throw new Error('Not found "---Blocks---" in meta.json');
   }
 
   let nextSectionIndex = meta.pages.findIndex(
@@ -19,6 +19,7 @@ async function updateMeta(generatedDocs: string[]) {
 
   const newPages = [
     ...meta.pages.slice(0, componentsIndex + 1),
+    'blocks/index',
     ...generatedDocs,
     ...meta.pages.slice(nextSectionIndex),
   ];
@@ -29,7 +30,9 @@ async function updateMeta(generatedDocs: string[]) {
   };
 
   await fs.writeFile(rootMetaPath, JSON.stringify(updatedMeta), 'utf8');
-  console.log(`✅  Updated root meta.json: ${generatedDocs.length} components`);
+  console.log(
+    `✅  Updated root meta.json: ${generatedDocs.length} blocks added`,
+  );
 }
 
 export { updateMeta };

@@ -94,12 +94,21 @@ export default function OtpFormDemo() {
   'register-form': {
     component: dynamic(() => import('../../examples/register-form/register-form')),
     code: `'use client';
+  SocialButton,
+  SocialButtonsGroup,
+} from '../../registry/auth/ui/social-buttons';
 
 export default function RegisterFormDemo() {
   return (
     <AuthContainer
       title="Register"
       description="Create new account in Acme.inc"
+      footer={
+        <SocialButtonsGroup display="list" withSeparator>
+          <SocialButton name="FaGoogle" />
+          <SocialButton name="FaFacebook" />
+        </SocialButtonsGroup>
+      }
     >
       <RegisterForm
         onSubmitAction={async values => {
@@ -110,10 +119,6 @@ export default function RegisterFormDemo() {
           console.log('Register form success');
         }}
       />
-      <SocialGroup display="list">
-        <SocialButton name="FaGoogle" />
-        <SocialButton name="FaFacebook" />
-      </SocialGroup>
     </AuthContainer>
   );
 }

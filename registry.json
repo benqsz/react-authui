@@ -5,7 +5,7 @@
   "items": [
     {
       "name": "auth-container",
-      "type": "registry:component",
+      "type": "registry:block",
       "title": "Auth Container",
       "description": "A container to wrap authentication components.",
       "registryDependencies": ["card"],
@@ -65,7 +65,7 @@
     },
     {
       "name": "register-form",
-      "type": "registry:component",
+      "type": "registry:block",
       "title": "Register Form",
       "description": "Headless UI component for user registration.",
       "dependencies": ["lucide-react"],
@@ -88,7 +88,7 @@
     },
     {
       "name": "login-form",
-      "type": "registry:component",
+      "type": "registry:block",
       "title": "Login Form",
       "description": "Headless UI component for user login.",
       "dependencies": ["lucide-react"],
@@ -111,7 +111,7 @@
     },
     {
       "name": "forgot-form",
-      "type": "registry:component",
+      "type": "registry:block",
       "title": "Forgot Form",
       "description": "Headless UI component for forgotting passowrd.",
       "dependencies": ["lucide-react"],
@@ -133,7 +133,7 @@
     },
     {
       "name": "reset-form",
-      "type": "registry:component",
+      "type": "registry:block",
       "title": "Reset Form",
       "description": "Headless UI component for reseting passowrd.",
       "dependencies": ["lucide-react"],
@@ -156,7 +156,7 @@
     },
     {
       "name": "otp-form",
-      "type": "registry:component",
+      "type": "registry:block",
       "title": "OTP Form",
       "description": "Headless UI component for one time passowrd.",
       "dependencies": ["lucide-react"],
@@ -173,6 +173,22 @@
           "path": "registry/auth/components/otp-form/otp-form.tsx",
           "type": "registry:component",
           "target": "components/auth/otp-form.tsx"
+        }
+      ],
+      "author": "benqSzaw <szawracki.pl>"
+    },
+    {
+      "name": "social-buttons",
+      "type": "registry:ui",
+      "title": "Social Buttons",
+      "description": "A set of social login buttons.",
+      "dependencies": ["react-icons"],
+      "registryDependencies": ["separator", "button"],
+      "files": [
+        {
+          "path": "registry/auth/ui/social-buttons.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/social-buttons.tsx"
         }
       ],
       "author": "benqSzaw <szawracki.pl>"

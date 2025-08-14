@@ -1,14 +1,22 @@
 'use client';
-import { SocialButton } from 'registry/auth/ui/social-button';
+import {
+  SocialButton,
+  SocialButtonsGroup,
+} from '../../registry/auth/ui/social-buttons';
 import { AuthContainer } from '../../registry/auth/components/auth-container/auth-container';
 import { RegisterForm } from 'registry/auth/components/register-form/register-form';
-import { SocialGroup } from 'registry/auth/ui/social-group';
 
 export default function RegisterFormDemo() {
   return (
     <AuthContainer
       title="Register"
       description="Create new account in Acme.inc"
+      footer={
+        <SocialButtonsGroup display="list" withSeparator>
+          <SocialButton name="FaGoogle" />
+          <SocialButton name="FaFacebook" />
+        </SocialButtonsGroup>
+      }
     >
       <RegisterForm
         onSubmitAction={async values => {
@@ -19,10 +27,6 @@ export default function RegisterFormDemo() {
           console.log('Register form success');
         }}
       />
-      <SocialGroup display="list">
-        <SocialButton name="FaGoogle" />
-        <SocialButton name="FaFacebook" />
-      </SocialGroup>
     </AuthContainer>
   );
 }
