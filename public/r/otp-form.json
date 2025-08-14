@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "otp-form",
+  "type": "registry:component",
+  "title": "OTP Form",
+  "author": "benqSzaw <szawracki.pl>",
+  "description": "Headless UI component for one time passowrd.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "form",
+    "input",
+    "button",
+    "input-otp",
+    "/r/form-root-error.json",
+    "/r/types.json"
+  ],
+  "files": [
+    {
+      "path": "registry/auth/components/otp-form/otp-form.tsx",
+      "content": "'use client';\nimport { useEffect } from 'react';\nimport { z } from 'zod';\nimport { useForm } from 'react-hook-form';\nimport { zodResolver } from '@hookform/resolvers/zod';\nimport {\n  Form,\n  FormControl,\n  FormField,\n  FormItem,\n  FormLabel,\n  FormMessage,\n} from '@/components/ui/form';\nimport { Loader, Loader2 } from 'lucide-react';\nimport { FormRootError } from '@/../registry/auth/ui/form-root-error';\nimport {\n  InputOTP,\n  InputOTPGroup,\n  InputOTPSlot,\n} from '@/components/ui/input-otp';\nimport { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp';\nimport { FormProps } from '../../lib/types';\n\nconst otpSchema = z.object({\n  pin: z\n    .string()\n    .min(6, {\n      message: 'Your one-time password must be 6 characters.',\n    })\n    .max(6),\n});\n\nfunction OtpForm({\n  onSubmitAction,\n  onSuccess,\n}: FormProps<z.infer<typeof otpSchema>>) {\n  const form = useForm<z.infer<typeof otpSchema>>({\n    resolver: zodResolver(otpSchema),\n    defaultValues: {\n      pin: '',\n    },\n  });\n\n  const pinValue = form.watch('pin');\n\n  useEffect(() => {\n    if (pinValue.length === 6 && !form.formState.isSubmitting)\n      form.handleSubmit(onSubmit)();\n  }, [pinValue, form]);\n\n  async function onSubmit(values: z.infer<typeof otpSchema>) {\n    const response = await onSubmitAction(values);\n    if (response === typeof 'string') {\n      form.setError('root', {\n        type: 'manual',\n        message: response,\n      });\n    }\n\n    onSuccess();\n  }\n\n  return (\n    <Form {...form}>\n      <form onSubmit={form.handleSubmit(onSubmit)} className=\"relative\">\n        {form.formState.isSubmitting && (\n          <Loader2 className=\"absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-spin\" />\n        )}\n        <FormField\n          control={form.control}\n          name=\"pin\"\n          render={({ field }) => (\n            <FormItem>\n              <FormLabel className=\"sr-only\">One-Time Password</FormLabel>\n              <FormControl>\n                <InputOTP\n                  maxLength={6}\n                  pattern={REGEXP_ONLY_DIGITS_AND_CHARS}\n                  disabled={form.formState.isSubmitting}\n                  {...field}\n                >\n                  <InputOTPGroup className=\"mx-auto\">\n                    {[...Array(6)].map((_, i) => (\n                      <InputOTPSlot key={i} index={i} />\n                    ))}\n                  </InputOTPGroup>\n                </InputOTP>\n              </FormControl>\n              <FormMessage />\n            </FormItem>\n          )}\n        />\n        <FormRootError />\n      </form>\n    </Form>\n  );\n}\n\nexport { OtpForm };\n",
+      "type": "registry:component",
+      "target": "components/auth/otp-form.tsx"
+    }
+  ]
+}

@@ -1,5 +1,4 @@
 'use client';
-import { useEffect } from 'react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -11,7 +10,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Loader, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { FormRootError } from '@/../registry/auth/ui/form-root-error';
 import {
   InputOTP,
@@ -40,13 +39,6 @@ function OtpForm({
       pin: '',
     },
   });
-
-  const pinValue = form.watch('pin');
-
-  useEffect(() => {
-    if (pinValue.length === 6 && !form.formState.isSubmitting)
-      form.handleSubmit(onSubmit)();
-  }, [pinValue, form]);
 
   async function onSubmit(values: z.infer<typeof otpSchema>) {
     const response = await onSubmitAction(values);
@@ -77,6 +69,7 @@ function OtpForm({
                   maxLength={6}
                   pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
                   disabled={form.formState.isSubmitting}
+                  onComplete={form.handleSubmit(onSubmit)}
                   {...field}
                 >
                   <InputOTPGroup className="mx-auto">
