@@ -2,9 +2,10 @@ import dynamic from 'next/dynamic';
 
 export const examples = {
   'auth-container': {
-    component: dynamic(() => import('../../examples/auth-container/auth-container')),
-    code: `
-export default function AuthContainerDemo() {
+    component: dynamic(
+      () => import('../../examples/auth-container/auth-container'),
+    ),
+    code: `export default function AuthContainerDemo() {
   return (
     <AuthContainer
       title="Auth Container"
@@ -15,8 +16,7 @@ export default function AuthContainerDemo() {
   );
 }
 
-export { AuthContainerDemo };
-`
+export { AuthContainerDemo };`,
   },
   'forgot-form': {
     component: dynamic(() => import('../../examples/forgot-form/forgot-form')),
@@ -40,7 +40,7 @@ export default function ForgotFormDemo() {
     </AuthContainer>
   );
 }
-`
+`,
   },
   'login-form': {
     component: dynamic(() => import('../../examples/login-form/login-form')),
@@ -64,10 +64,12 @@ export default function LoginFormDemo() {
     </AuthContainer>
   );
 }
-`
+`,
   },
   'register-form': {
-    component: dynamic(() => import('../../examples/register-form/register-form')),
+    component: dynamic(
+      () => import('../../examples/register-form/register-form'),
+    ),
     code: `'use client';
 
 export default function RegisterFormDemo() {
@@ -88,7 +90,7 @@ export default function RegisterFormDemo() {
     </AuthContainer>
   );
 }
-`
+`,
   },
   'reset-form': {
     component: dynamic(() => import('../../examples/reset-form/reset-form')),
@@ -112,6 +114,6 @@ export default function RegisterFormDemo() {
     </AuthContainer>
   );
 }
-`
-  }
+`,
+  },
 };
