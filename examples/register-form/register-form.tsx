@@ -1,6 +1,8 @@
 'use client';
+import { SocialButton } from 'registry/auth/ui/social-button';
 import { AuthContainer } from '../../registry/auth/components/auth-container/auth-container';
 import { RegisterForm } from 'registry/auth/components/register-form/register-form';
+import { SocialGroup } from 'registry/auth/ui/social-group';
 
 export default function RegisterFormDemo() {
   return (
@@ -17,6 +19,10 @@ export default function RegisterFormDemo() {
           console.log('Register form success');
         }}
       />
+      <SocialGroup display="list">
+        <SocialButton name="FaGoogle" />
+        <SocialButton name="FaFacebook" />
+      </SocialGroup>
     </AuthContainer>
   );
 }

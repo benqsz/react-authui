@@ -5,9 +5,7 @@
   "title": "Form Root Error",
   "author": "benqSzaw <szawracki.pl>",
   "description": "UI component to display form root error.",
-  "registryDependencies": [
-    "form"
-  ],
+  "registryDependencies": ["form"],
   "files": [
     {
       "path": "registry/auth/ui/form-root-error.tsx",
