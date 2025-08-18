@@ -2,8 +2,8 @@
 import {
   SocialButton,
   SocialButtonsGroup,
-} from '../../registry/auth/ui/social-buttons';
-import { AuthContainer } from '../../registry/auth/components/auth-container/auth-container';
+} from 'registry/auth/ui/social-buttons';
+import { AuthContainer } from 'registry/auth/components/auth-container/auth-container';
 import { RegisterForm } from 'registry/auth/components/register-form/register-form';
 
 export default function RegisterFormDemo() {

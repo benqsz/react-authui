@@ -1,6 +1,6 @@
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { examples } from '@/lib/examples';
 import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock';
+import { examples } from 'registry';
 
 type Props = {
   name: string;

@@ -1,6 +1,6 @@
 'use client';
 import { LoginForm } from 'registry/auth/components/login-form/login-form';
-import { AuthContainer } from '../../registry/auth/components/auth-container/auth-container';
+import { AuthContainer } from 'registry/auth/components/auth-container/auth-container';
 
 export default function LoginFormDemo() {
   return (

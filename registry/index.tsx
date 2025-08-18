@@ -2,7 +2,9 @@ import dynamic from 'next/dynamic';
 
 export const examples = {
   'auth-container': {
-    component: dynamic(() => import('../../examples/auth-container/auth-container')),
+    component: dynamic(
+      () => import('../registry/examples/auth-container/auth-container'),
+    ),
     code: `export default function AuthContainerDemo() {
   return (
     <AuthContainer
@@ -15,10 +17,12 @@ export const examples = {
 }
 
 export { AuthContainerDemo };
-`
+`,
   },
   'forgot-form': {
-    component: dynamic(() => import('../../examples/forgot-form/forgot-form')),
+    component: dynamic(
+      () => import('../registry/examples/forgot-form/forgot-form'),
+    ),
     code: `export default function ForgotFormDemo() {
   return (
     <AuthContainer
@@ -37,15 +41,25 @@ export { AuthContainerDemo };
     </AuthContainer>
   );
 }
-`
+`,
   },
   'login-form': {
-    component: dynamic(() => import('../../examples/login-form/login-form')),
+    component: dynamic(
+      () => import('../registry/examples/login-form/login-form'),
+    ),
     code: `export default function LoginFormDemo() {
   return (
     <AuthContainer
       title="Login into your account"
       description="Welcome to react-authui"
+      footer={
+        <>
+          Already have an account?{' '}
+          <a href="#" className="text-foreground underline">
+            Sign in
+          </a>
+        </>
+      }
     >
       <LoginForm
         onSubmitAction={async values => {
@@ -59,10 +73,10 @@ export { AuthContainerDemo };
     </AuthContainer>
   );
 }
-`
+`,
   },
   'otp-form': {
-    component: dynamic(() => import('../../examples/otp-form/otp-form')),
+    component: dynamic(() => import('../registry/examples/otp-form/otp-form')),
     code: `export default function OtpFormDemo() {
   return (
     <AuthContainer
@@ -82,17 +96,21 @@ export { AuthContainerDemo };
     </AuthContainer>
   );
 }
-`
+`,
   },
   'password-input': {
-    component: dynamic(() => import('../../examples/password-input/password-input')),
+    component: dynamic(
+      () => import('../registry/examples/password-input/password-input'),
+    ),
     code: `export default function PasswordInputDemo() {
   return <PasswordInput />;
 }
-`
+`,
   },
   'register-form': {
-    component: dynamic(() => import('../../examples/register-form/register-form')),
+    component: dynamic(
+      () => import('../registry/examples/register-form/register-form'),
+    ),
     code: `export default function RegisterFormDemo() {
   return (
     <AuthContainer
@@ -115,10 +133,12 @@ export { AuthContainerDemo };
     </AuthContainer>
   );
 }
-`
+`,
   },
   'reset-form': {
-    component: dynamic(() => import('../../examples/reset-form/reset-form')),
+    component: dynamic(
+      () => import('../registry/examples/reset-form/reset-form'),
+    ),
     code: `export default function RegisterFormDemo() {
   return (
     <AuthContainer
@@ -137,10 +157,12 @@ export { AuthContainerDemo };
     </AuthContainer>
   );
 }
-`
+`,
   },
   'social-buttons': {
-    component: dynamic(() => import('../../examples/social-buttons/social-buttons')),
+    component: dynamic(
+      () => import('../registry/examples/social-buttons/social-buttons'),
+    ),
     code: `export default function SocialButtonsDemo() {
   return (
     <div className="space-y-8">
@@ -155,6 +177,6 @@ export { AuthContainerDemo };
     </div>
   );
 }
-`
-  }
+`,
+  },
 };

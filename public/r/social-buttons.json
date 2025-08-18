@@ -5,13 +5,8 @@
   "title": "Social Buttons",
   "author": "benqSzaw <szawracki.pl>",
   "description": "A set of social login buttons.",
-  "dependencies": [
-    "react-icons"
-  ],
-  "registryDependencies": [
-    "separator",
-    "button"
-  ],
+  "dependencies": ["react-icons"],
+  "registryDependencies": ["separator", "button"],
   "files": [
     {
       "path": "registry/auth/ui/social-buttons.tsx",

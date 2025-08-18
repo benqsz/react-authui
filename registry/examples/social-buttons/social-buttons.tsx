@@ -1,7 +1,7 @@
 import {
   SocialButton,
   SocialButtonsGroup,
-} from '../../registry/auth/ui/social-buttons';
+} from 'registry/auth/ui/social-buttons';
 
 export default function SocialButtonsDemo() {
   return (

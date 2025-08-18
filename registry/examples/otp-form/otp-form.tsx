@@ -1,5 +1,5 @@
 'use client';
-import { AuthContainer } from '../../registry/auth/components/auth-container/auth-container';
+import { AuthContainer } from 'registry/auth/components/auth-container/auth-container';
 import { OtpForm } from 'registry/auth/components/otp-form/otp-form';
 
 export default function OtpFormDemo() {

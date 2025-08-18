@@ -5,9 +5,7 @@
   "title": "OTP Form",
   "author": "benqSzaw <szawracki.pl>",
   "description": "Headless UI component for one time passowrd.",
-  "dependencies": [
-    "lucide-react"
-  ],
+  "dependencies": ["lucide-react"],
   "registryDependencies": [
     "form",
     "input",

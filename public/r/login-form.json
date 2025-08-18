@@ -5,9 +5,7 @@
   "title": "Login Form",
   "author": "benqSzaw <szawracki.pl>",
   "description": "Headless UI component for user login.",
-  "dependencies": [
-    "lucide-react"
-  ],
+  "dependencies": ["lucide-react"],
   "registryDependencies": [
     "form",
     "input",

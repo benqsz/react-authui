@@ -1,9 +1,9 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-const examplesDir = path.join(__dirname, '../examples');
+const examplesDir = path.join(__dirname, '../registry/examples');
 const examples: { [key: string]: any } = {};
-const outputPath = path.join(__dirname, '../src/lib/examples.tsx');
+const outputPath = path.join(__dirname, '../registry/index.tsx');
 
 const generateExamples = async () => {
   const folders = await fs.readdir(examplesDir);
@@ -29,7 +29,7 @@ const generateExamples = async () => {
       }
 
       examples[folder] = {
-        component: `dynamic(() => import('../${relativePath}'))`,
+        component: `dynamic(() => import('${relativePath}'))`,
         code: `\`${code}\``,
       };
     }

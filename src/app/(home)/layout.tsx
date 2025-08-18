@@ -12,11 +12,6 @@ export default function Layout({ children }: { children: ReactNode }) {
           url: '/docs',
           secondary: false,
         },
-        {
-          text: 'Components',
-          url: '/docs/components',
-          secondary: false,
-        },
       ]}
     >
       {children}

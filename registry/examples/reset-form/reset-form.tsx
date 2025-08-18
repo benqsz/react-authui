@@ -1,6 +1,6 @@
 'use client';
 import { ResetForm } from 'registry/auth/components/reset-form/reset-form';
-import { AuthContainer } from '../../registry/auth/components/auth-container/auth-container';
+import { AuthContainer } from 'registry/auth/components/auth-container/auth-container';
 
 export default function RegisterFormDemo() {
   return (

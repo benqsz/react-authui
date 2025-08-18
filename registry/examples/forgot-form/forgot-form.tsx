@@ -1,6 +1,6 @@
 'use client';
-import { ForgotForm } from '../../registry/auth/components/forgot-form/forgot-form';
-import { AuthContainer } from '../../registry/auth/components/auth-container/auth-container';
+import { ForgotForm } from 'registry/auth/components/forgot-form/forgot-form';
+import { AuthContainer } from 'registry/auth/components/auth-container/auth-container';
 
 export default function ForgotFormDemo() {
   return (

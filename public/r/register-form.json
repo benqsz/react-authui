@@ -5,9 +5,7 @@
   "title": "Register Form",
   "author": "benqSzaw <szawracki.pl>",
   "description": "Headless UI component for user registration.",
-  "dependencies": [
-    "lucide-react"
-  ],
+  "dependencies": ["lucide-react"],
   "registryDependencies": [
     "form",
     "input",
