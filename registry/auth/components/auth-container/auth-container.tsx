@@ -40,7 +40,7 @@ function AuthContainer(props: Props) {
         </CardHeader>
         <CardContent>{children}</CardContent>
         {footer && (
-          <CardFooter>
+          <CardFooter className="text-muted-foreground justify-center text-center text-sm">
             <p>{footer}</p>
           </CardFooter>
         )}

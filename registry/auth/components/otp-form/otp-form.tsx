@@ -18,21 +18,10 @@ import {
   InputOTPSlot,
 } from '@/components/ui/input-otp';
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp';
-import { FormProps } from '../../lib/types';
+import { OtpProps } from 'registry/auth/lib/types';
+import { otpSchema } from 'registry/auth/lib/schemas';
 
-const otpSchema = z.object({
-  pin: z
-    .string()
-    .min(6, {
-      message: 'Your one-time password must be 6 characters.',
-    })
-    .max(6),
-});
-
-function OtpForm({
-  onSubmitAction,
-  onSuccess,
-}: FormProps<z.infer<typeof otpSchema>>) {
+function OtpForm({ onSubmitAction, onSuccess }: OtpProps) {
   const form = useForm<z.infer<typeof otpSchema>>({
     resolver: zodResolver(otpSchema),
     defaultValues: {

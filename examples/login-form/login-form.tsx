@@ -7,6 +7,14 @@ export default function LoginFormDemo() {
     <AuthContainer
       title="Login into your account"
       description="Welcome to react-authui"
+      footer={
+        <>
+          Already have an account?{' '}
+          <a href="#" className="text-foreground underline">
+            Sign in
+          </a>
+        </>
+      }
     >
       <LoginForm
         onSubmitAction={async values => {

@@ -15,17 +15,10 @@ import {
 import { Input } from '@/components/ui/input';
 import { PasswordInput } from '@/../registry/auth/ui/password-input';
 import { FormRootError } from '@/../registry/auth/ui/form-root-error';
-import { FormProps } from '../../lib/types';
+import { LoginProps } from 'registry/auth/lib/types';
+import { loginSchema } from 'registry/auth/lib/schemas';
 
-const loginSchema = z.object({
-  email: z.email(),
-  password: z.string().min(8).max(32),
-});
-
-function LoginForm({
-  onSubmitAction,
-  onSuccess,
-}: FormProps<z.infer<typeof loginSchema>>) {
+function LoginForm({ onSubmitAction, onSuccess }: LoginProps) {
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {

@@ -55,7 +55,7 @@ ${file}
 
 ## Props
 
-<AutoTypeTable type="{ prop1: string }" />
+<AutoTypeTable path="registry/auth/lib/types.ts" name="LoginProps" />
 `;
 
     const filePath = path.join(output, `${item.name}.mdx`);

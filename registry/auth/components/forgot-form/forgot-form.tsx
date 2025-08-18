@@ -14,16 +14,10 @@ import {
 import { Input } from '@/components/ui/input';
 import { Loader2 } from 'lucide-react';
 import { FormRootError } from '@/../registry/auth/ui/form-root-error';
-import { FormProps } from '../../lib/types';
+import { ForgotProps } from 'registry/auth/lib/types';
+import { forgotSchema } from 'registry/auth/lib/schemas';
 
-const forgotSchema = z.object({
-  email: z.email(),
-});
-
-function ForgotForm({
-  onSubmitAction,
-  onSuccess,
-}: FormProps<z.infer<typeof forgotSchema>>) {
+function ForgotForm({ onSubmitAction, onSuccess }: ForgotProps) {
   const form = useForm<z.infer<typeof forgotSchema>>({
     resolver: zodResolver(forgotSchema),
     defaultValues: {

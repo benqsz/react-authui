@@ -36,21 +36,10 @@ import {
 import { Loader2 } from 'lucide-react';
 import { FormRootError } from '@/../registry/auth/ui/form-root-error';
 import { PasswordInput } from '@/../registry/auth/ui/password-input';
-import { FormProps } from '../../lib/types';
+import { ResetProps } from 'registry/auth/lib/types';
+import { resetSchema } from 'registry/auth/lib/schemas';
 
-const resetSchema = z
-  .object({
-    password: z.string().min(8).max(32),
-    re_password: z.string().min(8).max(32),
-  })
-  .refine(data => data.password === data.re_password, {
-    message: 'Passwords do not match',
-  });
-
-function ResetForm({
-  onSubmitAction,
-  onSuccess,
-}: FormProps<z.infer<typeof resetSchema>>) {
+function ResetForm({ onSubmitAction, onSuccess }: ResetProps) {
   const form = useForm<z.infer<typeof resetSchema>>({
     resolver: zodResolver(resetSchema),
     defaultValues: {
@@ -127,4 +116,4 @@ export { ResetForm };
 
 ## Props
 
-<AutoTypeTable type="{ prop1: string }" />
+<AutoTypeTable path="registry/auth/lib/types.ts" name="LoginProps" />

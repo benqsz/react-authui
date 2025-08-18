@@ -8,7 +8,7 @@
   "files": [
     {
       "path": "registry/auth/lib/types.ts",
-      "content": "type ActionReturnType = true | string;\n\ntype FormProps<T> = {\n  onSubmitAction: (values: T) => Promise<ActionReturnType>;\n  onSuccess: () => void;\n};\n\nexport { type FormProps };\n",
+      "content": "import { z } from 'zod';\nimport {\n  registerSchema,\n  forgotSchema,\n  loginSchema,\n  resetSchema,\n  otpSchema,\n} from './schemas';\n\ntype FormProps<T> = {\n  onSubmitAction: (values: T) => Promise<true | string>;\n  onSuccess: () => void;\n};\n\ntype RegisterProps = FormProps<z.infer<typeof registerSchema>>;\ntype LoginProps = FormProps<z.infer<typeof loginSchema>>;\ntype ForgotProps = FormProps<z.infer<typeof forgotSchema>>;\ntype ResetProps = FormProps<z.infer<typeof resetSchema>>;\ntype OtpProps = FormProps<z.infer<typeof otpSchema>>;\n\nexport type { RegisterProps, LoginProps, ForgotProps, ResetProps, OtpProps };\n",
       "type": "registry:lib",
       "target": "lib/auth/types.ts"
     }

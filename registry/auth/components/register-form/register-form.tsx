@@ -16,23 +16,10 @@ import { Input } from '@/components/ui/input';
 import { Loader2 } from 'lucide-react';
 import { FormRootError } from '@/../registry/auth/ui/form-root-error';
 import { PasswordInput } from '@/../registry/auth/ui/password-input';
-import { FormProps } from '../../lib/types';
+import { RegisterProps } from 'registry/auth/lib/types';
+import { registerSchema } from 'registry/auth/lib/schemas';
 
-const registerSchema = z
-  .object({
-    username: z.string().min(2).max(32),
-    email: z.email(),
-    password: z.string().min(8).max(32),
-    re_password: z.string().min(8).max(32),
-  })
-  .refine(data => data.password === data.re_password, {
-    message: 'Passwords do not match',
-  });
-
-function RegisterForm({
-  onSubmitAction,
-  onSuccess,
-}: FormProps<z.infer<typeof registerSchema>>) {
+function RegisterForm({ onSubmitAction, onSuccess }: RegisterProps) {
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
