@@ -22,8 +22,8 @@ export const components: Registry['items'] = [
     ],
     registryDependencies: [
       'form',
-      'https://react-authui.vercel.app/r/form-root-error',
-      'https://react-authui.vercel.app/r/password-input',
+      'https://react-authui.vercel.app/r/form-root-error.json',
+      'https://react-authui.vercel.app/r/password-input.json',
     ],
   },
 ];
