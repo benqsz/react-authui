@@ -5,6 +5,7 @@
   "license": "MIT",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "prebuild": "tsc --noEmit",
     "build": "next build",
