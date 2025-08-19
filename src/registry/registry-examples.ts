@@ -2,18 +2,18 @@ import type { Registry } from 'shadcn/registry';
 
 export const examples: Registry['items'] = [
   {
-    name: 'floating-label-input-demo',
+    name: 'password-input-demo',
     type: 'registry:example',
-    title: 'Floating Label Input',
-    description: 'Material UI floating label input',
+    title: 'Password Input',
+    description: '',
     files: [
       {
-        path: 'auth/examples/floating-label-input-demo.tsx',
+        path: 'auth/examples/password-input-demo.tsx',
         type: 'registry:example',
       },
     ],
     registryDependencies: [
-      'https://react-authui.vercel.app/r/floating-label-input.json',
+      'https://react-authui.vercel.app/r/password-input.json',
     ],
   },
 ];

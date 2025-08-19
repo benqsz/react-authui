@@ -8,12 +8,8 @@
       "type": "registry:component",
       "title": "Floating Label Input",
       "description": "Material UI floating label input",
-      "dependencies": [
-        "@radix-ui/react-label"
-      ],
-      "registryDependencies": [
-        "input"
-      ],
+      "dependencies": ["@radix-ui/react-label"],
+      "registryDependencies": ["input"],
       "files": [
         {
           "path": "src/registry/auth/ui/floating-label-input.tsx",
@@ -26,12 +22,8 @@
       "type": "registry:ui",
       "title": "Form Root Error",
       "description": "Show errors from root in use form hook",
-      "dependencies": [
-        "react-hook-form"
-      ],
-      "registryDependencies": [
-        "form"
-      ],
+      "dependencies": ["react-hook-form"],
+      "registryDependencies": ["form"],
       "files": [
         {
           "path": "src/registry/auth/ui/form-root-error.tsx",
@@ -44,13 +36,8 @@
       "type": "registry:ui",
       "title": "Password Input",
       "description": "Input with visibility toggle",
-      "dependencies": [
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "input",
-        "button"
-      ],
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["input", "button"],
       "files": [
         {
           "path": "src/registry/auth/ui/password-input.tsx",

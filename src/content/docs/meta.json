@@ -5,6 +5,6 @@
         "index",
         "installation",
         "---Components---",
-        "components/floating-label-input"
+        "components/password-input"
     ]
 }
