@@ -1,0 +1,10 @@
+{
+    "root": true,
+    "pages": [
+        "---Introduction---",
+        "index",
+        "installation",
+        "---Components---",
+        "components/floating-label-input"
+    ]
+}

@@ -1,16 +1,20 @@
-import '@/app/global.css';
+import './global.css';
+import { ReactNode } from 'react';
+import type { Metadata } from 'next';
 import { RootProvider } from 'fumadocs-ui/provider';
-import { Inter } from 'next/font/google';
-import type { ReactNode } from 'react';
 
-const inter = Inter({
-  subsets: ['latin'],
-});
+export const metadata: Metadata = {
+  title: 'React Auth UI',
+};
 
-export default function Layout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: ReactNode;
+}>) {
   return (
-    <html lang="en" className={inter.className} suppressHydrationWarning>
-      <body className="flex min-h-screen flex-col">
+    <html lang="en">
+      <body>
         <RootProvider>{children}</RootProvider>
       </body>
     </html>

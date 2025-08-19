@@ -1,11 +1,15 @@
+import * as React from 'react';
 import { DocsLayout } from 'fumadocs-ui/layouts/docs';
-import type { ReactNode } from 'react';
-import { source } from '@/source';
-import { baseOptions } from '@/layout.config';
 
-export default function Layout({ children }: { children: ReactNode }) {
+import { source } from '@/lib/source';
+
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <DocsLayout tree={source.pageTree} {...baseOptions}>
+    <DocsLayout
+      tree={source.pageTree}
+      nav={{ title: <>React Auth UI</> }}
+      githubUrl="https://github.com/benqszaw/react-authui"
+    >
       {children}
     </DocsLayout>
   );
