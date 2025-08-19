@@ -4,26 +4,16 @@
   "homepage": "https://react-authui.vercel.app",
   "items": [
     {
-      "name": "floating-label-input",
-      "type": "registry:component",
-      "title": "Floating Label Input",
-      "description": "Material UI floating label input",
-      "dependencies": ["@radix-ui/react-label"],
-      "registryDependencies": ["input"],
-      "files": [
-        {
-          "path": "src/registry/auth/ui/floating-label-input.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "name": "form-root-error",
       "type": "registry:ui",
       "title": "Form Root Error",
-      "description": "Show errors from root in use form hook",
-      "dependencies": ["react-hook-form"],
-      "registryDependencies": ["form"],
+      "description": "Show errors from root with use-form-hook",
+      "dependencies": [
+        "react-hook-form"
+      ],
+      "registryDependencies": [
+        "form"
+      ],
       "files": [
         {
           "path": "src/registry/auth/ui/form-root-error.tsx",
@@ -36,12 +26,42 @@
       "type": "registry:ui",
       "title": "Password Input",
       "description": "Input with visibility toggle",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["input", "button"],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "input",
+        "button"
+      ],
       "files": [
         {
           "path": "src/registry/auth/ui/password-input.tsx",
           "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "login-form",
+      "type": "registry:component",
+      "title": "Login Form",
+      "description": "Login form with validation and loading/error states",
+      "registryDependencies": [
+        "form",
+        "https://react-authui.vercel.app/r/form-root-error",
+        "https://react-authui.vercel.app/r/password-input"
+      ],
+      "files": [
+        {
+          "path": "src/registry/auth/components/login-form/login-form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/auth/components/login-form/lib/schemas.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/registry/auth/components/login-form/lib/types.ts",
+          "type": "registry:lib"
         }
       ]
     }

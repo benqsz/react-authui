@@ -2,24 +2,10 @@ import type { Registry } from 'shadcn/registry';
 
 export const ui: Registry['items'] = [
   {
-    name: 'floating-label-input',
-    type: 'registry:component',
-    title: 'Floating Label Input',
-    description: 'Material UI floating label input',
-    files: [
-      {
-        path: 'auth/ui/floating-label-input.tsx',
-        type: 'registry:component',
-      },
-    ],
-    dependencies: ['@radix-ui/react-label'],
-    registryDependencies: ['input'],
-  },
-  {
     name: 'form-root-error',
     type: 'registry:ui',
     title: 'Form Root Error',
-    description: 'Show errors from root in use form hook',
+    description: 'Show errors from root with use-form-hook',
     files: [
       {
         path: 'auth/ui/form-root-error.tsx',

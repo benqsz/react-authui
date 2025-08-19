@@ -4,7 +4,7 @@ export const examples: Registry['items'] = [
   {
     name: 'password-input-demo',
     type: 'registry:example',
-    title: 'Password Input',
+    title: '',
     description: '',
     files: [
       {
