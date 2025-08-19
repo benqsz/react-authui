@@ -8,12 +8,8 @@
       "type": "registry:ui",
       "title": "Form Root Error",
       "description": "Show errors from root with use-form-hook",
-      "dependencies": [
-        "react-hook-form"
-      ],
-      "registryDependencies": [
-        "form"
-      ],
+      "dependencies": ["react-hook-form"],
+      "registryDependencies": ["form"],
       "files": [
         {
           "path": "src/registry/auth/ui/form-root-error.tsx",
@@ -26,13 +22,8 @@
       "type": "registry:ui",
       "title": "Password Input",
       "description": "Input with visibility toggle",
-      "dependencies": [
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "input",
-        "button"
-      ],
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["input", "button"],
       "files": [
         {
           "path": "src/registry/auth/ui/password-input.tsx",

@@ -1,10 +1,11 @@
 {
-    "root": true,
-    "pages": [
-        "---Introduction---",
-        "index",
-        "installation",
-        "---Components---",
-        "components/password-input"
-    ]
+  "root": true,
+  "pages": [
+    "---Introduction---",
+    "index",
+    "installation",
+    "---Components---",
+    "components/password-input",
+    "components/login-form"
+  ]
 }

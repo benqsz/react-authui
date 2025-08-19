@@ -16,4 +16,17 @@ export const examples: Registry['items'] = [
       'https://react-authui.vercel.app/r/password-input.json',
     ],
   },
+  {
+    name: 'login-form-demo',
+    type: 'registry:example',
+    title: '',
+    description: '',
+    files: [
+      {
+        path: 'auth/examples/login-form-demo.tsx',
+        type: 'registry:example',
+      },
+    ],
+    registryDependencies: ['https://react-authui.vercel.app/r/login-form.json'],
+  },
 ];

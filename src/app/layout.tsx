@@ -1,7 +1,7 @@
 import './global.css';
 import { ReactNode } from 'react';
 import type { Metadata } from 'next';
-import { RootProvider } from 'fumadocs-ui/provider';
+import { Providers } from '@/components/providers';
 
 export const metadata: Metadata = {
   title: 'React Auth UI',
@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <RootProvider>{children}</RootProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
