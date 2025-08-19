@@ -20,6 +20,43 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "form-root-error",
+      "type": "registry:ui",
+      "title": "Form Root Error",
+      "description": "Show errors from root in use form hook",
+      "dependencies": [
+        "react-hook-form"
+      ],
+      "registryDependencies": [
+        "form"
+      ],
+      "files": [
+        {
+          "path": "src/registry/auth/ui/form-root-error.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "password-input",
+      "type": "registry:ui",
+      "title": "Password Input",
+      "description": "Input with visibility toggle",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "input",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/registry/auth/ui/password-input.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

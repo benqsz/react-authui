@@ -1,7 +1,8 @@
 'use client';
 import { Suspense, useMemo } from 'react';
-import { Index } from '@/__registry__';
+import { Loader2 } from 'lucide-react';
 import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock';
+import { Index } from '@/__registry__';
 import { Tabs, TabsList, TabsContent, TabsTrigger } from '../ui/tabs';
 
 function ComponentPreview({ name }: { name: string }) {
@@ -25,7 +26,8 @@ function ComponentPreview({ name }: { name: string }) {
         <Suspense
           fallback={
             <div className="text-muted-foreground flex items-center justify-center text-sm">
-              Loading...
+              <Loader2 className="animate-spin" />
+              <span className="sr-only">Loading</span>
             </div>
           }
         >

@@ -17,6 +17,26 @@ export const Index: Record<string, any> ={
       type: "registry:component",
     }],
   },
+  "form-root-error": {
+    name: "form-root-error",
+    description: "Show errors from root in use form hook",
+    type: "registry:ui",
+    files: [{
+      path: "src/registry/auth/ui/form-root-error.tsx",
+      content: "import { ComponentProps } from 'react';\nimport { useFormState } from 'react-hook-form';\nimport { cn } from '@/lib/utils';\n\nfunction FormRootError({ className, ...props }: ComponentProps<'p'>) {\n  const { errors } = useFormState();\n  const rootError = errors.root;\n  if (!rootError) return null;\n\n  return (\n    <p className={cn('text-destructive text-sm', className)} {...props}>\n      {rootError.message}\n    </p>\n  );\n}\n\nexport { FormRootError };\n",
+      type: "registry:ui",
+    }],
+  },
+  "password-input": {
+    name: "password-input",
+    description: "Input with visibility toggle",
+    type: "registry:ui",
+    files: [{
+      path: "src/registry/auth/ui/password-input.tsx",
+      content: "'use client';\nimport { ComponentProps, useState } from 'react';\nimport { EyeIcon, EyeOffIcon } from 'lucide-react';\nimport { Input } from '@/components/ui/input';\nimport { Button } from '@/components/ui/button';\n\nfunction PasswordInput(props: Omit<ComponentProps<typeof Input>, 'type'>) {\n  const [isVisible, setIsVisible] = useState(false);\n  const toggleVisibility = () => setIsVisible(!isVisible);\n\n  return (\n    <div className='relative'>\n      <Input type={isVisible ? 'text' : 'password'} {...props} />\n      <Button\n        variant='ghost'\n        size='icon'\n        className='absolute top-1/2 right-1 size-7 -translate-y-1/2'\n        onClick={toggleVisibility}\n        type='button'\n        aria-label={\`\${isVisible ? 'Hide' : 'Show'} password\`}\n      >\n        {isVisible ? <EyeOffIcon /> : <EyeIcon />}\n      </Button>\n    </div>\n  );\n}\n\nexport { PasswordInput };\n",
+      type: "registry:ui",
+    }],
+  },
   "floating-label-input-demo": {
     name: "floating-label-input-demo",
     description: "Material UI floating label input",
