@@ -1,5 +1,7 @@
 import type { Registry } from 'shadcn/registry';
 
+const URL = process.env.NEXT_PUBLIC_BASE_URL as string;
+
 export const components: Registry['items'] = [
   {
     name: 'login-form',
@@ -22,8 +24,8 @@ export const components: Registry['items'] = [
     ],
     registryDependencies: [
       'form',
-      'https://react-authui.vercel.app/r/form-root-error.json',
-      'https://react-authui.vercel.app/r/password-input.json',
+      `${URL}/r/form-root-error.json`,
+      `${URL}/r/password-input.json`,
     ],
   },
 ];
