@@ -2,7 +2,9 @@ import { ComponentProps } from 'react';
 import { useFormState } from 'react-hook-form';
 import { cn } from '@/lib/utils';
 
-function FormRootError({ className, ...props }: ComponentProps<'p'>) {
+type Props = ComponentProps<'p'>;
+
+function FormRootError({ className, ...props }: Props) {
   const { errors } = useFormState();
   const rootError = errors.root;
   if (!rootError) return null;

@@ -4,7 +4,9 @@ import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
-function PasswordInput(props: Omit<ComponentProps<typeof Input>, 'type'>) {
+type Props = Omit<ComponentProps<typeof Input>, 'type'>;
+
+function PasswordInput(props: Props) {
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
 
