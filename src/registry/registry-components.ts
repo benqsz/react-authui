@@ -4,6 +4,20 @@ const URL = process.env.NEXT_PUBLIC_BASE_URL as string;
 
 export const components: Registry['items'] = [
   {
+    name: 'auth-container',
+    type: 'registry:component',
+    title: 'Auth container',
+    description: 'Card container for all auth components',
+    files: [
+      {
+        path: 'auth/components/auth-container/auth-container.tsx',
+        type: 'registry:component',
+        target: 'components/auth/auth-container.tsx',
+      },
+    ],
+    registryDependencies: ['card'],
+  },
+  {
     name: 'login-form',
     type: 'registry:component',
     title: 'Login Form',

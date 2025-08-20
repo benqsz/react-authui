@@ -31,6 +31,18 @@ export const Index: Record<string, any> ={
       type: "registry:ui",
     }],
   },
+  "auth-container": {
+    name: "auth-container",
+    title: "Auth container",
+    description: "Card container for all auth components",
+    type: "registry:component",
+    
+    files: [{
+      path: "src/registry/auth/components/auth-container/auth-container.tsx",
+      content: "import { ComponentProps, ReactNode } from 'react';\nimport { cn } from '@/lib/utils';\nimport {\n  Card,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from '@/components/ui/card';\n\ntype Props = {\n  title: string;\n  description?: string;\n  footer?: ReactNode;\n  children: ReactNode;\n} & ComponentProps<'section'>;\n\nfunction AuthContainer(props: Props) {\n  const { className, title, description, footer, children, ...rest } = props;\n\n  return (\n    <section\n      className={cn(\n        'mx-auto flex size-full max-w-lg items-center justify-center p-4',\n        className,\n      )}\n      {...rest}\n    >\n      <Card className='w-full'>\n        <CardHeader>\n          <CardTitle>\n            <h1>{title}</h1>\n          </CardTitle>\n          {description && (\n            <CardDescription>\n              <p>{description}</p>\n            </CardDescription>\n          )}\n        </CardHeader>\n        <CardContent>{children}</CardContent>\n        {footer && (\n          <CardFooter className='text-muted-foreground justify-center text-center text-sm'>\n            <p>{footer}</p>\n          </CardFooter>\n        )}\n      </Card>\n    </section>\n  );\n}\n\nexport { AuthContainer };\n",
+      type: "registry:component",
+    }],
+  },
   "login-form": {
     name: "login-form",
     title: "Login Form",
@@ -69,6 +81,20 @@ export const Index: Record<string, any> ={
     component: React.lazy(() => import("@/registry/auth/examples/password-input-demo.tsx")),
     source: "import { PasswordInput } from '@/components/ui/password-input';\n\nexport default function PasswordInputDemo() {\n  return <PasswordInput />;\n}\n",
   },
+  "auth-container-demo": {
+    name: "auth-container-demo",
+    title: "",
+    description: "",
+    type: "registry:example",
+    
+    files: [{
+      path: "src/registry/auth/examples/auth-container-demo.tsx",
+      content: "import { AuthContainer } from '@/components/auth/auth-container';\n\nexport default function AuthContainerDemo() {\n  return (\n    <AuthContainer\n      title='Welcome to Acme'\n      description='This is very important component'\n      footer={\n        <>\n          Already have an account?{' '}\n          <a href='#' className='underline'>\n            Sign in\n          </a>\n        </>\n      }\n    >\n      auth component\n    </AuthContainer>\n  );\n}\n",
+      type: "registry:example",
+    }],
+    component: React.lazy(() => import("@/registry/auth/examples/auth-container-demo.tsx")),
+    source: "import { AuthContainer } from '@/components/auth/auth-container';\n\nexport default function AuthContainerDemo() {\n  return (\n    <AuthContainer\n      title='Welcome to Acme'\n      description='This is very important component'\n      footer={\n        <>\n          Already have an account?{' '}\n          <a href='#' className='underline'>\n            Sign in\n          </a>\n        </>\n      }\n    >\n      auth component\n    </AuthContainer>\n  );\n}\n",
+  },
   "login-form-demo": {
     name: "login-form-demo",
     title: "",
@@ -77,11 +103,11 @@ export const Index: Record<string, any> ={
     
     files: [{
       path: "src/registry/auth/examples/login-form-demo.tsx",
-      content: "import { toast } from 'sonner';\nimport { LoginForm } from '@/components/auth/login-form';\n\nexport default function LoginFormDemo() {\n  return (\n    <LoginForm\n      onSubmitAction={async () => {\n        return await new Promise(resolve =>\n          setTimeout(() => resolve(true), 3 * 1000),\n        );\n      }}\n      onSuccess={() => {\n        toast.success('Login successfull');\n      }}\n    />\n  );\n}\n",
+      content: "import { toast } from 'sonner';\nimport { AuthContainer } from '@/components/auth/auth-container';\nimport { LoginForm } from '@/components/auth/login-form';\n\nexport default function LoginFormDemo() {\n  return (\n    <AuthContainer title='Sign in'>\n      <LoginForm\n        onSubmitAction={async () => {\n          return await new Promise(resolve =>\n            setTimeout(() => resolve(true), 3 * 1000),\n          );\n        }}\n        onSuccess={() => {\n          toast.success('Login successfull');\n        }}\n      />\n    </AuthContainer>\n  );\n}\n",
       type: "registry:example",
     }],
     component: React.lazy(() => import("@/registry/auth/examples/login-form-demo.tsx")),
-    source: "import { toast } from 'sonner';\nimport { LoginForm } from '@/components/auth/login-form';\n\nexport default function LoginFormDemo() {\n  return (\n    <LoginForm\n      onSubmitAction={async () => {\n        return await new Promise(resolve =>\n          setTimeout(() => resolve(true), 3 * 1000),\n        );\n      }}\n      onSuccess={() => {\n        toast.success('Login successfull');\n      }}\n    />\n  );\n}\n",
+    source: "import { toast } from 'sonner';\nimport { AuthContainer } from '@/components/auth/auth-container';\nimport { LoginForm } from '@/components/auth/login-form';\n\nexport default function LoginFormDemo() {\n  return (\n    <AuthContainer title='Sign in'>\n      <LoginForm\n        onSubmitAction={async () => {\n          return await new Promise(resolve =>\n            setTimeout(() => resolve(true), 3 * 1000),\n          );\n        }}\n        onSuccess={() => {\n          toast.success('Login successfull');\n        }}\n      />\n    </AuthContainer>\n  );\n}\n",
   },
   "register-form-demo": {
     name: "register-form-demo",
@@ -91,10 +117,10 @@ export const Index: Record<string, any> ={
     
     files: [{
       path: "src/registry/auth/examples/register-form-demo.tsx",
-      content: "import { toast } from 'sonner';\nimport { RegisterForm } from '@/components/auth/register-form';\n\nexport default function RegisterFormDemo() {\n  return (\n    <RegisterForm\n      onSubmitAction={async () => {\n        return await new Promise(resolve =>\n          setTimeout(() => resolve(true), 3 * 1000),\n        );\n      }}\n      onSuccess={() => {\n        toast.success('Register successfull');\n      }}\n    />\n  );\n}\n",
+      content: "import { toast } from 'sonner';\nimport { AuthContainer } from '@/components/auth/auth-container';\nimport { RegisterForm } from '@/components/auth/register-form';\n\nexport default function RegisterFormDemo() {\n  return (\n    <AuthContainer title='Create an account'>\n      <RegisterForm\n        onSubmitAction={async () => {\n          return await new Promise(resolve =>\n            setTimeout(() => resolve(true), 3 * 1000),\n          );\n        }}\n        onSuccess={() => {\n          toast.success('Register successfull');\n        }}\n      />\n    </AuthContainer>\n  );\n}\n",
       type: "registry:example",
     }],
     component: React.lazy(() => import("@/registry/auth/examples/register-form-demo.tsx")),
-    source: "import { toast } from 'sonner';\nimport { RegisterForm } from '@/components/auth/register-form';\n\nexport default function RegisterFormDemo() {\n  return (\n    <RegisterForm\n      onSubmitAction={async () => {\n        return await new Promise(resolve =>\n          setTimeout(() => resolve(true), 3 * 1000),\n        );\n      }}\n      onSuccess={() => {\n        toast.success('Register successfull');\n      }}\n    />\n  );\n}\n",
+    source: "import { toast } from 'sonner';\nimport { AuthContainer } from '@/components/auth/auth-container';\nimport { RegisterForm } from '@/components/auth/register-form';\n\nexport default function RegisterFormDemo() {\n  return (\n    <AuthContainer title='Create an account'>\n      <RegisterForm\n        onSubmitAction={async () => {\n          return await new Promise(resolve =>\n            setTimeout(() => resolve(true), 3 * 1000),\n          );\n        }}\n        onSuccess={() => {\n          toast.success('Register successfull');\n        }}\n      />\n    </AuthContainer>\n  );\n}\n",
   },
 }

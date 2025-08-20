@@ -73,12 +73,18 @@ Object.entries(Index).forEach(([key, item]) => {
   if (!Index[key + '-demo']) return;
 
   const mdxContent = generateMDXContent(item);
-  const type = item.type.replace(/^registry:/, '');
+  const type =
+    item.type.replace(/^registry:/, '') == 'component'
+      ? 'components'
+      : item.type.replace(/^registry:/, '');
   const filePath = path.join(`${OUTPUT_DIR}/${type}`, `${item.name}.mdx`);
 
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, mdxContent, 'utf8');
-  newDocs.push({ type, item: item.name });
+  newDocs.push({
+    type,
+    item: item.name,
+  });
   console.log(`Adding: ${item.name}.mdx`);
 });
 

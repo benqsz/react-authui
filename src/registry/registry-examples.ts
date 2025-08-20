@@ -17,6 +17,19 @@ export const examples: Registry['items'] = [
     registryDependencies: [`${URL}/r/password-input.json`],
   },
   {
+    name: 'auth-container-demo',
+    type: 'registry:example',
+    title: '',
+    description: '',
+    files: [
+      {
+        path: 'auth/examples/auth-container-demo.tsx',
+        type: 'registry:example',
+      },
+    ],
+    registryDependencies: [`${URL}/r/auth-container.json`],
+  },
+  {
     name: 'login-form-demo',
     type: 'registry:example',
     title: '',

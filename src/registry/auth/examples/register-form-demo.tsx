@@ -1,17 +1,20 @@
 import { toast } from 'sonner';
+import { AuthContainer } from '@/components/auth/auth-container';
 import { RegisterForm } from '@/components/auth/register-form';
 
 export default function RegisterFormDemo() {
   return (
-    <RegisterForm
-      onSubmitAction={async () => {
-        return await new Promise(resolve =>
-          setTimeout(() => resolve(true), 3 * 1000),
-        );
-      }}
-      onSuccess={() => {
-        toast.success('Register successfull');
-      }}
-    />
+    <AuthContainer title="Create an account">
+      <RegisterForm
+        onSubmitAction={async () => {
+          return await new Promise(resolve =>
+            setTimeout(() => resolve(true), 3 * 1000),
+          );
+        }}
+        onSuccess={() => {
+          toast.success('Register successfull');
+        }}
+      />
+    </AuthContainer>
   );
 }
