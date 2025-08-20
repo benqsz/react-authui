@@ -55,4 +55,17 @@ export const examples: Registry['items'] = [
     ],
     registryDependencies: [`${URL}/r/register-form.json`],
   },
+  {
+    name: 'forgot-form-demo',
+    type: 'registry:example',
+    title: '',
+    description: '',
+    files: [
+      {
+        path: 'auth/examples/forgot-form-demo.tsx',
+        type: 'registry:example',
+      },
+    ],
+    registryDependencies: [`${URL}/r/register-form.json`],
+  },
 ];

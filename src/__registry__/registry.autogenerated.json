@@ -91,6 +91,23 @@
           "target": "components/auth/register-form.tsx"
         }
       ]
+    },
+    {
+      "name": "forgot-form",
+      "type": "registry:component",
+      "title": "Forgot Form",
+      "description": "Forgot form with validation and loading/error states",
+      "registryDependencies": [
+        "form",
+        "https://react-authui.vercel.app/r/form-root-error.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/auth/components/forgot-form/forgot-form.tsx",
+          "type": "registry:component",
+          "target": "components/auth/forgot-form.tsx"
+        }
+      ]
     }
   ]
 }

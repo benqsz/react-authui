@@ -53,4 +53,18 @@ export const components: Registry['items'] = [
       `${URL}/r/password-input.json`,
     ],
   },
+  {
+    name: 'forgot-form',
+    type: 'registry:component',
+    title: 'Forgot Form',
+    description: 'Forgot form with validation and loading/error states',
+    files: [
+      {
+        path: 'auth/components/forgot-form/forgot-form.tsx',
+        type: 'registry:component',
+        target: 'components/auth/forgot-form.tsx',
+      },
+    ],
+    registryDependencies: ['form', `${URL}/r/form-root-error.json`],
+  },
 ];

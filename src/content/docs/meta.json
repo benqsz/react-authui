@@ -9,6 +9,7 @@
     "---Components---",
     "components/auth-container",
     "components/login-form",
-    "components/register-form"
+    "components/register-form",
+    "components/forgot-form"
   ]
 }

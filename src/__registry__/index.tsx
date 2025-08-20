@@ -67,6 +67,18 @@ export const Index: Record<string, any> ={
       type: "registry:component",
     }],
   },
+  "forgot-form": {
+    name: "forgot-form",
+    title: "Forgot Form",
+    description: "Forgot form with validation and loading/error states",
+    type: "registry:component",
+    
+    files: [{
+      path: "src/registry/auth/components/forgot-form/forgot-form.tsx",
+      content: "'use client';\nimport { Loader2 } from 'lucide-react';\nimport { z } from 'zod';\nimport { useForm } from 'react-hook-form';\nimport { zodResolver } from '@hookform/resolvers/zod';\nimport { Button } from '@/components/ui/button';\nimport {\n  Form,\n  FormControl,\n  FormField,\n  FormItem,\n  FormLabel,\n  FormMessage,\n} from '@/components/ui/form';\nimport { Input } from '@/components/ui/input';\nimport { FormRootError } from '@/components/ui/form-root-error';\n\nconst forgotSchema = z.object({\n  email: z.email(),\n});\n\ntype Props = {\n  onSubmitAction: (\n    values: z.infer<typeof forgotSchema>,\n  ) => Promise<true | string>;\n  onSuccess: () => void;\n};\n\nfunction ForgotForm({ onSubmitAction, onSuccess }: Props) {\n  const form = useForm<z.infer<typeof forgotSchema>>({\n    resolver: zodResolver(forgotSchema),\n    defaultValues: {\n      email: '',\n    },\n  });\n\n  async function onSubmit(values: z.infer<typeof forgotSchema>) {\n    const response = await onSubmitAction(values);\n    if (response === typeof 'string') {\n      form.setError('root', {\n        type: 'manual',\n        message: response,\n      });\n    }\n\n    onSuccess();\n  }\n\n  return (\n    <Form {...form}>\n      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>\n        <FormField\n          control={form.control}\n          name='email'\n          render={({ field }) => (\n            <FormItem>\n              <FormLabel>E-mail</FormLabel>\n              <FormControl>\n                <Input\n                  {...field}\n                  placeholder='username@domain.com'\n                  autoComplete='email'\n                />\n              </FormControl>\n              <FormMessage />\n            </FormItem>\n          )}\n        />\n        <FormRootError />\n        <Button\n          type='submit'\n          className='w-full'\n          disabled={form.formState.isSubmitting}\n        >\n          {form.formState.isSubmitting ? (\n            <Loader2 className='animate-spin' />\n          ) : (\n            'Send reset link'\n          )}\n        </Button>\n      </form>\n    </Form>\n  );\n}\n\nexport { ForgotForm };\n",
+      type: "registry:component",
+    }],
+  },
   "password-input-demo": {
     name: "password-input-demo",
     title: "",
@@ -122,5 +134,19 @@ export const Index: Record<string, any> ={
     }],
     component: React.lazy(() => import("@/registry/auth/examples/register-form-demo.tsx")),
     source: "import { toast } from 'sonner';\nimport { AuthContainer } from '@/components/auth/auth-container';\nimport { RegisterForm } from '@/components/auth/register-form';\n\nexport default function RegisterFormDemo() {\n  return (\n    <AuthContainer title='Create an account'>\n      <RegisterForm\n        onSubmitAction={async () => {\n          return await new Promise(resolve =>\n            setTimeout(() => resolve(true), 3 * 1000),\n          );\n        }}\n        onSuccess={() => {\n          toast.success('Register successfull');\n        }}\n      />\n    </AuthContainer>\n  );\n}\n",
+  },
+  "forgot-form-demo": {
+    name: "forgot-form-demo",
+    title: "",
+    description: "",
+    type: "registry:example",
+    
+    files: [{
+      path: "src/registry/auth/examples/forgot-form-demo.tsx",
+      content: "import { toast } from 'sonner';\nimport { AuthContainer } from '@/components/auth/auth-container';\nimport { ForgotForm } from '../components/forgot-form/forgot-form';\n\nexport default function ForgotFormDemo() {\n  return (\n    <AuthContainer\n      title='Forgot password?'\n      description='Enter your email and we will send you reset link'\n    >\n      <ForgotForm\n        onSubmitAction={async () => {\n          return await new Promise(resolve =>\n            setTimeout(() => resolve(true), 3 * 1000),\n          );\n        }}\n        onSuccess={() => {\n          toast.success('Login successfull');\n        }}\n      />\n    </AuthContainer>\n  );\n}\n",
+      type: "registry:example",
+    }],
+    component: React.lazy(() => import("@/registry/auth/examples/forgot-form-demo.tsx")),
+    source: "import { toast } from 'sonner';\nimport { AuthContainer } from '@/components/auth/auth-container';\nimport { ForgotForm } from '../components/forgot-form/forgot-form';\n\nexport default function ForgotFormDemo() {\n  return (\n    <AuthContainer\n      title='Forgot password?'\n      description='Enter your email and we will send you reset link'\n    >\n      <ForgotForm\n        onSubmitAction={async () => {\n          return await new Promise(resolve =>\n            setTimeout(() => resolve(true), 3 * 1000),\n          );\n        }}\n        onSuccess={() => {\n          toast.success('Login successfull');\n        }}\n      />\n    </AuthContainer>\n  );\n}\n",
   },
 }
