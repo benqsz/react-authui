@@ -53,15 +53,8 @@
       "files": [
         {
           "path": "src/registry/auth/components/login-form/login-form.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/registry/auth/components/login-form/lib/schemas.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "src/registry/auth/components/login-form/lib/types.ts",
-          "type": "registry:lib"
+          "type": "registry:component",
+          "target": "components/auth/login-form.tsx"
         }
       ]
     },
@@ -78,15 +71,8 @@
       "files": [
         {
           "path": "src/registry/auth/components/register-form/register-form.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/registry/auth/components/register-form/lib/schemas.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "src/registry/auth/components/register-form/lib/types.ts",
-          "type": "registry:lib"
+          "type": "registry:component",
+          "target": "components/auth/register-form.tsx"
         }
       ]
     }

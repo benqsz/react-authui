@@ -16,10 +16,19 @@ import { Input } from '@/components/ui/input';
 import { PasswordInput } from '@/components/ui/password-input';
 import { FormRootError } from '@/components/ui/form-root-error';
 
-import { LoginProps } from '@/lib/types';
-import { loginSchema } from '@/lib/schemas';
+const loginSchema = z.object({
+  email: z.email(),
+  password: z.string().min(8).max(32),
+});
 
-function LoginForm({ onSubmitAction, onSuccess }: LoginProps) {
+type Props = {
+  onSubmitAction: (
+    values: z.infer<typeof loginSchema>,
+  ) => Promise<true | string>;
+  onSuccess: () => void;
+};
+
+function LoginForm({ onSubmitAction, onSuccess }: Props) {
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {

@@ -5,8 +5,6 @@
     "index",
     "installation",
     "---UI---",
-    "ui/password-input",
-    "---Component---",
-    "component/login-form"
+    "ui/password-input"
   ]
 }

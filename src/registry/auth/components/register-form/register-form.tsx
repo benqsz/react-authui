@@ -16,10 +16,26 @@ import {
 import { Input } from '@/components/ui/input';
 import { PasswordInput } from '@/components/ui/password-input';
 import { FormRootError } from '@/components/ui/form-root-error';
-import { RegisterProps } from './lib/types';
-import { registerSchema } from './lib/schemas';
 
-function RegisterForm({ onSubmitAction, onSuccess }: RegisterProps) {
+const registerSchema = z
+  .object({
+    username: z.string().min(2).max(32),
+    email: z.email(),
+    password: z.string().min(8).max(32),
+    re_password: z.string().min(8).max(32),
+  })
+  .refine(data => data.password === data.re_password, {
+    message: 'Passwords do not match',
+  });
+
+type Props = {
+  onSubmitAction: (
+    values: z.infer<typeof registerSchema>,
+  ) => Promise<true | string>;
+  onSuccess: () => void;
+};
+
+function RegisterForm({ onSubmitAction, onSuccess }: Props) {
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
     defaultValues: {

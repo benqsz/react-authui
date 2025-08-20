@@ -12,14 +12,7 @@ export const components: Registry['items'] = [
       {
         path: 'auth/components/login-form/login-form.tsx',
         type: 'registry:component',
-      },
-      {
-        path: 'auth/components/login-form/lib/schemas.ts',
-        type: 'registry:lib',
-      },
-      {
-        path: 'auth/components/login-form/lib/types.ts',
-        type: 'registry:lib',
+        target: 'components/auth/login-form.tsx',
       },
     ],
     registryDependencies: [
@@ -37,14 +30,7 @@ export const components: Registry['items'] = [
       {
         path: 'auth/components/register-form/register-form.tsx',
         type: 'registry:component',
-      },
-      {
-        path: 'auth/components/register-form/lib/schemas.ts',
-        type: 'registry:lib',
-      },
-      {
-        path: 'auth/components/register-form/lib/types.ts',
-        type: 'registry:lib',
+        target: 'components/auth/register-form.tsx',
       },
     ],
     registryDependencies: [
