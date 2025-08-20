@@ -4,6 +4,19 @@ const URL = process.env.NEXT_PUBLIC_BASE_URL as string;
 
 export const examples: Registry['items'] = [
   {
+    name: 'form-wrapper-demo',
+    type: 'registry:example',
+    title: 'Form Wrapper Demo',
+    description: 'Example of using FormWrapper to create a login form',
+    files: [
+      {
+        path: 'auth/components/form-wrapper/demo-login-form.tsx',
+        type: 'registry:example',
+      },
+    ],
+    registryDependencies: [`${URL}/r/form-wrapper.json`],
+  },
+  {
     name: 'password-input-demo',
     type: 'registry:example',
     title: '',

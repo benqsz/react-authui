@@ -4,6 +4,25 @@ const URL = process.env.NEXT_PUBLIC_BASE_URL as string;
 
 export const components: Registry['items'] = [
   {
+    name: 'form-wrapper',
+    type: 'registry:component',
+    title: 'Form Wrapper',
+    description: 'Generic form component with configurable fields and validation',
+    files: [
+      {
+        path: 'auth/components/form-wrapper/form-wrapper.tsx',
+        type: 'registry:component',
+        target: 'components/auth/form-wrapper.tsx',
+      },
+    ],
+    registryDependencies: [
+      'form',
+      `${URL}/r/form-root-error.json`,
+      `${URL}/r/password-input.json`,
+      `${URL}/r/submit-button.json`,
+    ],
+  },
+  {
     name: 'auth-container',
     type: 'registry:component',
     title: 'Auth container',
