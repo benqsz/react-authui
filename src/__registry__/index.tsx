@@ -9,8 +9,10 @@ import * as React from "react";
 export const Index: Record<string, any> ={
   "form-root-error": {
     name: "form-root-error",
+    title: "Form Root Error",
     description: "Show errors from root with use-form-hook",
     type: "registry:ui",
+    dependencies: ["react-hook-form"],
     files: [{
       path: "src/registry/auth/ui/form-root-error.tsx",
       content: "import { ComponentProps } from 'react';\nimport { useFormState } from 'react-hook-form';\nimport { cn } from '@/lib/utils';\n\nfunction FormRootError({ className, ...props }: ComponentProps<'p'>) {\n  const { errors } = useFormState();\n  const rootError = errors.root;\n  if (!rootError) return null;\n\n  return (\n    <p className={cn('text-destructive text-sm', className)} {...props}>\n      {rootError.message}\n    </p>\n  );\n}\n\nexport { FormRootError };\n",
@@ -19,8 +21,10 @@ export const Index: Record<string, any> ={
   },
   "password-input": {
     name: "password-input",
+    title: "Password Input",
     description: "Input with visibility toggle",
     type: "registry:ui",
+    dependencies: ["lucide-react"],
     files: [{
       path: "src/registry/auth/ui/password-input.tsx",
       content: "'use client';\nimport { ComponentProps, useState } from 'react';\nimport { EyeIcon, EyeOffIcon } from 'lucide-react';\nimport { Input } from '@/components/ui/input';\nimport { Button } from '@/components/ui/button';\n\nfunction PasswordInput(props: Omit<ComponentProps<typeof Input>, 'type'>) {\n  const [isVisible, setIsVisible] = useState(false);\n  const toggleVisibility = () => setIsVisible(!isVisible);\n\n  return (\n    <div className='relative'>\n      <Input type={isVisible ? 'text' : 'password'} {...props} />\n      <Button\n        variant='ghost'\n        size='icon'\n        className='absolute top-1/2 right-1 size-7 -translate-y-1/2'\n        onClick={toggleVisibility}\n        type='button'\n        aria-label={\`\${isVisible ? 'Hide' : 'Show'} password\`}\n      >\n        {isVisible ? <EyeOffIcon /> : <EyeIcon />}\n      </Button>\n    </div>\n  );\n}\n\nexport { PasswordInput };\n",
@@ -29,8 +33,10 @@ export const Index: Record<string, any> ={
   },
   "login-form": {
     name: "login-form",
+    title: "Login Form",
     description: "Login form with validation and loading/error states",
     type: "registry:component",
+    
     files: [{
       path: "src/registry/auth/components/login-form/login-form.tsx",
       content: "'use client';\nimport { z } from 'zod';\nimport { useForm } from 'react-hook-form';\nimport { zodResolver } from '@hookform/resolvers/zod';\nimport { Loader2 } from 'lucide-react';\nimport { Button } from '@/components/ui/button';\nimport {\n  Form,\n  FormControl,\n  FormField,\n  FormItem,\n  FormLabel,\n  FormMessage,\n} from '@/components/ui/form';\nimport { Input } from '@/components/ui/input';\nimport { PasswordInput } from '@/components/ui/password-input';\nimport { FormRootError } from '@/components/ui/form-root-error';\n\nimport { LoginProps } from '@/lib/types';\nimport { loginSchema } from '@/lib/schemas';\n\nfunction LoginForm({ onSubmitAction, onSuccess }: LoginProps) {\n  const form = useForm<z.infer<typeof loginSchema>>({\n    resolver: zodResolver(loginSchema),\n    defaultValues: {\n      email: '',\n      password: '',\n    },\n  });\n\n  async function onSubmit(values: z.infer<typeof loginSchema>) {\n    const response = await onSubmitAction(values);\n    if (response === typeof 'string') {\n      form.setError('root', {\n        type: 'manual',\n        message: response,\n      });\n    }\n\n    onSuccess();\n  }\n\n  return (\n    <Form {...form}>\n      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>\n        <FormField\n          control={form.control}\n          name='email'\n          render={({ field }) => (\n            <FormItem>\n              <FormLabel>E-mail</FormLabel>\n              <FormControl>\n                <Input\n                  {...field}\n                  placeholder='username@domain.com'\n                  autoComplete='email'\n                />\n              </FormControl>\n              <FormMessage />\n            </FormItem>\n          )}\n        />\n        <FormField\n          control={form.control}\n          name='password'\n          render={({ field }) => (\n            <FormItem>\n              <FormLabel>Password</FormLabel>\n              <FormControl>\n                <PasswordInput {...field} />\n              </FormControl>\n              <FormMessage />\n            </FormItem>\n          )}\n        />\n        <FormRootError />\n        <Button\n          type='submit'\n          className='w-full'\n          disabled={form.formState.isSubmitting}\n        >\n          {form.formState.isSubmitting ? (\n            <Loader2 className='animate-spin' />\n          ) : (\n            'Login'\n          )}\n        </Button>\n      </form>\n    </Form>\n  );\n}\n\nexport { LoginForm };\n",
@@ -47,8 +53,10 @@ export const Index: Record<string, any> ={
   },
   "password-input-demo": {
     name: "password-input-demo",
+    title: "",
     description: "",
     type: "registry:example",
+    
     files: [{
       path: "src/registry/auth/examples/password-input-demo.tsx",
       content: "import { PasswordInput } from '@/components/ui/password-input';\n\nexport default function PasswordInputDemo() {\n  return <PasswordInput />;\n}\n",
@@ -59,8 +67,10 @@ export const Index: Record<string, any> ={
   },
   "login-form-demo": {
     name: "login-form-demo",
+    title: "",
     description: "",
     type: "registry:example",
+    
     files: [{
       path: "src/registry/auth/examples/login-form-demo.tsx",
       content: "import { toast } from 'sonner';\nimport { LoginForm } from '@/components/auth/login-form';\n\nexport default function LoginFormDemo() {\n  return (\n    <LoginForm\n      onSubmitAction={async () => {\n        return await new Promise(resolve =>\n          setTimeout(() => resolve(true), 3 * 1000),\n        );\n      }}\n      onSuccess={() => {\n        toast.success('Login successfull');\n      }}\n    />\n  );\n}\n",

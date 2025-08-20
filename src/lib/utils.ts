@@ -4,3 +4,9 @@ import { twMerge } from 'tailwind-merge';
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+export function capitalize(str: string) {
+  if (str.length == 1) return str.toUpperCase();
+  if (str == 'ui') return str.toUpperCase();
+  return str[0].toUpperCase() + str.slice(1);
+}

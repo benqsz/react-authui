@@ -4,17 +4,16 @@ import type { MDXComponents } from 'mdx/types';
 
 import { ComponentPreview } from './component-preview';
 import { ComponentSource } from './component-source';
-import { Tabs, TabsList, TabsContent, TabsTrigger } from '../ui/tabs';
+import { ComponentInstall, CLI, Manual } from './component-install';
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
     ...defaultMdxComponents,
     ComponentPreview,
     ComponentSource,
-    Tabs,
-    TabsList,
-    TabsContent,
-    TabsTrigger,
+    ComponentInstall,
+    CLI,
+    Manual,
     Steps,
     Step,
     ...components,

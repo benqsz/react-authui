@@ -4,8 +4,9 @@
     "---Introduction---",
     "index",
     "installation",
-    "---Components---",
-    "components/password-input",
-    "components/login-form"
+    "---UI---",
+    "ui/password-input",
+    "---Component---",
+    "component/login-form"
   ]
 }
