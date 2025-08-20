@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "submit-button",
+  "type": "registry:ui",
+  "title": "Submit Button",
+  "description": "Button for submitting forms with loading state",
+  "dependencies": ["ludcide-react"],
+  "registryDependencies": ["button"],
+  "files": [
+    {
+      "path": "src/registry/auth/ui/submit-button.tsx",
+      "content": "import { ComponentProps } from 'react';\nimport { Loader2 } from 'lucide-react';\nimport { Button } from '@/components/ui/button';\n\ntype Props = {\n  loading?: boolean;\n} & Omit<ComponentProps<typeof Button>, 'type'>;\n\nfunction SubmitButton({ loading = false, children, disabled, ...rest }: Props) {\n  return (\n    <Button disabled={loading || disabled} type=\"submit\" {...rest}>\n      {loading ? (\n        <>\n          <Loader2 className=\"animate-spin\" />\n          <span className=\"sr-only\">Loading</span>\n        </>\n      ) : (\n        children\n      )}\n    </Button>\n  );\n}\n\nexport { SubmitButton };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

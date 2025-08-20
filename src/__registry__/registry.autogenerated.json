@@ -41,6 +41,24 @@
       ]
     },
     {
+      "name": "submit-button",
+      "type": "registry:ui",
+      "title": "Submit Button",
+      "description": "Button for submitting forms with loading state",
+      "dependencies": [
+        "ludcide-react"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/registry/auth/ui/submit-button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "auth-container",
       "type": "registry:component",
       "title": "Auth container",
@@ -64,7 +82,8 @@
       "registryDependencies": [
         "form",
         "https://react-authui.vercel.app/r/form-root-error.json",
-        "https://react-authui.vercel.app/r/password-input.json"
+        "https://react-authui.vercel.app/r/password-input.json",
+        "https://react-authui.vercel.app/r/submit-button.json"
       ],
       "files": [
         {
@@ -82,7 +101,8 @@
       "registryDependencies": [
         "form",
         "https://react-authui.vercel.app/r/form-root-error.json",
-        "https://react-authui.vercel.app/r/password-input.json"
+        "https://react-authui.vercel.app/r/password-input.json",
+        "https://react-authui.vercel.app/r/submit-button.json"
       ],
       "files": [
         {
@@ -99,7 +119,8 @@
       "description": "Forgot form with validation and loading/error states",
       "registryDependencies": [
         "form",
-        "https://react-authui.vercel.app/r/form-root-error.json"
+        "https://react-authui.vercel.app/r/form-root-error.json",
+        "https://react-authui.vercel.app/r/submit-button.json"
       ],
       "files": [
         {

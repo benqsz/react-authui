@@ -1,10 +1,9 @@
 'use client';
+import { Loader2 } from 'lucide-react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { SubmitButton } from '@/components/ui/submit-button';
-import { Input } from '@/components/ui/input';
-import { PasswordInput } from '@/components/ui/password-input';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -13,30 +12,29 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import { FormRootError } from '@/components/ui/form-root-error';
 
-const loginSchema = z.object({
+const forgotSchema = z.object({
   email: z.email(),
-  password: z.string().min(8).max(32),
 });
 
 type Props = {
   onSubmitAction: (
-    values: z.infer<typeof loginSchema>,
+    values: z.infer<typeof forgotSchema>,
   ) => Promise<true | string>;
   onSuccess: () => void;
 };
 
-function LoginForm({ onSubmitAction, onSuccess }: Props) {
-  const form = useForm<z.infer<typeof loginSchema>>({
-    resolver: zodResolver(loginSchema),
+function ForgotForm({ onSubmitAction, onSuccess }: Props) {
+  const form = useForm<z.infer<typeof forgotSchema>>({
+    resolver: zodResolver(forgotSchema),
     defaultValues: {
       email: '',
-      password: '',
     },
   });
 
-  async function onSubmit(values: z.infer<typeof loginSchema>) {
+  async function onSubmit(values: z.infer<typeof forgotSchema>) {
     const response = await onSubmitAction(values);
     if (response === typeof 'string') {
       form.setError('root', {
@@ -68,24 +66,21 @@ function LoginForm({ onSubmitAction, onSuccess }: Props) {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <PasswordInput {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
         <FormRootError />
-        <SubmitButton loading={form.formState.isSubmitting}>Login</SubmitButton>
+        <Button
+          type="submit"
+          className="w-full"
+          disabled={form.formState.isSubmitting}
+        >
+          {form.formState.isSubmitting ? (
+            <Loader2 className="animate-spin" />
+          ) : (
+            'Send reset link'
+          )}
+        </Button>
       </form>
     </Form>
   );
 }
 
-export { LoginForm };
+export { ForgotForm };

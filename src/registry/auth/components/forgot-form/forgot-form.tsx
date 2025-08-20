@@ -1,9 +1,9 @@
 'use client';
-import { Loader2 } from 'lucide-react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from '@/components/ui/button';
+import { SubmitButton } from '@/components/ui/submit-button';
+import { Input } from '@/components/ui/input';
 import {
   Form,
   FormControl,
@@ -12,7 +12,6 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
 import { FormRootError } from '@/components/ui/form-root-error';
 
 const forgotSchema = z.object({
@@ -67,17 +66,9 @@ function ForgotForm({ onSubmitAction, onSuccess }: Props) {
           )}
         />
         <FormRootError />
-        <Button
-          type="submit"
-          className="w-full"
-          disabled={form.formState.isSubmitting}
-        >
-          {form.formState.isSubmitting ? (
-            <Loader2 className="animate-spin" />
-          ) : (
-            'Send reset link'
-          )}
-        </Button>
+        <SubmitButton loading={form.formState.isSubmitting}>
+          Send reset link
+        </SubmitButton>
       </form>
     </Form>
   );

@@ -29,4 +29,18 @@ export const ui: Registry['items'] = [
     dependencies: ['lucide-react'],
     registryDependencies: ['input', 'button'],
   },
+  {
+    name: 'submit-button',
+    type: 'registry:ui',
+    title: 'Submit Button',
+    description: 'Button for submitting forms with loading state',
+    files: [
+      {
+        path: 'auth/ui/submit-button.tsx',
+        type: 'registry:ui',
+      },
+    ],
+    dependencies: ['ludcide-react'],
+    registryDependencies: ['button'],
+  },
 ];

@@ -33,6 +33,7 @@ export const components: Registry['items'] = [
       'form',
       `${URL}/r/form-root-error.json`,
       `${URL}/r/password-input.json`,
+      `${URL}/r/submit-button.json`,
     ],
   },
   {
@@ -51,6 +52,7 @@ export const components: Registry['items'] = [
       'form',
       `${URL}/r/form-root-error.json`,
       `${URL}/r/password-input.json`,
+      `${URL}/r/submit-button.json`,
     ],
   },
   {
@@ -65,6 +67,10 @@ export const components: Registry['items'] = [
         target: 'components/auth/forgot-form.tsx',
       },
     ],
-    registryDependencies: ['form', `${URL}/r/form-root-error.json`],
+    registryDependencies: [
+      'form',
+      `${URL}/r/form-root-error.json`,
+      `${URL}/r/submit-button.json`,
+    ],
   },
 ];

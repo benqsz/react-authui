@@ -1,6 +1,6 @@
 import { toast } from 'sonner';
 import { AuthContainer } from '@/components/auth/auth-container';
-import { ForgotForm } from '../components/forgot-form/forgot-form';
+import { ForgotForm } from '@/components/auth/forgot-form';
 
 export default function ForgotFormDemo() {
   return (
