@@ -69,4 +69,32 @@ export const Index: Record<string, any> ={
     component: React.lazy(() => import("@/registry/auth/examples/password-input-demo.tsx")),
     source: "import { PasswordInput } from '@/components/ui/password-input';\n\nexport default function PasswordInputDemo() {\n  return <PasswordInput />;\n}\n",
   },
+  "login-form-demo": {
+    name: "login-form-demo",
+    title: "",
+    description: "",
+    type: "registry:example",
+    
+    files: [{
+      path: "src/registry/auth/examples/login-form-demo.tsx",
+      content: "import { toast } from 'sonner';\nimport { LoginForm } from '@/components/auth/login-form';\n\nexport default function LoginFormDemo() {\n  return (\n    <LoginForm\n      onSubmitAction={async () => {\n        return await new Promise(resolve =>\n          setTimeout(() => resolve(true), 3 * 1000),\n        );\n      }}\n      onSuccess={() => {\n        toast.success('Login successfull');\n      }}\n    />\n  );\n}\n",
+      type: "registry:example",
+    }],
+    component: React.lazy(() => import("@/registry/auth/examples/login-form-demo.tsx")),
+    source: "import { toast } from 'sonner';\nimport { LoginForm } from '@/components/auth/login-form';\n\nexport default function LoginFormDemo() {\n  return (\n    <LoginForm\n      onSubmitAction={async () => {\n        return await new Promise(resolve =>\n          setTimeout(() => resolve(true), 3 * 1000),\n        );\n      }}\n      onSuccess={() => {\n        toast.success('Login successfull');\n      }}\n    />\n  );\n}\n",
+  },
+  "register-form-demo": {
+    name: "register-form-demo",
+    title: "",
+    description: "",
+    type: "registry:example",
+    
+    files: [{
+      path: "src/registry/auth/examples/register-form-demo.tsx",
+      content: "import { toast } from 'sonner';\nimport { RegisterForm } from '@/components/auth/register-form';\n\nexport default function RegisterFormDemo() {\n  return (\n    <RegisterForm\n      onSubmitAction={async () => {\n        return await new Promise(resolve =>\n          setTimeout(() => resolve(true), 3 * 1000),\n        );\n      }}\n      onSuccess={() => {\n        toast.success('Register successfull');\n      }}\n    />\n  );\n}\n",
+      type: "registry:example",
+    }],
+    component: React.lazy(() => import("@/registry/auth/examples/register-form-demo.tsx")),
+    source: "import { toast } from 'sonner';\nimport { RegisterForm } from '@/components/auth/register-form';\n\nexport default function RegisterFormDemo() {\n  return (\n    <RegisterForm\n      onSubmitAction={async () => {\n        return await new Promise(resolve =>\n          setTimeout(() => resolve(true), 3 * 1000),\n        );\n      }}\n      onSuccess={() => {\n        toast.success('Register successfull');\n      }}\n    />\n  );\n}\n",
+  },
 }
