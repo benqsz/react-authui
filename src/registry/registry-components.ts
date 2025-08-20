@@ -28,4 +28,29 @@ export const components: Registry['items'] = [
       `${URL}/r/password-input.json`,
     ],
   },
+  {
+    name: 'register-form',
+    type: 'registry:component',
+    title: 'Register Form',
+    description: 'Register form with validation and loading/error states',
+    files: [
+      {
+        path: 'auth/components/register-form/register-form.tsx',
+        type: 'registry:component',
+      },
+      {
+        path: 'auth/components/register-form/lib/schemas.ts',
+        type: 'registry:lib',
+      },
+      {
+        path: 'auth/components/register-form/lib/types.ts',
+        type: 'registry:lib',
+      },
+    ],
+    registryDependencies: [
+      'form',
+      `${URL}/r/form-root-error.json`,
+      `${URL}/r/password-input.json`,
+    ],
+  },
 ];

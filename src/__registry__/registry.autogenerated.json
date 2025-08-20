@@ -64,6 +64,31 @@
           "type": "registry:lib"
         }
       ]
+    },
+    {
+      "name": "register-form",
+      "type": "registry:component",
+      "title": "Register Form",
+      "description": "Register form with validation and loading/error states",
+      "registryDependencies": [
+        "form",
+        "https://react-authui.vercel.app/r/form-root-error.json",
+        "https://react-authui.vercel.app/r/password-input.json"
+      ],
+      "files": [
+        {
+          "path": "src/registry/auth/components/register-form/register-form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/auth/components/register-form/lib/schemas.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/registry/auth/components/register-form/lib/types.ts",
+          "type": "registry:lib"
+        }
+      ]
     }
   ]
 }

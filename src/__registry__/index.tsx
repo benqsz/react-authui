@@ -51,6 +51,26 @@ export const Index: Record<string, any> ={
       type: "registry:lib",
     }],
   },
+  "register-form": {
+    name: "register-form",
+    title: "Register Form",
+    description: "Register form with validation and loading/error states",
+    type: "registry:component",
+    
+    files: [{
+      path: "src/registry/auth/components/register-form/register-form.tsx",
+      content: "'use client';\nimport { Loader2 } from 'lucide-react';\nimport { z } from 'zod';\nimport { useForm } from 'react-hook-form';\nimport { zodResolver } from '@hookform/resolvers/zod';\nimport { Button } from '@/components/ui/button';\nimport {\n  Form,\n  FormControl,\n  FormDescription,\n  FormField,\n  FormItem,\n  FormLabel,\n  FormMessage,\n} from '@/components/ui/form';\nimport { Input } from '@/components/ui/input';\nimport { PasswordInput } from '@/components/ui/password-input';\nimport { FormRootError } from '@/components/ui/form-root-error';\nimport { RegisterProps } from './lib/types';\nimport { registerSchema } from './lib/schemas';\n\nfunction RegisterForm({ onSubmitAction, onSuccess }: RegisterProps) {\n  const form = useForm<z.infer<typeof registerSchema>>({\n    resolver: zodResolver(registerSchema),\n    defaultValues: {\n      username: '',\n      email: '',\n      password: '',\n      re_password: '',\n    },\n  });\n\n  async function onSubmit(values: z.infer<typeof registerSchema>) {\n    const response = await onSubmitAction(values);\n    if (response === typeof 'string') {\n      form.setError('root', {\n        type: 'manual',\n        message: response,\n      });\n    }\n\n    onSuccess();\n  }\n\n  return (\n    <Form {...form}>\n      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>\n        <FormField\n          control={form.control}\n          name='username'\n          render={({ field }) => (\n            <FormItem>\n              <FormLabel>Username</FormLabel>\n              <FormControl>\n                <Input placeholder='admin' autoComplete='username' {...field} />\n              </FormControl>\n              <FormDescription>\n                This is your public display name.\n              </FormDescription>\n              <FormMessage />\n            </FormItem>\n          )}\n        />\n        <FormField\n          control={form.control}\n          name='email'\n          render={({ field }) => (\n            <FormItem>\n              <FormLabel>E-mail</FormLabel>\n              <FormControl>\n                <Input\n                  {...field}\n                  placeholder='username@domain.com'\n                  autoComplete='email'\n                />\n              </FormControl>\n              <FormMessage />\n            </FormItem>\n          )}\n        />\n        <FormField\n          control={form.control}\n          name='password'\n          render={({ field }) => (\n            <FormItem>\n              <FormLabel>Password</FormLabel>\n              <FormControl>\n                <PasswordInput {...field} />\n              </FormControl>\n              <FormMessage />\n            </FormItem>\n          )}\n        />\n        <FormField\n          control={form.control}\n          name='re_password'\n          render={({ field }) => (\n            <FormItem>\n              <FormLabel>Confirm password</FormLabel>\n              <FormControl>\n                <PasswordInput {...field} />\n              </FormControl>\n              <FormMessage />\n            </FormItem>\n          )}\n        />\n        <FormRootError />\n        <Button\n          type='submit'\n          className='w-full'\n          disabled={form.formState.isSubmitting}\n        >\n          {form.formState.isSubmitting ? (\n            <Loader2 className='animate-spin' />\n          ) : (\n            'Register'\n          )}\n        </Button>\n      </form>\n    </Form>\n  );\n}\n\nexport { RegisterForm };\n",
+      type: "registry:component",
+    },{
+      path: "src/registry/auth/components/register-form/lib/schemas.ts",
+      content: "import { z } from 'zod';\n\nconst registerSchema = z\n  .object({\n    username: z.string().min(2).max(32),\n    email: z.email(),\n    password: z.string().min(8).max(32),\n    re_password: z.string().min(8).max(32),\n  })\n  .refine(data => data.password === data.re_password, {\n    message: 'Passwords do not match',\n  });\n\nexport { registerSchema };\n",
+      type: "registry:lib",
+    },{
+      path: "src/registry/auth/components/register-form/lib/types.ts",
+      content: "import { z } from 'zod';\nimport { registerSchema } from './schemas';\n\ntype FormProps<T> = {\n  onSubmitAction: (values: T) => Promise<true | string>;\n  onSuccess: () => void;\n};\n\ntype RegisterProps = FormProps<z.infer<typeof registerSchema>>;\n\nexport type { RegisterProps };\n",
+      type: "registry:lib",
+    }],
+  },
   "password-input-demo": {
     name: "password-input-demo",
     title: "",
