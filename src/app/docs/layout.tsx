@@ -1,12 +1,20 @@
 import { ReactNode } from 'react';
 import { DocsLayout } from 'fumadocs-ui/layouts/docs';
 import { source } from '@/lib/source';
+import { Logo } from '@/components/logo';
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <DocsLayout
       tree={source.pageTree}
-      nav={{ title: <>React Auth UI</> }}
+      nav={{
+        title: (
+          <>
+            <Logo />
+            React Auth UI
+          </>
+        ),
+      }}
       githubUrl={process.env.NEXT_PUBLIC_GITHUB_URL}
     >
       {children}
