@@ -12,7 +12,7 @@ type Meta = {
 const OUTPUT_DIR = path.join(process.cwd(), 'src/content/docs');
 
 const META_PATH = path.join(process.cwd(), 'src/content/docs/meta.json');
-const AFTER_KEY = 'installation';
+const AFTER_KEY = 'index';
 
 const generateMDXContent = (item: any): string => {
   const dependencies = item.dependencies

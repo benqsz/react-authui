@@ -15,8 +15,8 @@ import { Button } from '@/components/ui/button';
 
 type Props<T extends ZodObject<any>> = {
   schema: T;
-  onSubmitAction: (values: z.infer<T>) => Promise<true | string>;
-  onSuccess: () => void;
+  submitAction: (values: z.infer<T>) => Promise<true | string>;
+  successAction: () => void;
   defaultValues: DefaultValues<z.infer<T>>;
   submitText: string;
   children: (form: UseFormReturn<output<T>, any, output<T>>) => ReactNode;
@@ -25,8 +25,8 @@ type Props<T extends ZodObject<any>> = {
 function FormWrapper<T extends ZodObject<any>>(props: Props<T>) {
   const {
     schema,
-    onSubmitAction,
-    onSuccess,
+    submitAction,
+    successAction,
     defaultValues,
     submitText,
     children,
@@ -38,14 +38,14 @@ function FormWrapper<T extends ZodObject<any>>(props: Props<T>) {
   });
 
   async function onSubmit(values: z.infer<typeof schema>) {
-    const response = await onSubmitAction(values);
+    const response = await submitAction(values);
     if (response === typeof 'string') {
       form.setError('root', {
         type: 'manual',
         message: response,
       });
     }
-    onSuccess();
+    successAction();
   }
 
   return (

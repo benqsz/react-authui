@@ -24,18 +24,18 @@ const registerSchema = z
   });
 
 type Props = {
-  onSubmitAction: (
+  submitAction: (
     values: z.infer<typeof registerSchema>,
   ) => Promise<true | string>;
-  onSuccess: () => void;
+  successAction: () => void;
 };
 
-function RegisterForm({ onSubmitAction, onSuccess }: Props) {
+function RegisterForm({ submitAction, successAction }: Props) {
   return (
     <FormWrapper
       schema={registerSchema}
-      onSubmitAction={onSubmitAction}
-      onSuccess={onSuccess}
+      submitAction={submitAction}
+      successAction={successAction}
       submitText="Create account"
       defaultValues={{
         username: '',

@@ -6,12 +6,12 @@ export default function RegisterFormDemo() {
   return (
     <AuthContainer title="Create an account">
       <RegisterForm
-        onSubmitAction={async () => {
+        submitAction={async () => {
           return await new Promise(resolve =>
             setTimeout(() => resolve(true), 3 * 1000),
           );
         }}
-        onSuccess={() => {
+        successAction={() => {
           toast.success('Register successfull');
         }}
       />
