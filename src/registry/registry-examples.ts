@@ -46,4 +46,19 @@ export const examples: Registry['items'] = [
       `https://react-authui.vercel.app/r/register-form.json`,
     ],
   },
+  {
+    name: 'user-dropdown-demo',
+    type: 'registry:example',
+    title: '',
+    description: '',
+    files: [
+      {
+        path: 'auth/examples/user-dropdown-demo.tsx',
+        type: 'registry:example',
+      },
+    ],
+    registryDependencies: [
+      `https://react-authui.vercel.app/r/user-dropdown.json`,
+    ],
+  },
 ];

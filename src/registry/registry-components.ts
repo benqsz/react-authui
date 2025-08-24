@@ -57,4 +57,19 @@ export const components: Registry['items'] = [
       `https://react-authui.vercel.app/r/password-input.json`,
     ],
   },
+  {
+    name: 'user-dropdown',
+    type: 'registry:component',
+    title: 'User Dropdown',
+    description: 'User avatar with dropdown menu for account and logout',
+    files: [
+      {
+        path: 'auth/components/user-dropdown.tsx',
+        type: 'registry:component',
+        target: 'components/auth/user-dropdown.tsx',
+      },
+    ],
+    dependencies: ['lucide-react'],
+    registryDependencies: ['dropdown-menu', 'avatar', 'button'],
+  },
 ];

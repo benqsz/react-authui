@@ -97,6 +97,27 @@
           "target": "components/auth/register-form.tsx"
         }
       ]
+    },
+    {
+      "name": "user-dropdown",
+      "type": "registry:component",
+      "title": "User Dropdown",
+      "description": "User avatar with dropdown menu for account and logout",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "dropdown-menu",
+        "avatar",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/registry/auth/components/user-dropdown.tsx",
+          "type": "registry:component",
+          "target": "components/auth/user-dropdown.tsx"
+        }
+      ]
     }
   ]
 }
