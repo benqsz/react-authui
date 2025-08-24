@@ -9,7 +9,6 @@ type Meta = {
   pages: string[];
 };
 
-const URL = process.env.NEXT_PUBLIC_BASE_URL as string;
 const OUTPUT_DIR = path.join(process.cwd(), 'src/content/docs');
 
 const META_PATH = path.join(process.cwd(), 'src/content/docs/meta.json');
@@ -39,7 +38,7 @@ description: ${item.description}
 <ComponentInstall>
   <CLI>
     \`\`\`npm 
-    npx shadcn@latest add ${URL}/r/${item.name}.json 
+    npx shadcn@latest add https://react-authui.vercel.app/r/${item.name}.json 
     \`\`\`
   </CLI>
   <Manual>

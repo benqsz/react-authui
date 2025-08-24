@@ -1,7 +1,5 @@
 import type { Registry } from 'shadcn/registry';
 
-const URL = process.env.NEXT_PUBLIC_BASE_URL as string;
-
 export const examples: Registry['items'] = [
   {
     name: 'password-input-demo',
@@ -14,7 +12,9 @@ export const examples: Registry['items'] = [
         type: 'registry:example',
       },
     ],
-    registryDependencies: [`${URL}/r/password-input.json`],
+    registryDependencies: [
+      `https://react-authui.vercel.app/r/password-input.json`,
+    ],
   },
   {
     name: 'submit-button-demo',
@@ -27,7 +27,9 @@ export const examples: Registry['items'] = [
         type: 'registry:example',
       },
     ],
-    registryDependencies: [`${URL}/r/submit-button.json`],
+    registryDependencies: [
+      `https://react-authui.vercel.app/r/submit-button.json`,
+    ],
   },
   {
     name: 'auth-container-demo',
@@ -40,7 +42,9 @@ export const examples: Registry['items'] = [
         type: 'registry:example',
       },
     ],
-    registryDependencies: [`${URL}/r/auth-container.json`],
+    registryDependencies: [
+      `https://react-authui.vercel.app/r/auth-container.json`,
+    ],
   },
   {
     name: 'login-form-demo',
@@ -53,7 +57,7 @@ export const examples: Registry['items'] = [
         type: 'registry:example',
       },
     ],
-    registryDependencies: [`${URL}/r/login-form.json`],
+    registryDependencies: [`https://react-authui.vercel.app/r/login-form.json`],
   },
   {
     name: 'register-form-demo',
@@ -66,7 +70,9 @@ export const examples: Registry['items'] = [
         type: 'registry:example',
       },
     ],
-    registryDependencies: [`${URL}/r/register-form.json`],
+    registryDependencies: [
+      `https://react-authui.vercel.app/r/register-form.json`,
+    ],
   },
   {
     name: 'forgot-form-demo',
@@ -79,6 +85,8 @@ export const examples: Registry['items'] = [
         type: 'registry:example',
       },
     ],
-    registryDependencies: [`${URL}/r/register-form.json`],
+    registryDependencies: [
+      `https://react-authui.vercel.app/r/register-form.json`,
+    ],
   },
 ];

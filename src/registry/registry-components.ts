@@ -1,7 +1,5 @@
 import type { Registry } from 'shadcn/registry';
 
-const URL = process.env.NEXT_PUBLIC_BASE_URL as string;
-
 export const components: Registry['items'] = [
   {
     name: 'auth-container',
@@ -31,9 +29,9 @@ export const components: Registry['items'] = [
     ],
     registryDependencies: [
       'form',
-      `${URL}/r/form-root-error.json`,
-      `${URL}/r/password-input.json`,
-      `${URL}/r/submit-button.json`,
+      `https://react-authui.vercel.app/r/form-root-error.json`,
+      `https://react-authui.vercel.app/r/password-input.json`,
+      `https://react-authui.vercel.app/r/submit-button.json`,
     ],
   },
   {
@@ -50,9 +48,9 @@ export const components: Registry['items'] = [
     ],
     registryDependencies: [
       'form',
-      `${URL}/r/form-root-error.json`,
-      `${URL}/r/password-input.json`,
-      `${URL}/r/submit-button.json`,
+      `https://react-authui.vercel.app/r/form-root-error.json`,
+      `https://react-authui.vercel.app/r/password-input.json`,
+      `https://react-authui.vercel.app/r/submit-button.json`,
     ],
   },
   {
@@ -69,8 +67,8 @@ export const components: Registry['items'] = [
     ],
     registryDependencies: [
       'form',
-      `${URL}/r/form-root-error.json`,
-      `${URL}/r/submit-button.json`,
+      `https://react-authui.vercel.app/r/form-root-error.json`,
+      `https://react-authui.vercel.app/r/submit-button.json`,
     ],
   },
 ];
