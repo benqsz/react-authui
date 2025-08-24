@@ -8,7 +8,7 @@ export const components: Registry['items'] = [
     description: 'Card container for all auth components',
     files: [
       {
-        path: 'auth/components/auth-container/auth-container.tsx',
+        path: 'auth/components/auth-container.tsx',
         type: 'registry:component',
         target: 'components/auth/auth-container.tsx',
       },
@@ -16,22 +16,27 @@ export const components: Registry['items'] = [
     registryDependencies: ['card'],
   },
   {
-    name: 'login-form',
+    name: 'form-wrapper',
     type: 'registry:component',
-    title: 'Login Form',
-    description: 'Login form with validation and loading/error states',
+    title: 'Form Wrapper',
+    description: 'Wrapper for forms in react auth ui',
     files: [
       {
-        path: 'auth/components/login-form/login-form.tsx',
+        path: 'auth/components/form-wrapper.tsx',
         type: 'registry:component',
-        target: 'components/auth/login-form.tsx',
+        target: 'components/auth/form-wrapper.tsx',
       },
+    ],
+    dependencies: [
+      'zod',
+      'react-hook-form',
+      '@hookform/resolvers',
+      'lucide-react',
     ],
     registryDependencies: [
       'form',
+      'button',
       `https://react-authui.vercel.app/r/form-root-error.json`,
-      `https://react-authui.vercel.app/r/password-input.json`,
-      `https://react-authui.vercel.app/r/submit-button.json`,
     ],
   },
   {
@@ -41,34 +46,15 @@ export const components: Registry['items'] = [
     description: 'Register form with validation and loading/error states',
     files: [
       {
-        path: 'auth/components/register-form/register-form.tsx',
+        path: 'auth/components/register-form.tsx',
         type: 'registry:component',
         target: 'components/auth/register-form.tsx',
       },
     ],
     registryDependencies: [
       'form',
-      `https://react-authui.vercel.app/r/form-root-error.json`,
+      `https://react-authui.vercel.app/r/form-wrapper.json`,
       `https://react-authui.vercel.app/r/password-input.json`,
-      `https://react-authui.vercel.app/r/submit-button.json`,
-    ],
-  },
-  {
-    name: 'forgot-form',
-    type: 'registry:component',
-    title: 'Forgot Form',
-    description: 'Forgot form with validation and loading/error states',
-    files: [
-      {
-        path: 'auth/components/forgot-form/forgot-form.tsx',
-        type: 'registry:component',
-        target: 'components/auth/forgot-form.tsx',
-      },
-    ],
-    registryDependencies: [
-      'form',
-      `https://react-authui.vercel.app/r/form-root-error.json`,
-      `https://react-authui.vercel.app/r/submit-button.json`,
     ],
   },
 ];

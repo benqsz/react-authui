@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-wrapper",
+  "type": "registry:component",
+  "title": "Form Wrapper",
+  "description": "Wrapper for forms in react auth ui",
+  "dependencies": [
+    "zod",
+    "react-hook-form",
+    "@hookform/resolvers",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "form",
+    "button",
+    "https://react-authui.vercel.app/r/form-root-error.json"
+  ],
+  "files": [
+    {
+      "path": "src/registry/auth/components/form-wrapper.tsx",
+      "content": "'use client';\nimport { ReactNode } from 'react';\nimport { Loader2 } from 'lucide-react';\nimport { output, z, ZodObject } from 'zod';\nimport {\n  DefaultValues,\n  Resolver,\n  useForm,\n  UseFormReturn,\n} from 'react-hook-form';\nimport { zodResolver } from '@hookform/resolvers/zod';\nimport { Form } from '@/components/ui/form';\nimport { FormRootError } from '@/components/ui/form-root-error';\nimport { Button } from '@/components/ui/button';\n\ntype Props<T extends ZodObject<any>> = {\n  schema: T;\n  onSubmitAction: (values: z.infer<T>) => Promise<true | string>;\n  onSuccess: () => void;\n  defaultValues: DefaultValues<z.infer<T>>;\n  submitText: string;\n  children: (form: UseFormReturn<output<T>, any, output<T>>) => ReactNode;\n};\n\nfunction FormWrapper<T extends ZodObject<any>>(props: Props<T>) {\n  const {\n    schema,\n    onSubmitAction,\n    onSuccess,\n    defaultValues,\n    submitText,\n    children,\n  } = props;\n\n  const form = useForm<z.infer<T>>({\n    resolver: zodResolver(schema) as Resolver<output<T>, any, output<T>>,\n    defaultValues,\n  });\n\n  async function onSubmit(values: z.infer<typeof schema>) {\n    const response = await onSubmitAction(values);\n    if (response === typeof 'string') {\n      form.setError('root', {\n        type: 'manual',\n        message: response,\n      });\n    }\n    onSuccess();\n  }\n\n  return (\n    <Form {...form}>\n      <form onSubmit={form.handleSubmit(onSubmit)} className=\"space-y-4\">\n        {children(form)}\n        <FormRootError />\n        <Button disabled={form.formState.isSubmitting} className=\"w-full\">\n          {form.formState.isSubmitting ? (\n            <Loader2 className=\"animate-spin\" />\n          ) : (\n            submitText\n          )}\n        </Button>\n      </form>\n    </Form>\n  );\n}\n\nexport { FormWrapper };\n",
+      "type": "registry:component",
+      "target": "components/auth/form-wrapper.tsx"
+    }
+  ]
+}

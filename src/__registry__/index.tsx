@@ -31,18 +31,6 @@ export const Index: Record<string, any> ={
       type: "registry:ui",
     }],
   },
-  "submit-button": {
-    name: "submit-button",
-    title: "Submit Button",
-    description: "Button for submitting forms with loading state",
-    type: "registry:ui",
-    dependencies: ["ludcide-react"],
-    files: [{
-      path: "src/registry/auth/ui/submit-button.tsx",
-      content: `import { ComponentProps } from 'react';\nimport { Loader2 } from 'lucide-react';\nimport { Button } from '@/components/ui/button';\n\ntype Props = {\n  loading?: boolean;\n} & Omit<ComponentProps<typeof Button>, 'type'>;\n\nfunction SubmitButton({ loading = false, children, disabled, ...rest }: Props) {\n  return (\n    <Button disabled={loading || disabled} type='submit' {...rest}>\n      {loading ? (\n        <>\n          <Loader2 className='animate-spin' />\n          <span className='sr-only'>Loading</span>\n        </>\n      ) : (\n        children\n      )}\n    </Button>\n  );\n}\n\nexport { SubmitButton };\n`,
-      type: "registry:ui",
-    }],
-  },
   "auth-container": {
     name: "auth-container",
     title: "Auth container",
@@ -50,20 +38,20 @@ export const Index: Record<string, any> ={
     type: "registry:component",
     
     files: [{
-      path: "src/registry/auth/components/auth-container/auth-container.tsx",
+      path: "src/registry/auth/components/auth-container.tsx",
       content: `import { ComponentProps, ReactNode } from 'react';\nimport { cn } from '@/lib/utils';\nimport {\n  Card,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from '@/components/ui/card';\n\ntype Props = {\n  title: string;\n  description?: string;\n  footer?: ReactNode;\n  children: ReactNode;\n} & ComponentProps<'section'>;\n\nfunction AuthContainer(props: Props) {\n  const { className, title, description, footer, children, ...rest } = props;\n\n  return (\n    <section\n      className={cn(\n        'mx-auto flex size-full max-w-lg items-center justify-center p-4',\n        className,\n      )}\n      {...rest}\n    >\n      <Card className='w-full'>\n        <CardHeader>\n          <CardTitle>\n            <h1>{title}</h1>\n          </CardTitle>\n          {description && (\n            <CardDescription>\n              <p>{description}</p>\n            </CardDescription>\n          )}\n        </CardHeader>\n        <CardContent>{children}</CardContent>\n        {footer && (\n          <CardFooter className='text-muted-foreground justify-center text-center text-sm'>\n            <p>{footer}</p>\n          </CardFooter>\n        )}\n      </Card>\n    </section>\n  );\n}\n\nexport { AuthContainer };\n`,
       type: "registry:component",
     }],
   },
-  "login-form": {
-    name: "login-form",
-    title: "Login Form",
-    description: "Login form with validation and loading/error states",
+  "form-wrapper": {
+    name: "form-wrapper",
+    title: "Form Wrapper",
+    description: "Wrapper for forms in react auth ui",
     type: "registry:component",
-    
+    dependencies: ["zod", "react-hook-form", "@hookform/resolvers", "lucide-react"],
     files: [{
-      path: "src/registry/auth/components/login-form/login-form.tsx",
-      content: `'use client';\nimport { z } from 'zod';\nimport { useForm } from 'react-hook-form';\nimport { zodResolver } from '@hookform/resolvers/zod';\nimport { SubmitButton } from '@/components/ui/submit-button';\nimport { Input } from '@/components/ui/input';\nimport { PasswordInput } from '@/components/ui/password-input';\nimport {\n  Form,\n  FormControl,\n  FormField,\n  FormItem,\n  FormLabel,\n  FormMessage,\n} from '@/components/ui/form';\nimport { FormRootError } from '@/components/ui/form-root-error';\n\nconst loginSchema = z.object({\n  email: z.email(),\n  password: z.string().min(8).max(32),\n});\n\ntype Props = {\n  onSubmitAction: (\n    values: z.infer<typeof loginSchema>,\n  ) => Promise<true | string>;\n  onSuccess: () => void;\n};\n\nfunction LoginForm({ onSubmitAction, onSuccess }: Props) {\n  const form = useForm<z.infer<typeof loginSchema>>({\n    resolver: zodResolver(loginSchema),\n    defaultValues: {\n      email: '',\n      password: '',\n    },\n  });\n\n  async function onSubmit(values: z.infer<typeof loginSchema>) {\n    const response = await onSubmitAction(values);\n    if (response === typeof 'string') {\n      form.setError('root', {\n        type: 'manual',\n        message: response,\n      });\n    }\n\n    onSuccess();\n  }\n\n  return (\n    <Form {...form}>\n      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>\n        <FormField\n          control={form.control}\n          name='email'\n          render={({ field }) => (\n            <FormItem>\n              <FormLabel>E-mail</FormLabel>\n              <FormControl>\n                <Input\n                  {...field}\n                  placeholder='username@domain.com'\n                  autoComplete='email'\n                />\n              </FormControl>\n              <FormMessage />\n            </FormItem>\n          )}\n        />\n        <FormField\n          control={form.control}\n          name='password'\n          render={({ field }) => (\n            <FormItem>\n              <FormLabel>Password</FormLabel>\n              <FormControl>\n                <PasswordInput {...field} />\n              </FormControl>\n              <FormMessage />\n            </FormItem>\n          )}\n        />\n        <FormRootError />\n        <SubmitButton loading={form.formState.isSubmitting}>Login</SubmitButton>\n      </form>\n    </Form>\n  );\n}\n\nexport { LoginForm };\n`,
+      path: "src/registry/auth/components/form-wrapper.tsx",
+      content: `'use client';\nimport { ReactNode } from 'react';\nimport { Loader2 } from 'lucide-react';\nimport { output, z, ZodObject } from 'zod';\nimport {\n  DefaultValues,\n  Resolver,\n  useForm,\n  UseFormReturn,\n} from 'react-hook-form';\nimport { zodResolver } from '@hookform/resolvers/zod';\nimport { Form } from '@/components/ui/form';\nimport { FormRootError } from '@/components/ui/form-root-error';\nimport { Button } from '@/components/ui/button';\n\ntype Props<T extends ZodObject<any>> = {\n  schema: T;\n  onSubmitAction: (values: z.infer<T>) => Promise<true | string>;\n  onSuccess: () => void;\n  defaultValues: DefaultValues<z.infer<T>>;\n  submitText: string;\n  children: (form: UseFormReturn<output<T>, any, output<T>>) => ReactNode;\n};\n\nfunction FormWrapper<T extends ZodObject<any>>(props: Props<T>) {\n  const {\n    schema,\n    onSubmitAction,\n    onSuccess,\n    defaultValues,\n    submitText,\n    children,\n  } = props;\n\n  const form = useForm<z.infer<T>>({\n    resolver: zodResolver(schema) as Resolver<output<T>, any, output<T>>,\n    defaultValues,\n  });\n\n  async function onSubmit(values: z.infer<typeof schema>) {\n    const response = await onSubmitAction(values);\n    if (response === typeof 'string') {\n      form.setError('root', {\n        type: 'manual',\n        message: response,\n      });\n    }\n    onSuccess();\n  }\n\n  return (\n    <Form {...form}>\n      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>\n        {children(form)}\n        <FormRootError />\n        <Button disabled={form.formState.isSubmitting} className='w-full'>\n          {form.formState.isSubmitting ? (\n            <Loader2 className='animate-spin' />\n          ) : (\n            submitText\n          )}\n        </Button>\n      </form>\n    </Form>\n  );\n}\n\nexport { FormWrapper };\n`,
       type: "registry:component",
     }],
   },
@@ -74,20 +62,8 @@ export const Index: Record<string, any> ={
     type: "registry:component",
     
     files: [{
-      path: "src/registry/auth/components/register-form/register-form.tsx",
-      content: `'use client';\nimport { z } from 'zod';\nimport { useForm } from 'react-hook-form';\nimport { zodResolver } from '@hookform/resolvers/zod';\nimport { SubmitButton } from '@/components/ui/submit-button';\nimport { Input } from '@/components/ui/input';\nimport { PasswordInput } from '@/components/ui/password-input';\nimport {\n  Form,\n  FormControl,\n  FormField,\n  FormItem,\n  FormLabel,\n  FormMessage,\n  FormDescription,\n} from '@/components/ui/form';\nimport { FormRootError } from '@/components/ui/form-root-error';\n\nconst registerSchema = z\n  .object({\n    username: z.string().min(2).max(32),\n    email: z.email(),\n    password: z.string().min(8).max(32),\n    re_password: z.string().min(8).max(32),\n  })\n  .refine(data => data.password === data.re_password, {\n    message: 'Passwords do not match',\n  });\n\ntype Props = {\n  onSubmitAction: (\n    values: z.infer<typeof registerSchema>,\n  ) => Promise<true | string>;\n  onSuccess: () => void;\n};\n\nfunction RegisterForm({ onSubmitAction, onSuccess }: Props) {\n  const form = useForm<z.infer<typeof registerSchema>>({\n    resolver: zodResolver(registerSchema),\n    defaultValues: {\n      username: '',\n      email: '',\n      password: '',\n      re_password: '',\n    },\n  });\n\n  async function onSubmit(values: z.infer<typeof registerSchema>) {\n    const response = await onSubmitAction(values);\n    if (response === typeof 'string') {\n      form.setError('root', {\n        type: 'manual',\n        message: response,\n      });\n    }\n\n    onSuccess();\n  }\n\n  return (\n    <Form {...form}>\n      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>\n        <FormField\n          control={form.control}\n          name='username'\n          render={({ field }) => (\n            <FormItem>\n              <FormLabel>Username</FormLabel>\n              <FormControl>\n                <Input placeholder='admin' autoComplete='username' {...field} />\n              </FormControl>\n              <FormDescription>\n                This is your public display name.\n              </FormDescription>\n              <FormMessage />\n            </FormItem>\n          )}\n        />\n        <FormField\n          control={form.control}\n          name='email'\n          render={({ field }) => (\n            <FormItem>\n              <FormLabel>E-mail</FormLabel>\n              <FormControl>\n                <Input\n                  {...field}\n                  placeholder='username@domain.com'\n                  autoComplete='email'\n                />\n              </FormControl>\n              <FormMessage />\n            </FormItem>\n          )}\n        />\n        <FormField\n          control={form.control}\n          name='password'\n          render={({ field }) => (\n            <FormItem>\n              <FormLabel>Password</FormLabel>\n              <FormControl>\n                <PasswordInput {...field} />\n              </FormControl>\n              <FormMessage />\n            </FormItem>\n          )}\n        />\n        <FormField\n          control={form.control}\n          name='re_password'\n          render={({ field }) => (\n            <FormItem>\n              <FormLabel>Confirm password</FormLabel>\n              <FormControl>\n                <PasswordInput {...field} />\n              </FormControl>\n              <FormMessage />\n            </FormItem>\n          )}\n        />\n        <FormRootError />\n        <SubmitButton loading={form.formState.isSubmitting}>\n          Register\n        </SubmitButton>\n      </form>\n    </Form>\n  );\n}\n\nexport { RegisterForm };\n`,
-      type: "registry:component",
-    }],
-  },
-  "forgot-form": {
-    name: "forgot-form",
-    title: "Forgot Form",
-    description: "Forgot form with validation and loading/error states",
-    type: "registry:component",
-    
-    files: [{
-      path: "src/registry/auth/components/forgot-form/forgot-form.tsx",
-      content: `'use client';\nimport { z } from 'zod';\nimport { useForm } from 'react-hook-form';\nimport { zodResolver } from '@hookform/resolvers/zod';\nimport { SubmitButton } from '@/components/ui/submit-button';\nimport { Input } from '@/components/ui/input';\nimport {\n  Form,\n  FormControl,\n  FormField,\n  FormItem,\n  FormLabel,\n  FormMessage,\n} from '@/components/ui/form';\nimport { FormRootError } from '@/components/ui/form-root-error';\n\nconst forgotSchema = z.object({\n  email: z.email(),\n});\n\ntype Props = {\n  onSubmitAction: (\n    values: z.infer<typeof forgotSchema>,\n  ) => Promise<true | string>;\n  onSuccess: () => void;\n};\n\nfunction ForgotForm({ onSubmitAction, onSuccess }: Props) {\n  const form = useForm<z.infer<typeof forgotSchema>>({\n    resolver: zodResolver(forgotSchema),\n    defaultValues: {\n      email: '',\n    },\n  });\n\n  async function onSubmit(values: z.infer<typeof forgotSchema>) {\n    const response = await onSubmitAction(values);\n    if (response === typeof 'string') {\n      form.setError('root', {\n        type: 'manual',\n        message: response,\n      });\n    }\n\n    onSuccess();\n  }\n\n  return (\n    <Form {...form}>\n      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>\n        <FormField\n          control={form.control}\n          name='email'\n          render={({ field }) => (\n            <FormItem>\n              <FormLabel>E-mail</FormLabel>\n              <FormControl>\n                <Input\n                  {...field}\n                  placeholder='username@domain.com'\n                  autoComplete='email'\n                />\n              </FormControl>\n              <FormMessage />\n            </FormItem>\n          )}\n        />\n        <FormRootError />\n        <SubmitButton loading={form.formState.isSubmitting}>\n          Send reset link\n        </SubmitButton>\n      </form>\n    </Form>\n  );\n}\n\nexport { ForgotForm };\n`,
+      path: "src/registry/auth/components/register-form.tsx",
+      content: `'use client';\nimport { z } from 'zod';\nimport { Input } from '@/components/ui/input';\nimport { PasswordInput } from '@/components/ui/password-input';\nimport {\n  FormControl,\n  FormDescription,\n  FormField,\n  FormItem,\n  FormLabel,\n  FormMessage,\n} from '@/components/ui/form';\nimport { FormWrapper } from '@/registry/auth/components/form-wrapper';\n\nconst registerSchema = z\n  .object({\n    username: z.string().min(2).max(32),\n    email: z.email(),\n    password: z.string().min(8).max(32),\n    re_password: z.string().min(8).max(32),\n  })\n  .refine(data => data.password === data.re_password, {\n    message: 'Passwords do not match',\n  });\n\ntype Props = {\n  onSubmitAction: (\n    values: z.infer<typeof registerSchema>,\n  ) => Promise<true | string>;\n  onSuccess: () => void;\n};\n\nfunction RegisterForm({ onSubmitAction, onSuccess }: Props) {\n  return (\n    <FormWrapper\n      schema={registerSchema}\n      onSubmitAction={onSubmitAction}\n      onSuccess={onSuccess}\n      submitText='Create account'\n      defaultValues={{\n        username: '',\n        email: '',\n        password: '',\n        re_password: '',\n      }}\n    >\n      {form => (\n        <>\n          <FormField\n            control={form.control}\n            name='username'\n            render={({ field }) => (\n              <FormItem>\n                <FormLabel>Username</FormLabel>\n                <FormControl>\n                  <Input\n                    placeholder='admin'\n                    autoComplete='username'\n                    {...field}\n                  />\n                </FormControl>\n                <FormDescription>\n                  This is your public display name.\n                </FormDescription>\n                <FormMessage />\n              </FormItem>\n            )}\n          />\n          <FormField\n            control={form.control}\n            name='email'\n            render={({ field }) => (\n              <FormItem>\n                <FormLabel>E-mail</FormLabel>\n                <FormControl>\n                  <Input\n                    {...field}\n                    placeholder='username@domain.com'\n                    autoComplete='email'\n                  />\n                </FormControl>\n                <FormMessage />\n              </FormItem>\n            )}\n          />\n          <FormField\n            control={form.control}\n            name='password'\n            render={({ field }) => (\n              <FormItem>\n                <FormLabel>Password</FormLabel>\n                <FormControl>\n                  <PasswordInput {...field} />\n                </FormControl>\n                <FormMessage />\n              </FormItem>\n            )}\n          />\n          <FormField\n            control={form.control}\n            name='re_password'\n            render={({ field }) => (\n              <FormItem>\n                <FormLabel>Confirm password</FormLabel>\n                <FormControl>\n                  <PasswordInput {...field} />\n                </FormControl>\n                <FormMessage />\n              </FormItem>\n            )}\n          />\n        </>\n      )}\n    </FormWrapper>\n  );\n}\n\nexport { RegisterForm };\n`,
       type: "registry:component",
     }],
   },
@@ -105,20 +81,6 @@ export const Index: Record<string, any> ={
     component: React.lazy(() => import("@/registry/auth/examples/password-input-demo.tsx")),
     source: `import { PasswordInput } from '@/components/ui/password-input';\n\nexport default function PasswordInputDemo() {\n  return <PasswordInput />;\n}\n`,
   },
-  "submit-button-demo": {
-    name: "submit-button-demo",
-    title: "",
-    description: "",
-    type: "registry:example",
-    
-    files: [{
-      path: "src/registry/auth/examples/submit-button-demo.tsx",
-      content: `'use client';\nimport { SubmitButton } from '@/components/ui/submit-button';\nimport { useState } from 'react';\n\nexport default function PasswordInputDemo() {\n  const [loading, setLoading] = useState(false);\n  return (\n    <SubmitButton\n      loading={loading}\n      onClick={async () => {\n        setLoading(true);\n        await new Promise(resolve => setTimeout(resolve, 3000));\n        setLoading(false);\n      }}\n    >\n      Submit\n    </SubmitButton>\n  );\n}\n`,
-      type: "registry:example",
-    }],
-    component: React.lazy(() => import("@/registry/auth/examples/submit-button-demo.tsx")),
-    source: `'use client';\nimport { SubmitButton } from '@/components/ui/submit-button';\nimport { useState } from 'react';\n\nexport default function PasswordInputDemo() {\n  const [loading, setLoading] = useState(false);\n  return (\n    <SubmitButton\n      loading={loading}\n      onClick={async () => {\n        setLoading(true);\n        await new Promise(resolve => setTimeout(resolve, 3000));\n        setLoading(false);\n      }}\n    >\n      Submit\n    </SubmitButton>\n  );\n}\n`,
-  },
   "auth-container-demo": {
     name: "auth-container-demo",
     title: "",
@@ -127,25 +89,11 @@ export const Index: Record<string, any> ={
     
     files: [{
       path: "src/registry/auth/examples/auth-container-demo.tsx",
-      content: `import { AuthContainer } from '@/components/auth/auth-container';\n\nexport default function AuthContainerDemo() {\n  return (\n    <AuthContainer\n      title='Welcome to Acme'\n      description='This is very important component'\n      footer={\n        <>\n          Already have an account?{' '}\n          <a href='#' className='underline'>\n            Sign in\n          </a>\n        </>\n      }\n    >\n      auth component\n    </AuthContainer>\n  );\n}\n`,
+      content: `import { AuthContainer } from '@/registry/auth/components/auth-container';\n\nexport default function AuthContainerDemo() {\n  return (\n    <AuthContainer\n      title='Welcome to Acme'\n      description='This is very important component'\n      footer={\n        <>\n          Already have an account?{' '}\n          <a href='#' className='underline'>\n            Sign in\n          </a>\n        </>\n      }\n    >\n      auth component\n    </AuthContainer>\n  );\n}\n`,
       type: "registry:example",
     }],
     component: React.lazy(() => import("@/registry/auth/examples/auth-container-demo.tsx")),
-    source: `import { AuthContainer } from '@/components/auth/auth-container';\n\nexport default function AuthContainerDemo() {\n  return (\n    <AuthContainer\n      title='Welcome to Acme'\n      description='This is very important component'\n      footer={\n        <>\n          Already have an account?{' '}\n          <a href='#' className='underline'>\n            Sign in\n          </a>\n        </>\n      }\n    >\n      auth component\n    </AuthContainer>\n  );\n}\n`,
-  },
-  "login-form-demo": {
-    name: "login-form-demo",
-    title: "",
-    description: "",
-    type: "registry:example",
-    
-    files: [{
-      path: "src/registry/auth/examples/login-form-demo.tsx",
-      content: `import { toast } from 'sonner';\nimport { AuthContainer } from '@/components/auth/auth-container';\nimport { LoginForm } from '@/components/auth/login-form';\n\nexport default function LoginFormDemo() {\n  return (\n    <AuthContainer title='Sign in'>\n      <LoginForm\n        onSubmitAction={async () => {\n          return await new Promise(resolve =>\n            setTimeout(() => resolve(true), 3 * 1000),\n          );\n        }}\n        onSuccess={() => {\n          toast.success('Login successfull');\n        }}\n      />\n    </AuthContainer>\n  );\n}\n`,
-      type: "registry:example",
-    }],
-    component: React.lazy(() => import("@/registry/auth/examples/login-form-demo.tsx")),
-    source: `import { toast } from 'sonner';\nimport { AuthContainer } from '@/components/auth/auth-container';\nimport { LoginForm } from '@/components/auth/login-form';\n\nexport default function LoginFormDemo() {\n  return (\n    <AuthContainer title='Sign in'>\n      <LoginForm\n        onSubmitAction={async () => {\n          return await new Promise(resolve =>\n            setTimeout(() => resolve(true), 3 * 1000),\n          );\n        }}\n        onSuccess={() => {\n          toast.success('Login successfull');\n        }}\n      />\n    </AuthContainer>\n  );\n}\n`,
+    source: `import { AuthContainer } from '@/registry/auth/components/auth-container';\n\nexport default function AuthContainerDemo() {\n  return (\n    <AuthContainer\n      title='Welcome to Acme'\n      description='This is very important component'\n      footer={\n        <>\n          Already have an account?{' '}\n          <a href='#' className='underline'>\n            Sign in\n          </a>\n        </>\n      }\n    >\n      auth component\n    </AuthContainer>\n  );\n}\n`,
   },
   "register-form-demo": {
     name: "register-form-demo",
@@ -155,24 +103,10 @@ export const Index: Record<string, any> ={
     
     files: [{
       path: "src/registry/auth/examples/register-form-demo.tsx",
-      content: `import { toast } from 'sonner';\nimport { AuthContainer } from '@/components/auth/auth-container';\nimport { RegisterForm } from '@/components/auth/register-form';\n\nexport default function RegisterFormDemo() {\n  return (\n    <AuthContainer title='Create an account'>\n      <RegisterForm\n        onSubmitAction={async () => {\n          return await new Promise(resolve =>\n            setTimeout(() => resolve(true), 3 * 1000),\n          );\n        }}\n        onSuccess={() => {\n          toast.success('Register successfull');\n        }}\n      />\n    </AuthContainer>\n  );\n}\n`,
+      content: `import { toast } from 'sonner';\nimport { AuthContainer } from '@/registry/auth/components/auth-container';\nimport { RegisterForm } from '@/registry/auth/components/register-form';\n\nexport default function RegisterFormDemo() {\n  return (\n    <AuthContainer title='Create an account'>\n      <RegisterForm\n        onSubmitAction={async () => {\n          return await new Promise(resolve =>\n            setTimeout(() => resolve(true), 3 * 1000),\n          );\n        }}\n        onSuccess={() => {\n          toast.success('Register successfull');\n        }}\n      />\n    </AuthContainer>\n  );\n}\n`,
       type: "registry:example",
     }],
     component: React.lazy(() => import("@/registry/auth/examples/register-form-demo.tsx")),
-    source: `import { toast } from 'sonner';\nimport { AuthContainer } from '@/components/auth/auth-container';\nimport { RegisterForm } from '@/components/auth/register-form';\n\nexport default function RegisterFormDemo() {\n  return (\n    <AuthContainer title='Create an account'>\n      <RegisterForm\n        onSubmitAction={async () => {\n          return await new Promise(resolve =>\n            setTimeout(() => resolve(true), 3 * 1000),\n          );\n        }}\n        onSuccess={() => {\n          toast.success('Register successfull');\n        }}\n      />\n    </AuthContainer>\n  );\n}\n`,
-  },
-  "forgot-form-demo": {
-    name: "forgot-form-demo",
-    title: "",
-    description: "",
-    type: "registry:example",
-    
-    files: [{
-      path: "src/registry/auth/examples/forgot-form-demo.tsx",
-      content: `import { toast } from 'sonner';\nimport { AuthContainer } from '@/components/auth/auth-container';\nimport { ForgotForm } from '@/components/auth/forgot-form';\n\nexport default function ForgotFormDemo() {\n  return (\n    <AuthContainer\n      title='Forgot password?'\n      description='Enter your email and we will send you reset link'\n    >\n      <ForgotForm\n        onSubmitAction={async () => {\n          return await new Promise(resolve =>\n            setTimeout(() => resolve(true), 3 * 1000),\n          );\n        }}\n        onSuccess={() => {\n          toast.success('Login successfull');\n        }}\n      />\n    </AuthContainer>\n  );\n}\n`,
-      type: "registry:example",
-    }],
-    component: React.lazy(() => import("@/registry/auth/examples/forgot-form-demo.tsx")),
-    source: `import { toast } from 'sonner';\nimport { AuthContainer } from '@/components/auth/auth-container';\nimport { ForgotForm } from '@/components/auth/forgot-form';\n\nexport default function ForgotFormDemo() {\n  return (\n    <AuthContainer\n      title='Forgot password?'\n      description='Enter your email and we will send you reset link'\n    >\n      <ForgotForm\n        onSubmitAction={async () => {\n          return await new Promise(resolve =>\n            setTimeout(() => resolve(true), 3 * 1000),\n          );\n        }}\n        onSuccess={() => {\n          toast.success('Login successfull');\n        }}\n      />\n    </AuthContainer>\n  );\n}\n`,
+    source: `import { toast } from 'sonner';\nimport { AuthContainer } from '@/registry/auth/components/auth-container';\nimport { RegisterForm } from '@/registry/auth/components/register-form';\n\nexport default function RegisterFormDemo() {\n  return (\n    <AuthContainer title='Create an account'>\n      <RegisterForm\n        onSubmitAction={async () => {\n          return await new Promise(resolve =>\n            setTimeout(() => resolve(true), 3 * 1000),\n          );\n        }}\n        onSuccess={() => {\n          toast.success('Register successfull');\n        }}\n      />\n    </AuthContainer>\n  );\n}\n`,
   },
 }

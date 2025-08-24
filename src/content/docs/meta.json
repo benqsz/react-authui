@@ -6,11 +6,8 @@
     "installation",
     "---UI---",
     "ui/password-input",
-    "ui/submit-button",
     "---Components---",
     "components/auth-container",
-    "components/login-form",
-    "components/register-form",
-    "components/forgot-form"
+    "components/register-form"
   ]
 }

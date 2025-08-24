@@ -1,6 +1,6 @@
 import { toast } from 'sonner';
-import { AuthContainer } from '@/components/auth/auth-container';
-import { RegisterForm } from '@/components/auth/register-form';
+import { AuthContainer } from '@/registry/auth/components/auth-container';
+import { RegisterForm } from '@/registry/auth/components/register-form';
 
 export default function RegisterFormDemo() {
   return (

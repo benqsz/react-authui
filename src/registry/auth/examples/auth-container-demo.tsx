@@ -1,4 +1,4 @@
-import { AuthContainer } from '@/components/auth/auth-container';
+import { AuthContainer } from '@/registry/auth/components/auth-container';
 
 export default function AuthContainerDemo() {
   return (
