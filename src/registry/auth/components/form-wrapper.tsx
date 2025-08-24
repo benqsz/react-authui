@@ -2,12 +2,7 @@
 import { ReactNode } from 'react';
 import { Loader2 } from 'lucide-react';
 import { output, z, ZodObject } from 'zod';
-import {
-  DefaultValues,
-  Resolver,
-  useForm,
-  UseFormReturn,
-} from 'react-hook-form';
+import { DefaultValues, Resolver, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Form } from '@/components/ui/form';
 import { FormRootError } from '@/components/ui/form-root-error';
@@ -19,7 +14,7 @@ type Props<T extends ZodObject<any>> = {
   onSuccess: () => void;
   defaultValues: DefaultValues<z.infer<T>>;
   submitText: string;
-  children: (form: UseFormReturn<output<T>, any, output<T>>) => ReactNode;
+  children: (form: ReturnType<typeof useForm<z.infer<T>>>) => ReactNode;
 };
 
 function FormWrapper<T extends ZodObject<any>>(props: Props<T>) {
