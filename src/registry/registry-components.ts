@@ -40,24 +40,6 @@ export const components: Registry['items'] = [
     type: 'registry:component',
   },
   {
-    description: 'Register form with validation and loading/error states',
-    files: [
-      {
-        path: 'auth/components/register-form.tsx',
-        target: 'components/auth/register-form.tsx',
-        type: 'registry:component',
-      },
-    ],
-    name: 'register-form',
-    registryDependencies: [
-      'form',
-      `https://react-authui.vercel.app/r/form-wrapper.json`,
-      `https://react-authui.vercel.app/r/password-input.json`,
-    ],
-    title: 'Register Form',
-    type: 'registry:component',
-  },
-  {
     dependencies: ['lucide-react'],
     description: 'User avatar with dropdown menu for account and logout',
     files: [

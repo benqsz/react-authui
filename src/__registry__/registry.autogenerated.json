@@ -80,24 +80,6 @@
       ]
     },
     {
-      "name": "register-form",
-      "type": "registry:component",
-      "title": "Register Form",
-      "description": "Register form with validation and loading/error states",
-      "registryDependencies": [
-        "form",
-        "https://react-authui.vercel.app/r/form-wrapper.json",
-        "https://react-authui.vercel.app/r/password-input.json"
-      ],
-      "files": [
-        {
-          "path": "src/registry/auth/components/register-form.tsx",
-          "type": "registry:component",
-          "target": "components/auth/register-form.tsx"
-        }
-      ]
-    },
-    {
       "name": "user-dropdown",
       "type": "registry:component",
       "title": "User Dropdown",

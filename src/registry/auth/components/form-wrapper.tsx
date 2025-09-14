@@ -9,9 +9,14 @@ import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { FormRootError } from '@/registry/auth/ui/form-root-error';
 
+type SubmitAction<T> = (values: T) => Promise<{
+  success: boolean;
+  message?: string;
+}>;
+
 type Props<T extends ZodObject<any>> = {
   schema: T;
-  submitAction: (values: z.infer<T>) => Promise<true | string>;
+  submitAction: SubmitAction<z.infer<T>>;
   successAction: () => void;
   submitText: string;
   children: (form: ReturnType<typeof useForm<z.infer<T>>>) => ReactNode;
@@ -56,10 +61,10 @@ function FormWrapper<T extends ZodObject<any>>(props: Props<T>) {
   });
 
   async function onSubmit(values: z.infer<typeof schema>) {
-    const response = await submitAction(values);
-    if (response === typeof 'string') {
+    const { success, message } = await submitAction(values);
+    if (!success) {
       form.setError('root', {
-        message: response,
+        message: message || 'Something went wrong',
         type: 'manual',
       });
     }

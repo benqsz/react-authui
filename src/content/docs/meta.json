@@ -1,1 +1,11 @@
-{"root":true,"pages":["index","---UI---","ui/password-input","---Components---","components/auth-container","components/register-form","components/user-dropdown"]}
+{
+  "root": true,
+  "pages": [
+    "index",
+    "---UI---",
+    "ui/password-input",
+    "---Components---",
+    "components/auth-container",
+    "components/user-dropdown"
+  ]
+}
