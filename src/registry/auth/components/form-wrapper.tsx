@@ -13,23 +13,45 @@ type Props<T extends ZodObject<any>> = {
   schema: T;
   submitAction: (values: z.infer<T>) => Promise<true | string>;
   successAction: () => void;
-  defaultValues: DefaultValues<z.infer<T>>;
   submitText: string;
   children: (form: ReturnType<typeof useForm<z.infer<T>>>) => ReactNode;
 };
 
+function generateDefaultValues<T extends ZodObject<any>>(
+  schema: T,
+): DefaultValues<z.infer<T>> {
+  const defaults: any = {};
+
+  const shape = schema.shape;
+  for (const key in shape) {
+    const fieldType: string = shape[key].def.type;
+
+    switch (fieldType) {
+      case 'string':
+        defaults[key] = '';
+        break;
+      case 'number':
+        defaults[key] = 0;
+        break;
+      case 'boolean':
+        defaults[key] = false;
+        break;
+      case 'array':
+        defaults[key] = [];
+        break;
+      default:
+        defaults[key] = '';
+    }
+  }
+
+  return defaults;
+}
+
 function FormWrapper<T extends ZodObject<any>>(props: Props<T>) {
-  const {
-    children,
-    defaultValues,
-    schema,
-    submitAction,
-    submitText,
-    successAction,
-  } = props;
+  const { children, schema, submitAction, submitText, successAction } = props;
 
   const form = useForm<z.infer<T>>({
-    defaultValues,
+    defaultValues: generateDefaultValues(schema),
     resolver: zodResolver(schema) as Resolver<output<T>, any, output<T>>,
   });
 

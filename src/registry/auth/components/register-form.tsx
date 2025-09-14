@@ -37,12 +37,6 @@ function RegisterForm({ submitAction, successAction }: Props) {
       submitAction={submitAction}
       successAction={successAction}
       submitText="Create account"
-      defaultValues={{
-        email: '',
-        password: '',
-        re_password: '',
-        username: '',
-      }}
     >
       {form => (
         <>
