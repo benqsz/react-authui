@@ -1,26 +1,18 @@
-import { notFound } from 'next/navigation';
+import { createRelativeLink } from 'fumadocs-ui/mdx';
 import {
   DocsBody,
   DocsDescription,
   DocsPage,
   DocsTitle,
 } from 'fumadocs-ui/page';
-import { createRelativeLink } from 'fumadocs-ui/mdx';
-
-import { source } from '@/lib/source';
+import { notFound } from 'next/navigation';
 import { getMDXComponents } from '@/components/mdx';
+import { source } from '@/lib/source';
 
-type Props = {
-  params: Promise<{ slug?: string[] }>;
-};
-
-export default async function Page({ params }: Props) {
+export default async function Page({ params }: PageProps<'/docs/[[...slug]]'>) {
   const { slug } = await params;
   const page = source.getPage(slug);
-  if (!page) {
-    notFound();
-  }
-
+  if (!page) notFound();
   const MDX = page.data.body;
 
   return (

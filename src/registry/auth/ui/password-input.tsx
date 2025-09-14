@@ -1,8 +1,8 @@
 'use client';
-import { ComponentProps, useState } from 'react';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
-import { Input } from '@/components/ui/input';
+import { ComponentProps, useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 type Props = Omit<ComponentProps<typeof Input>, 'type'>;
 

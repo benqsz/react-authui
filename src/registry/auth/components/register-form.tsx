@@ -1,7 +1,5 @@
 'use client';
 import { z } from 'zod';
-import { Input } from '@/components/ui/input';
-import { PasswordInput } from '@/components/ui/password-input';
 import {
   FormControl,
   FormDescription,
@@ -10,14 +8,16 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { FormWrapper } from '@/components/auth/form-wrapper';
+import { Input } from '@/components/ui/input';
+import { FormWrapper } from '@/registry/auth/components/form-wrapper';
+import { PasswordInput } from '@/registry/auth/ui/password-input';
 
 const registerSchema = z
   .object({
-    username: z.string().min(2).max(32),
     email: z.email(),
     password: z.string().min(8).max(32),
     re_password: z.string().min(8).max(32),
+    username: z.string().min(2).max(32),
   })
   .refine(data => data.password === data.re_password, {
     message: 'Passwords do not match',
@@ -38,10 +38,10 @@ function RegisterForm({ submitAction, successAction }: Props) {
       successAction={successAction}
       submitText="Create account"
       defaultValues={{
-        username: '',
         email: '',
         password: '',
         re_password: '',
+        username: '',
       }}
     >
       {form => (

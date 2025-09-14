@@ -3,7 +3,7 @@ type Props = {
   className?: string;
 };
 
-function Logo({ size = 32, className }: Props) {
+function Logo({ className, size = 32 }: Props) {
   return (
     <svg
       role="img"
@@ -21,9 +21,9 @@ function Logo({ size = 32, className }: Props) {
         style={{
           fill: 'none',
           stroke: 'currentColor',
-          strokeWidth: 2,
           strokeLinecap: 'round',
           strokeLinejoin: 'round',
+          strokeWidth: 2,
         }}
         transform="matrix(4.15918 0 0 4.15918 -12.478 -4.172)"
       />
@@ -32,17 +32,17 @@ function Logo({ size = 32, className }: Props) {
         x={87.019}
         y={191.448}
         style={{
+          direction: 'ltr',
+          fill: 'currentColor',
+          fontFamily: '&quot',
+          fontSize: '35.2778px',
           fontStyle: 'italic',
           fontWeight: 900,
-          fontSize: '35.2778px',
-          fontFamily: '&quot',
-          textAlign: 'start',
-          direction: 'ltr',
-          textAnchor: 'start',
-          fill: 'currentColor',
           stroke: 'currentColor',
-          userSelect: 'none',
           strokeWidth: 0,
+          textAlign: 'start',
+          textAnchor: 'start',
+          userSelect: 'none',
         }}
         transform="translate(-67.745 -133.085)"
       >
@@ -50,12 +50,12 @@ function Logo({ size = 32, className }: Props) {
           x={87.019}
           y={191.448}
           style={{
+            fontFamily: 'Lato',
+            fontSize: '35.2778px',
+            fontStretch: 'normal',
             fontStyle: 'normal',
             fontVariant: 'normal',
             fontWeight: 700,
-            fontStretch: 'normal',
-            fontSize: '35.2778px',
-            fontFamily: 'Lato',
             strokeWidth: 0,
           }}
         >

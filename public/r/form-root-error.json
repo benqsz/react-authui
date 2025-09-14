@@ -4,8 +4,12 @@
   "type": "registry:ui",
   "title": "Form Root Error",
   "description": "Show errors from root with use-form-hook",
-  "dependencies": ["react-hook-form"],
-  "registryDependencies": ["form"],
+  "dependencies": [
+    "react-hook-form"
+  ],
+  "registryDependencies": [
+    "form"
+  ],
   "files": [
     {
       "path": "src/registry/auth/ui/form-root-error.tsx",

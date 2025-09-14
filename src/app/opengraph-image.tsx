@@ -1,8 +1,8 @@
 import { ImageResponse } from 'next/og';
 
 export const size = {
-  width: 1200,
   height: 630,
+  width: 1200,
 };
 
 export const alt = 'React Auth UI';
@@ -14,16 +14,16 @@ export default async function Image() {
     (
       <div
         style={{
-          width: '100%',
-          height: '100%',
-          color: 'white',
-          background: 'black',
-          display: 'flex',
           alignItems: 'center',
+          background: 'black',
+          color: 'white',
+          display: 'flex',
+          height: '100%',
           justifyContent: 'center',
+          width: '100%',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div style={{ alignItems: 'center', display: 'flex' }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="256"
@@ -56,7 +56,7 @@ export default async function Image() {
             </g>
           </svg>
         </div>
-        <div style={{ marginLeft: 100, fontSize: 80, fontWeight: 700 }}>
+        <div style={{ fontSize: 80, fontWeight: 700, marginLeft: 100 }}>
           REACT AUTH UI
         </div>
       </div>

@@ -1,5 +1,8 @@
-import { clsx, type ClassValue } from 'clsx';
+import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+
+export const getURL =
+  process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

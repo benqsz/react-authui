@@ -1,12 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-import { ReactNode } from 'react';
-import { Loader2 } from 'lucide-react';
-import { output, z, ZodObject } from 'zod';
-import { DefaultValues, Resolver, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Form } from '@/components/ui/form';
-import { FormRootError } from '@/components/ui/form-root-error';
+import { Loader2 } from 'lucide-react';
+import { ReactNode } from 'react';
+import { DefaultValues, Resolver, useForm } from 'react-hook-form';
+import { output, z, ZodObject } from 'zod';
 import { Button } from '@/components/ui/button';
+import { Form } from '@/components/ui/form';
+import { FormRootError } from '@/registry/auth/ui/form-root-error';
 
 type Props<T extends ZodObject<any>> = {
   schema: T;
@@ -19,25 +20,25 @@ type Props<T extends ZodObject<any>> = {
 
 function FormWrapper<T extends ZodObject<any>>(props: Props<T>) {
   const {
+    children,
+    defaultValues,
     schema,
     submitAction,
-    successAction,
-    defaultValues,
     submitText,
-    children,
+    successAction,
   } = props;
 
   const form = useForm<z.infer<T>>({
-    resolver: zodResolver(schema) as Resolver<output<T>, any, output<T>>,
     defaultValues,
+    resolver: zodResolver(schema) as Resolver<output<T>, any, output<T>>,
   });
 
   async function onSubmit(values: z.infer<typeof schema>) {
     const response = await submitAction(values);
     if (response === typeof 'string') {
       form.setError('root', {
-        type: 'manual',
         message: response,
+        type: 'manual',
       });
     }
     successAction();

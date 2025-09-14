@@ -1,10 +1,8 @@
-import type { Registry } from 'shadcn/registry';
+import type { Registry } from 'shadcn/schema';
 
 export const ui: Registry['items'] = [
   {
-    name: 'form-root-error',
-    type: 'registry:ui',
-    title: 'Form Root Error',
+    dependencies: ['react-hook-form'],
     description: 'Show errors from root with use-form-hook',
     files: [
       {
@@ -12,13 +10,13 @@ export const ui: Registry['items'] = [
         type: 'registry:ui',
       },
     ],
-    dependencies: ['react-hook-form'],
+    name: 'form-root-error',
     registryDependencies: ['form'],
+    title: 'Form Root Error',
+    type: 'registry:ui',
   },
   {
-    name: 'password-input',
-    type: 'registry:ui',
-    title: 'Password Input',
+    dependencies: ['lucide-react'],
     description: 'Input with visibility toggle',
     files: [
       {
@@ -26,7 +24,9 @@ export const ui: Registry['items'] = [
         type: 'registry:ui',
       },
     ],
-    dependencies: ['lucide-react'],
+    name: 'password-input',
     registryDependencies: ['input', 'button'],
+    title: 'Password Input',
+    type: 'registry:ui',
   },
 ];

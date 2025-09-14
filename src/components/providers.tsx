@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import { RootProvider } from 'fumadocs-ui/provider';
 import { Toaster } from '@/components/ui/sonner';
+import { RootProvider } from 'fumadocs-ui/provider';
 
 type Props = {
   children: ReactNode;

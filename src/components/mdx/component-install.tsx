@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Tabs, TabsList, TabsContent, TabsTrigger } from '@/components/ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 type Props = {
   children: ReactNode;
@@ -25,4 +25,4 @@ function Manual({ children }: Props) {
   return <TabsContent value="manual">{children}</TabsContent>;
 }
 
-export { ComponentInstall, CLI, Manual };
+export { CLI, ComponentInstall, Manual };

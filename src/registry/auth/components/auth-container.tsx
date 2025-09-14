@@ -1,5 +1,4 @@
 import { ComponentProps, ReactNode } from 'react';
-import { cn } from '@/lib/utils';
 import {
   Card,
   CardContent,
@@ -8,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 type Props = {
   title: string;
@@ -17,7 +17,7 @@ type Props = {
 } & ComponentProps<'section'>;
 
 function AuthContainer(props: Props) {
-  const { className, title, description, footer, children, ...rest } = props;
+  const { children, className, description, footer, title, ...rest } = props;
 
   return (
     <section

@@ -1,10 +1,7 @@
-import type { Registry } from 'shadcn/registry';
+import type { Registry } from 'shadcn/schema';
 
 export const examples: Registry['items'] = [
   {
-    name: 'password-input-demo',
-    type: 'registry:example',
-    title: '',
     description: '',
     files: [
       {
@@ -12,14 +9,14 @@ export const examples: Registry['items'] = [
         type: 'registry:example',
       },
     ],
+    name: 'password-input-demo',
     registryDependencies: [
       `https://react-authui.vercel.app/r/password-input.json`,
     ],
+    title: '',
+    type: 'registry:example',
   },
   {
-    name: 'auth-container-demo',
-    type: 'registry:example',
-    title: '',
     description: '',
     files: [
       {
@@ -27,14 +24,14 @@ export const examples: Registry['items'] = [
         type: 'registry:example',
       },
     ],
+    name: 'auth-container-demo',
     registryDependencies: [
       `https://react-authui.vercel.app/r/auth-container.json`,
     ],
+    title: '',
+    type: 'registry:example',
   },
   {
-    name: 'register-form-demo',
-    type: 'registry:example',
-    title: '',
     description: '',
     files: [
       {
@@ -42,14 +39,14 @@ export const examples: Registry['items'] = [
         type: 'registry:example',
       },
     ],
+    name: 'register-form-demo',
     registryDependencies: [
       `https://react-authui.vercel.app/r/register-form.json`,
     ],
+    title: '',
+    type: 'registry:example',
   },
   {
-    name: 'user-dropdown-demo',
-    type: 'registry:example',
-    title: '',
     description: '',
     files: [
       {
@@ -57,8 +54,11 @@ export const examples: Registry['items'] = [
         type: 'registry:example',
       },
     ],
+    name: 'user-dropdown-demo',
     registryDependencies: [
       `https://react-authui.vercel.app/r/user-dropdown.json`,
     ],
+    title: '',
+    type: 'registry:example',
   },
 ];

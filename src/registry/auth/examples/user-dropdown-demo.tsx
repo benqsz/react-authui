@@ -1,5 +1,5 @@
 import { toast } from 'sonner';
-import { UserDropdown } from '@/components/auth/user-dropdown';
+import { UserDropdown } from '@/registry/auth/components/user-dropdown';
 
 export default function UserDropdownDemo() {
   return (

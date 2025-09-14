@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import fs from 'fs';
 import path from 'path';
-
 import { Index } from '@/__registry__';
 import { capitalize } from '@/lib/utils';
 
@@ -81,8 +81,8 @@ Object.entries(Index).forEach(([key, item]) => {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, mdxContent, 'utf8');
   newDocs.push({
-    type,
     item: item.name,
+    type,
   });
   console.log(`Adding: ${item.name}.mdx`);
 });
@@ -91,7 +91,7 @@ const meta: Meta = JSON.parse(fs.readFileSync(META_PATH, 'utf-8'));
 
 function groupDocsByType(docs: NewDoc[]) {
   const grouped = docs.reduce(
-    (acc, { type, item }) => {
+    (acc, { item, type }) => {
       (acc[type] ||= []).push(`${type}/${item}`);
       return acc;
     },

@@ -1,75 +1,75 @@
-import type { Registry } from 'shadcn/registry';
+import type { Registry } from 'shadcn/schema';
 
 export const components: Registry['items'] = [
   {
-    name: 'auth-container',
-    type: 'registry:component',
-    title: 'Auth container',
     description: 'Card container for all auth components',
     files: [
       {
         path: 'auth/components/auth-container.tsx',
-        type: 'registry:component',
         target: 'components/auth/auth-container.tsx',
+        type: 'registry:component',
       },
     ],
+    name: 'auth-container',
     registryDependencies: ['card'],
+    title: 'Auth container',
+    type: 'registry:component',
   },
   {
-    name: 'form-wrapper',
-    type: 'registry:component',
-    title: 'Form Wrapper',
-    description: 'Wrapper for forms in react auth ui',
-    files: [
-      {
-        path: 'auth/components/form-wrapper.tsx',
-        type: 'registry:component',
-        target: 'components/auth/form-wrapper.tsx',
-      },
-    ],
     dependencies: [
       'zod',
       'react-hook-form',
       '@hookform/resolvers',
       'lucide-react',
     ],
+    description: 'Wrapper for forms in react auth ui',
+    files: [
+      {
+        path: 'auth/components/form-wrapper.tsx',
+        target: 'components/auth/form-wrapper.tsx',
+        type: 'registry:component',
+      },
+    ],
+    name: 'form-wrapper',
     registryDependencies: [
       'form',
       'button',
       `https://react-authui.vercel.app/r/form-root-error.json`,
     ],
+    title: 'Form Wrapper',
+    type: 'registry:component',
   },
   {
-    name: 'register-form',
-    type: 'registry:component',
-    title: 'Register Form',
     description: 'Register form with validation and loading/error states',
     files: [
       {
         path: 'auth/components/register-form.tsx',
-        type: 'registry:component',
         target: 'components/auth/register-form.tsx',
+        type: 'registry:component',
       },
     ],
+    name: 'register-form',
     registryDependencies: [
       'form',
       `https://react-authui.vercel.app/r/form-wrapper.json`,
       `https://react-authui.vercel.app/r/password-input.json`,
     ],
+    title: 'Register Form',
+    type: 'registry:component',
   },
   {
-    name: 'user-dropdown',
-    type: 'registry:component',
-    title: 'User Dropdown',
+    dependencies: ['lucide-react'],
     description: 'User avatar with dropdown menu for account and logout',
     files: [
       {
         path: 'auth/components/user-dropdown.tsx',
-        type: 'registry:component',
         target: 'components/auth/user-dropdown.tsx',
+        type: 'registry:component',
       },
     ],
-    dependencies: ['lucide-react'],
+    name: 'user-dropdown',
     registryDependencies: ['dropdown-menu', 'avatar', 'button'],
+    title: 'User Dropdown',
+    type: 'registry:component',
   },
 ];

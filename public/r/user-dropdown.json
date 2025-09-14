@@ -4,12 +4,18 @@
   "type": "registry:component",
   "title": "User Dropdown",
   "description": "User avatar with dropdown menu for account and logout",
-  "dependencies": ["lucide-react"],
-  "registryDependencies": ["dropdown-menu", "avatar", "button"],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "dropdown-menu",
+    "avatar",
+    "button"
+  ],
   "files": [
     {
       "path": "src/registry/auth/components/user-dropdown.tsx",
-      "content": "'use client';\nimport Link from 'next/link';\nimport { User } from 'lucide-react';\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuTrigger,\n} from '@/components/ui/dropdown-menu';\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\nimport { Button } from '@/components/ui/button';\n\ntype LoggedInProps = {\n  isLogged: true;\n  username: string;\n  accountHref: string;\n  logOutAction: () => Promise<void>;\n};\n\ntype LoggedOutProps = {\n  isLogged: false;\n  loginHref: string;\n};\n\ntype Props = LoggedInProps | LoggedOutProps;\n\nfunction UserDropdown(props: Props) {\n  const { isLogged } = props;\n\n  if (!isLogged) {\n    const { loginHref } = props;\n    return (\n      <Button variant=\"outline\" size=\"icon\" className=\"rounded-full\" asChild>\n        <Link href={loginHref}>\n          <User />\n        </Link>\n      </Button>\n    );\n  }\n\n  const { username, logOutAction, accountHref } = props;\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger asChild>\n        <Avatar>\n          <AvatarImage src=\"https://github.com/benqsz.png\" alt=\"@benqsz\" />\n          <AvatarFallback>{username.slice(0, 2).toUpperCase()}</AvatarFallback>\n        </Avatar>\n      </DropdownMenuTrigger>\n      <DropdownMenuContent>\n        <DropdownMenuItem asChild>\n          <Link href={accountHref}>My Account</Link>\n        </DropdownMenuItem>\n        <DropdownMenuItem onClick={logOutAction}>Log out</DropdownMenuItem>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  );\n}\n\nexport { UserDropdown };\n",
+      "content": "'use client';\nimport { User } from 'lucide-react';\nimport Link from 'next/link';\nimport { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';\nimport { Button } from '@/components/ui/button';\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuTrigger,\n} from '@/components/ui/dropdown-menu';\n\ntype LoggedInProps = {\n  isLogged: true;\n  username: string;\n  accountHref: string;\n  logOutAction: () => Promise<void>;\n};\n\ntype LoggedOutProps = {\n  isLogged: false;\n  loginHref: string;\n};\n\ntype Props = LoggedInProps | LoggedOutProps;\n\nfunction UserDropdown(props: Props) {\n  const { isLogged } = props;\n\n  if (!isLogged) {\n    const { loginHref } = props;\n    return (\n      <Button variant=\"outline\" size=\"icon\" className=\"rounded-full\" asChild>\n        <Link href={loginHref}>\n          <User />\n        </Link>\n      </Button>\n    );\n  }\n\n  const { accountHref, logOutAction, username } = props;\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger asChild>\n        <Avatar>\n          <AvatarImage src=\"https://github.com/benqsz.png\" alt=\"@benqsz\" />\n          <AvatarFallback>{username.slice(0, 2).toUpperCase()}</AvatarFallback>\n        </Avatar>\n      </DropdownMenuTrigger>\n      <DropdownMenuContent>\n        <DropdownMenuItem asChild>\n          <Link href={accountHref}>My Account</Link>\n        </DropdownMenuItem>\n        <DropdownMenuItem onClick={logOutAction}>Log out</DropdownMenuItem>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  );\n}\n\nexport { UserDropdown };\n",
       "type": "registry:component",
       "target": "components/auth/user-dropdown.tsx"
     }
